@@ -1,0 +1,32 @@
+﻿\subsection{Backtesting: 1,000 días, VaR 99\%, 17 excepciones (prueba one-tailed 5\%)}
+
+\textbf{Enunciado}
+
+\emph{Suppose that we back-test a VaR model using 1,000 days of data. The VaR confidence level is 99\% and we observe 17 exceptions. Should we reject the model at the 5\% confidence level? Use a one-tailed test.}
+
+\subsubsection*{Solución}
+
+Sí, se rechaza al 5\% (one-tailed).
+
+
+\textbf{Hipótesis nula. }Bajo \(H_0\), \(p=1-0.99=0.01\) y
+\[
+N\sim \mathrm{Binomial}(1000,0.01).
+\]
+
+\textbf{Valor-p (cola derecha)}\\
+\[
+p\text{-value}=\Prob(N\ge 17\mid H_0)=1-\Prob(N\le 16)\approx 0.0264.
+\]
+
+
+Como \(p\text{-value}<0.05\), se rechaza \(H_0\).
+
+
+
+
+
+
+
+
+

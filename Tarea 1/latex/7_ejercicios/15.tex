@@ -1,0 +1,25 @@
+﻿\subsection{FRM Exam 2009: which multi-day VaR is inconsistent?}
+
+\textbf{Enunciado}
+
+\emph{Assume that portfolio daily returns are independent and identically normally distributed. Which one of the following VARs is inconsistent with the others?}
+\begin{enumerate}[label=\alph*.]
+\item \hl{VAR(10-day) = USD 316M}
+\item VAR(15-day) = USD 465M
+\item VAR(20-day) = USD 537M
+\item VAR(25-day) = USD 600M
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Propiedad de escala bajo i.i.d. normal}. Como se menciona antes, la varianza escala linealmente con el tiempo y la desviación estándar como \(\sqrt{h}\). Para un mismo \(\alpha\): \(\VaR(h)\propto \sqrt{h}\). Entonces \(\VaR(h)/\sqrt{h}\) debe ser constante.
+
+\textbf{Normalizar cada número}\\
+\[
+316/\sqrt{10}\approx 100,\qquad
+465/\sqrt{15}\approx 120,\qquad
+537/\sqrt{20}\approx 120,\qquad
+600/\sqrt{25}=120.
+\]
+Tres valores implican una VaR diaria consistente \(\approx 120\); el de 10 días implica \(\approx 100\). Por ello el inconsistente es el de 10 días.

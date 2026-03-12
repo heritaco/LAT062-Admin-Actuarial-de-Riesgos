@@ -1,0 +1,105 @@
+﻿\subsection{EXAMPLE 1.4: FRM EXAM 2009---QUESTION 1-6 (Jensen's alpha)}
+
+\textbf{Enunciado}
+
+\emph{Suppose Portfolio A has an expected return of 8\%, volatility of 20\%, and beta of 0.5. Suppose the market has an expected return of 10\% and volatility of 25\%. Finally, suppose the risk-free rate is 5\%. What is Jensen’s alpha for Portfolio A?}
+\begin{enumerate}[label=\alph*.]
+\item 10.0\%
+\item 1.0\%
+\item \hl{0.5\%}
+\item 15\%
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+La medida de \emph{Jensen's alpha} compara el rendimiento esperado del portafolio
+con el rendimiento que \emph{debería} tener según el CAPM. Su fórmula es
+
+\[
+\alpha_J
+=
+\mathbb E[R_A]
+-
+\Bigl(
+R_f+\beta_A(\mathbb E[R_M]-R_f)
+\Bigr).
+\]
+
+Aquí:
+
+\begin{itemize}
+    \item \(\mathbb E[R_A]\) es el rendimiento esperado del portafolio \(A\),
+    \item \(R_f\) es la tasa libre de riesgo,
+    \item \(\mathbb E[R_M]\) es el rendimiento esperado del mercado,
+    \item \(\beta_A\) mide la exposición del portafolio al riesgo sistemático del mercado.
+\end{itemize}
+
+\paragraph{Paso 1. Prima de riesgo del mercado}
+
+La prima de riesgo del mercado es
+
+\[
+\mathbb E[R_M]-R_f=0.10-0.05=0.05.
+\]
+
+Es decir, el mercado ofrece un rendimiento adicional de \(5\%\) sobre la tasa libre de riesgo.
+
+\paragraph{Paso 2. Prima de riesgo correspondiente al portafolio}
+
+Como el portafolio tiene \(\beta_A=0.5\), su exposición al riesgo sistemático
+es la mitad de la del mercado. Por tanto, la prima de riesgo que le corresponde es
+
+\[
+\beta_A(\mathbb E[R_M]-R_f)=0.5(0.05)=0.025.
+\]
+
+\paragraph{Paso 3. Rendimiento requerido por CAPM}
+
+El rendimiento requerido por CAPM para el portafolio \(A\) es
+
+\[
+R_f+\beta_A(\mathbb E[R_M]-R_f)
+=
+0.05+0.025
+=
+0.075.
+\]
+
+Es decir, un portafolio con \(\beta=0.5\) debería ofrecer un rendimiento esperado de \(7.5\%\).
+
+\paragraph{Paso 4. Calcular el alpha}
+
+Dado que el rendimiento esperado observado del portafolio es
+
+\[
+\mathbb E[R_A]=0.08,
+\]
+
+entonces
+
+\[
+\alpha_J
+=
+0.08-0.075
+=
+0.005.
+\]
+
+En porcentaje,
+
+\[
+\alpha_J=0.5\%.
+\]
+
+
+El portafolio ofrece \(0.5\%\) más de rendimiento del que el CAPM predice para su nivel
+de riesgo sistemático. Por ello, su Jensen's alpha es positivo.
+
+
+
+
+
+
+
+
+

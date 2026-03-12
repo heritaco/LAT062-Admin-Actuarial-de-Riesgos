@@ -1,0 +1,117 @@
+\vspace{0.5cm}
+
+\noindent \subsection{Prima de varianza} \textit{Sea $X$ una pérdida aleatoria con media $\mu_X = E[X]$ y varianza $\sigma_X^2 = \text{Var}(X)$. La medida de riesgo de la prima de varianza se define como}
+\[
+\varrho(X) = \mu_X + \alpha\sigma_X^2, \quad \alpha \geq 0.
+\]
+\textit{Demuestre que esta medida de riesgo satisface el \textbf{Axioma T (Invarianza Traslacional)}, pero no satisface los \textbf{Axiomas S (Subaditividad)}, \textbf{M (Monotonía)} ni \textbf{PH (Homogeneidad Positiva)}.}
+
+\vspace{0.3cm}
+\noindent \textit{Demostración.} \textbf{(Axioma T)} Para cualquier constante $a \geq 0$,
+\[
+\varrho(X + a) = \mu_{X+a} + \alpha\sigma_{X+a}^2 = (\mu_X + a) + \alpha\sigma_X^2 = \varrho(X) + a.
+\]
+Por lo tanto, el Axioma T se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma PH)} Para $a \geq 0$,
+\[
+\varrho(aX) = a\mu_X + \alpha a^2\sigma_X^2, \qquad a\varrho(X) = a\mu_X + \alpha a\sigma_X^2.
+\]
+Estas expresiones solo son iguales si $a = 0, 1$ o $\alpha = 0$; por lo tanto, el Axioma PH no se cumple en general.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma S)} Para cualesquiera pérdidas aleatorias $X$ y $Y$,
+\[
+\varrho(X + Y) = \mu_{X+Y} + \alpha\sigma_{X+Y}^2 = \mu_X + \mu_Y + \alpha(\sigma_X^2 + \sigma_Y^2 + 2\,\text{Cov}(X,Y)) = \varrho(X) + \varrho(Y) + 2\alpha\,\text{Cov}(X,Y).
+\]
+Por lo tanto, la subaditividad solo se cumple si $\text{Cov}(X,Y) \leq 0$; en general no se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma M)} Suponga que $X \leq Y$ casi seguramente. Entonces $\mu_X \leq \mu_Y$, pero $\sigma_X$ puede ser mayor que $\sigma_Y$. Ejemplo: $X$ toma los valores $0, 2$ con probabilidad $1/2$ cada uno, y $Y \equiv 2$. Entonces $\mu_X = 1$, $\sigma_X^2 = 1$, $\mu_Y = 2$, $\sigma_Y^2 = 0$. Así,
+\[
+\varrho(X) = 1 + \alpha, \qquad \varrho(Y) = 2.
+\]
+Si $\alpha > 1$, $\varrho(X) > \varrho(Y)$ aunque $X \leq Y$. Por tanto, la monotonía falla.
+
+\vspace{0.2cm}
+\textbf{Conclusión:} El Axioma T se cumple; los Axiomas PH, S y M no. 
+
+\vspace{0.8cm}
+
+\subsection{Prima de desviación estándar} \textit{Sea $X$ una pérdida aleatoria con media $\mu_X = E[X]$ y desviación estándar $\sigma_X = \sqrt{\text{Var}(X)}$. La medida de riesgo de la prima de desviación estándar se define como}
+\[
+\varrho(X) = \mu_X + \alpha\sigma_X, \quad \alpha \geq 0.
+\]
+\textit{Demuestre que esta medida de riesgo satisface los \textbf{Axiomas S (Subaditividad)}, \textbf{T (Invarianza Traslacional)} y \textbf{PH (Homogeneidad Positiva)}, pero no satisface el \textbf{Axioma M (Monotonía)}.}
+
+\vspace{0.3cm}
+\noindent \textit{Demostración.} \textbf{(Axioma T)} Para cualquier constante $a \geq 0$,
+\[
+\varrho(X + a) = \mu_{X+a} + \alpha\sigma_{X+a} = (\mu_X + a) + \alpha\sigma_X = \varrho(X) + a.
+\]
+Por lo tanto, el Axioma T se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma PH)} Para $a \geq 0$,
+\[
+\varrho(aX) = \mu_{aX} + \alpha\sigma_{aX} = a\mu_X + \alpha a\sigma_X = a\varrho(X),
+\]
+por lo que el Axioma PH se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma S)} Usando la desigualdad de Minkowski, $\sigma_{X+Y} \leq \sigma_X + \sigma_Y$, y $\mu_{X+Y} = \mu_X + \mu_Y$, se obtiene:
+\[
+\varrho(X + Y) = \mu_X + \mu_Y + \alpha\sigma_{X+Y} \leq \mu_X + \mu_Y + \alpha(\sigma_X + \sigma_Y) = \varrho(X) + \varrho(Y).
+\]
+Por lo tanto, la subaditividad se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma M)} Sea $X \leq Y$ casi seguramente, pero con diferentes dispersiones. Ejemplo: $X$ toma los valores $0, 2$ con probabilidad $1/2$, y $Y \equiv 2$. Entonces
+\[
+\mu_X = 1, \quad \sigma_X = 1, \quad \mu_Y = 2, \quad \sigma_Y = 0.
+\]
+Por lo tanto,
+\[
+\varrho(X) = 1 + \alpha, \qquad \varrho(Y) = 2.
+\]
+Si $\alpha > 1$, $\varrho(X) > \varrho(Y)$ aunque $X \leq Y$. Por tanto, el Axioma M no se cumple.
+
+\vspace{0.2cm}
+\textbf{Conclusión:} Los Axiomas S, T y PH se cumplen; el Axioma M no.
+
+\vspace{0.8cm}
+
+\subsection{Valor esperado de la transformada PH} \textit{Sea $g : [0,1] \to [0,1]$ una función creciente y cóncava con $g(0) = 0$ y $g(1) = 1$. Para una pérdida aleatoria no negativa $X$ con función de distribución acumulada $F_X$, se define la medida de riesgo basada en el valor esperado de la transformada PH como}
+\[
+\varrho(X) = \int_{0}^{\infty} [1 - g(F_X(x))] \, dx.
+\]
+\textit{Demuestre que esta medida de riesgo satisface los \textbf{Axiomas PH (Homogeneidad Positiva)}, \textbf{M (Monotonía)} y \textbf{T (Invarianza Traslacional)}. Asimismo, muestre que posee la \textbf{propiedad de no abuso}, es decir, para una pérdida constante $a$, $\varrho(a) = a$.}
+
+\vspace{0.3cm}
+\noindent \textit{Demostración.} \textbf{(Axioma T)} Para $a \geq 0$, se cumple que $F_{X+a}(x) = F_X(x - a)$ para $x \geq a$. Entonces:
+\begin{align*}
+\varrho(X + a) &= \int_{0}^{\infty} [1 - g(F_{X+a}(x))] \, dx = \int_{0}^{\infty} [1 - g(F_X(x - a))] \, dx \\
+&= \int_{-a}^{\infty} [1 - g(F_X(y))] \, dy = a + \int_{0}^{\infty} [1 - g(F_X(y))] \, dy = \varrho(X) + a.
+\end{align*}
+Por lo tanto, el Axioma T se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma PH)} Para $a \geq 0$, dado que $F_{aX}(x) = F_X(x/a)$,
+\[
+\varrho(aX) = \int_{0}^{\infty} [1 - g(F_{aX}(x))] \, dx = \int_{0}^{\infty} [1 - g(F_X(x/a))] \, dx = a \int_{0}^{\infty} [1 - g(F_X(y))] \, dy = a \varrho(X),
+\]
+por lo que el Axioma PH se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Axioma M)} Si $X \leq Y$ casi seguramente, entonces $F_X(x) \geq F_Y(x)$ para todo $x$. Como $g$ es creciente, $g(F_X(x)) \geq g(F_Y(x))$, por lo que $1 - g(F_X(x)) \leq 1 - g(F_Y(x))$. Al integrar se obtiene $\varrho(X) \leq \varrho(Y)$. Por tanto, el Axioma M se cumple.
+
+\vspace{0.2cm}
+\noindent \textbf{(Propiedad de no abuso)} Para una pérdida constante $a$, se cumple que $F_X(x) = 0$ para $x < a$, y $F_X(x) = 1$ para $x \geq a$. Entonces:
+\[
+\varrho(a) = \int_{0}^{\infty} [1 - g(F_X(x))] \, dx = \int_{0}^{a} [1 - g(0)] \, dx + \int_{a}^{\infty} [1 - g(1)] \, dx = \int_{0}^{a} 1 \, dx = a.
+\]
+Así, $\varrho(a) = a$, verificando la propiedad de no abuso.
+
+\vspace{0.2cm}
+\textbf{Conclusión:} La medida de riesgo PH-transform satisface los Axiomas PH, M y T, y posee la propiedad de no abuso.

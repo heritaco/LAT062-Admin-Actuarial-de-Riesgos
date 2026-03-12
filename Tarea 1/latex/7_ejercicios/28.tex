@@ -1,0 +1,43 @@
+﻿\subsection{FRM EXAM 2007---QUESTION 101: evidence of poor 1-day VaR(95\%) estimation}
+
+\textbf{Enunciado}
+
+\emph{A large, international bank has a trading book ... one-day VAR at the 95\% confidence level is USD 50 million.
+Which of the following would be the most convincing evidence that the manager is doing a poor job, assuming i.i.d.?}
+\begin{enumerate}[label=\alph*.]
+\item Over the past 250 days, there are eight exceptions.
+\item Over the past 250 days, the largest loss is USD 500 million.
+\item Over the past 250 days, the mean loss is USD 60 million.
+\item \hl{Over the past 250 days, there is no exception.}
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Modelo de excepciones. }Con VaR al 95\%, la probabilidad diaria de excepción es \(p=0.05\).
+En \(n=250\) días, el conteo \(N\sim\mathrm{Binomial}(250,0.05)\) y \(\E[N]=np=12.5\).
+
+\textbf{Evidencia más convincente}\\
+\begin{itemize}
+\item (a) \(N=8\) no es inverosímil (está cerca de 12.5), no es evidencia fuerte de mal modelo.
+\item (b) VaR no acota pérdidas máximas; un máximo grande no invalida el VaR.
+\item (c) ``mean loss'' no es métrica directa de calibración de VaR.
+\item (d) \(N=0\) es extremadamente improbable si el VaR está bien calibrado:
+\[
+\Prob(N=0)=(1-p)^{250}=0.95^{250}\approx 2.7\times 10^{-6}.
+\]
+Esto sugiere un VaR mal estimado (probablemente demasiado conservador o mala especificación).
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+

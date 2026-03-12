@@ -1,0 +1,45 @@
+﻿\subsection{FRM Exam 2009: probability NOT between 32 and 116}
+
+\textbf{Enunciado}
+
+\emph{Assume that a random variable follows a normal distribution with a mean of 80 and a standard deviation of 24. What percentage of this distribution is not between 32 and 116?}
+\begin{enumerate}[label=\alph*.]
+\item 4.56\%
+\item \hl{8.96\%}
+\item 13.36\%
+\item 18.15\%
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Estandarizar. }Sea \(X\sim\mathcal N(\mu=80,\sigma=24)\). Definimos \(Z=(X-\mu)/\sigma\sim\mathcal N(0,1)\).
+Entonces:
+\[
+32 \mapsto z_1=\frac{32-80}{24}=-2,\qquad
+116 \mapsto z_2=\frac{116-80}{24}=1.5.
+\]
+
+\textbf{Probabilidad fuera del intervalo. }Queremos:
+\[
+\Prob(X\notin[32,116])=\Prob(X<32)+\Prob(X>116)=\Prob(Z<-2)+\Prob(Z>1.5).
+\]
+De tablas normales:
+\[
+\Prob(Z<-2)=0.0228,\qquad \Prob(Z>1.5)=1-\Phi(1.5)=1-0.9332=0.0668.
+\]
+Sumando:
+\[
+0.0228+0.0668=0.0896=8.96\%.
+\]
+
+
+
+
+
+
+
+
+
+
+

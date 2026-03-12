@@ -1,0 +1,34 @@
+﻿\subsection{FRM Exam 1999---Question 89 (Market Risk): interpretation of VaR}
+
+\textbf{Enunciado}
+
+\emph{What is the correct
+interpretation of a \$3 million overnight VAR figure with 99\% confidence
+level? The institution}
+\begin{enumerate}[label=\alph*.]
+\item {Can be expected to lose at most \$3 million in 1 out of next 100 days}
+\item {Can be expected to lose at least \$3 million in 95 out of next 100 days}
+\item \hl{Can be expected to lose at least \$3 million in 1 out of next 100 days}
+\item {Can be expected to lose at most \$6 million in 2 out of next 100 days}
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+
+Sea \(L\) la pérdida overnight. El VaR al nivel \(\alpha\) es el cuantil \(\alpha\):
+\[
+\VaR_\alpha(L):=\inf\{\ell:\Prob(L\le \ell)\ge \alpha\}.
+\]
+Que se escribe como:
+\[
+\Prob(L>\VaR_\alpha(L))\approx 1-\alpha.
+\]
+
+\textbf{Sustituir \(\alpha=0.99\).} Si \(\VaR_{0.99}(L)=\$3{,}000{,}000\), entonces:
+\[
+\Prob(L>3{,}000{,}000)\approx 0.01.
+\]
+Es decir: \emph{aprox. 1 de cada 100 días la pérdida excede (o es al menos) \$3 millones.}
+
+

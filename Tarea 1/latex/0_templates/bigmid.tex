@@ -1,0 +1,325 @@
+% ======================================================================
+%   Document class
+%   Compile with: lualatex or xelatex
+% ======================================================================
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+
+% Main document language (uncomment one of these):
+\usepackage[spanish]{babel}
+% \usepackage[english]{babel}
+
+% --- Define reusable metadata macros ---
+\newcommand{\DocTitle}{Modelado de Crisis de Liquidez Sistémica en Mercados de Opciones mediante Modelos Basados en Agentes}
+\newcommand{\DocAuthor}{Heriberto Espino Montelongo}
+\newcommand{\DocKeywords}{Modelos Basados en Agentes, Crisis de Liquidez, Mercados de Opciones, Dinámicas de Mercado, Simulación Financiera}
+% Connect to standard LaTeX title/author
+\title{\DocTitle}
+\author{\DocAuthor}
+
+
+% ======================================================================
+%   Page layout & hyperlinks
+% ======================================================================
+\usepackage[margin=3cm]{geometry} % Page margins
+\usepackage[hidelinks]{hyperref}  % Clickable links without colored boxes
+% --- Hyperref metadata using the same macros ---
+\hypersetup{
+  pdfauthor={\DocAuthor},
+  pdftitle={\DocTitle},
+  pdfkeywords={\DocKeywords}
+}
+
+% ======================================================================
+%   Mathematics and symbols
+% ======================================================================
+\usepackage{amsmath,amssymb}      % Standard AMS math packages
+
+% ======================================================================
+%   Lists (itemize, enumerate) and paragraph layout
+% ======================================================================
+\usepackage{enumitem}
+\setlist{nosep}                    % Remove extra vertical space in lists
+\setlist[itemize]{label=--}        % Itemize uses en dash as bullet
+
+% Global paragraph style: no indentation, add vertical space between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+% ======================================================================
+%   Fonts: text + math
+%   Requires LuaLaTeX or XeLaTeX
+% ======================================================================
+\usepackage{fontspec}              % Font selection for Unicode engines
+
+% Main text font: EB Garamond
+\setmainfont{EB Garamond}[
+  UprightFont   = * Regular,
+  ItalicFont    = * Italic,
+  BoldFont      = * SemiBold,
+  BoldItalicFont= * SemiBold Italic
+]
+
+% Math font: newtxmath (Times-like math)
+\usepackage{newtxmath}
+
+% Scale math font to be less bold to match text better
+\DeclareMathVersion{bold} % light, normal, bold
+\SetSymbolFont{letters}{bold}{OML}{ntxmi}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{ntxop}{m}{n}
+\SetSymbolFont{symbols}{bold}{OMS}{ntxsy}{m}{n}
+
+% Replace \mathbb with Libertinus Math blackboard bold
+%   bb=libus  -> use Libertinus blackboard-bold
+%   bbscaled  -> overall scaling factor
+\usepackage[bb=libus,bbscaled=1.0]{mathalpha}
+
+
+
+% ======================================================================
+%   Header and footer (fancyhdr)
+% ======================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}                          % Clear all header and footer fields
+
+% Section mark (as before)
+% \renewcommand{\sectionmark}[1]{%
+%   \markboth{\thesection\ #1}{}%
+% }
+
+% Section mark: number – title, with comfortable spacing
+\renewcommand{\sectionmark}[1]{%
+  \markboth{\thesection\enspace\enspace #1}{}%
+}
+
+% Holds the current section title for the header
+\newcommand{\SectionHeaderTitle}{}
+
+% When a section is declared, remember its title in \SectionHeaderTitle
+\renewcommand{\sectionmark}[1]{%
+  \markboth{#1}{}% still set marks if something else needs them
+  \gdef\SectionHeaderTitle{#1}%
+}
+
+
+% Normal pages: section name in small caps on the left, page number on the right
+% Left header: section number in normal font, title in small caps
+\fancyhead[L]{%
+  \nouppercase{%
+    \small % size like before
+    \normalfont\thesection\enspace % number, unchanged
+    \textsc{\SectionHeaderTitle}   % title, small caps
+  }%
+}
+
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+
+% ======================================================================
+%   Section and subsection formatting
+% ======================================================================
+\usepackage{titlesec}
+\usepackage{etoolbox} % for \pretocmd
+
+
+% Optional explicit bold faces for headings (not strictly necessary)
+\newfontface\garamondbold{EB Garamond SemiBold}
+\newfontface\garamondbolditalic{EB Garamond SemiBold Italic}
+\newfontface\extrabold{EB Garamond ExtraBold}
+
+% Section title format (bigger, without \clearpage here)
+\titleformat{\section}
+  {\garamondbold\huge} % large, Large, LARGE, HUGE
+  {\thesection}
+  {12pt}
+  {}
+
+% Make each \section start on a new page and have an empty pagestyle there
+% Section page: new page + custom pagestyle (only page number)
+
+
+
+% Code before the title text
+
+% --- Special pagestyle for section-opening pages: only page number at bottom ---
+
+
+% ======================================================================
+%   Section title pages to clearpage with new section
+% ======================================================================
+
+
+\fancypagestyle{sectionpage}{%
+  \fancyhf{}%
+  \fancyhead[R]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\pretocmd{\section}{\clearpage\thispagestyle{sectionpage}\vspace*{-85pt}}{}{}
+
+
+% \fancypagestyle{sectionpage}{%
+%   \fancyhf{}%
+%   \fancyfoot[C]{\small\thepage}%
+%   \renewcommand{\headrulewidth}{0pt}%
+%   \renewcommand{\footrulewidth}{0pt}%
+% }
+% \pretocmd{\section}{\clearpage\thispagestyle{sectionpage}}{}{}
+
+\fancypagestyle{firstpagee}{%
+  \fancyhf{}%
+  \fancyhead[R]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+  
+
+
+% Subsection title format
+\titleformat{\subsection}
+  {\garamondbold\large}
+  {\thesubsection}
+  {8pt}
+  {}
+
+% --- Make the "Table of contents" title huge and % ======================================================================
+%   Miscellaneous useful packages
+% ======================================================================
+\usepackage{tocloft}                % Customize table of contents
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+% --- Make the "Table of contents" title huge and nicely styled ---
+\renewcommand{\cfttoctitlefont}{%
+  \centering
+  \garamondbold\huge   % or \fontsize{28}{32}\selectfont if you want even larger
+}
+\renewcommand{\cftaftertoctitle}{\par\vspace{1.5em}} % space below the title
+
+
+
+
+% ======================================================================
+%   Line spacing
+% ======================================================================
+\usepackage{setspace}
+\onehalfspacing                     % 1.5 line spacing
+
+% ======================================================================
+%   Miscellaneous useful packages
+% ======================================================================
+\usepackage{tocloft}                % Customize table of contents
+\usepackage{xcolor}                 % Colors (for code, emphasis, etc.)
+\usepackage{booktabs}               % Professional-looking tables
+
+% ======================================================================
+%   Source code formatting
+% ======================================================================
+\usepackage{listings}
+
+% Basic listings configuration
+\lstset{
+  basicstyle      = \ttfamily\small,     % Monospaced, small size
+  backgroundcolor = \color{gray!10},     % Light gray background
+  frame           = single,              % Single-line frame around code
+  breaklines      = true,                % Wrap long lines
+  tabsize         = 2,                   % Optional: tab width
+  numbers         = none                 % Optional: omit line numbers
+}
+
+% ======================================================================
+%   Document body
+% ======================================================================
+% Full-width abstract (no extra margins)
+\usepackage{ragged2e} % for \justifying
+
+% Full-width, justified abstract environment
+\newenvironment{wideabstract}{%
+  \par\vspace{1em}%
+  \noindent\textbf{Resumen}\par
+  \vspace{0.2em}%
+  \justifying         % <-- full justification, overrides \centering
+}{%
+  \par\vspace{1em}%
+}
+
+
+% =============================
+% Cover-page "function"
+% =============================
+% Argument #1: abstract text
+\newcommand{\MakeCoverPage}[1]{%
+  \begin{titlepage}
+
+    \vspace*{-85pt}
+    {\Huge\extrabold \DocTitle\par}
+    \vspace{3cm}
+
+    
+    \centering
+    {\Large \DocAuthor\par}
+    \vspace{1cm}
+
+    {\Large Universidad de las Américas Puebla
+    \\Departamento de Actuaría, Física y Matemáticas
+    \par}
+    \vspace{1cm}
+    {\Large O25 LDS1061 1: Temas selectos 1
+    \par}
+    \vspace{1cm}
+    {\Large profe juan carlos morales\par}
+    \vfill
+
+
+
+
+    {\Large \today\par}
+  \end{titlepage}
+}
+
+
+\begin{document}
+% =============================
+%   Cover page
+% ============================= 
+\MakeCoverPage{%
+    Este trabajo presenta un modelo basado en agentes (ABM) para simular y analizar crisis de liquidez sistémica en mercados de opciones. Se describen los tipos de agentes, sus comportamientos e interacciones, así como los parámetros clave del modelo. Los resultados muestran dinámicas emergentes como cascadas de liquidación, amplificación de volatilidad y fragmentación de la red durante crisis simuladas. Se discuten las limitaciones del modelo y se proponen extensiones futuras para mejorar su realismo y aplicabilidad en estudios financieros.
+}
+
+% =============================
+%   Table of contents
+% =============================
+
+\vspace*{-60pt} 
+\tableofcontents
+%set counter in roman numerals
+
+\pagenumbering{roman}
+\thispagestyle{firstpagee} % No header/footer on TOC page
+%number page 1
+
+%make this sections be counted in roman numerals as I Resumen
+\section*{Resumen}
+
+
+Las crisis financieras modernas se caracterizan por su rápida propagación a través de redes de instituciones interconectadas, generando efectos en cascada difíciles de predecir mediante modelos analíticos tradicionales. El mercado de opciones, donde convergen múltiples tipos de agentes con estrategias heterogéneas, representa un ecosistema particularmente susceptible a crisis de liquidez sistémicas.
+
+\section*{Abstract}
+
+
+Las crisis financieras modernas se caracterizan por su rápida propagación a través de redes de instituciones interconectadas, generando efectos en cascada difíciles de predecir mediante modelos analíticos tradicionales. El mercado de opciones, donde convergen múltiples tipos de agentes con estrategias heterogéneas, representa un ecosistema particularmente susceptible a crisis de liquidez sistémicas.
+
+
+
+
+\section{Introducción}
+\setcounter{page}{1}
+\pagenumbering{arabic}

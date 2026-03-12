@@ -1,0 +1,172 @@
+﻿\subsection{FRM EXAM 2007---QUESTION 50 (Bonds): duration-based VaR}
+
+\textbf{Enunciado}
+
+\emph{A portfolio consists of two zero coupon bonds, each with a current value of \$10. 
+The first bond has a modified duration of one year and the second has a modified duration 
+of nine years. The yield curve is flat, and all yields are 5\%. Assume all moves of the 
+yield curve are parallel shifts. Given that the daily volatility of the yield is 1\%, 
+which of the following is the best estimate of the portfolio’s daily value at risk (VAR) 
+at the 95\% confidence level?}
+\begin{enumerate}[label=\alph*.]
+\item \hl{USD 1.65}
+\item USD 2.33
+\item USD 1.16
+\item USD 0.82
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+\paragraph{1. Definiciones} Sean: 
+
+\begin{itemize}
+    \item \(P\): precio actual del bono.
+    \item \(\Delta P\): cambio en el precio del bono durante el día.
+    \item \(y\): rendimiento al vencimiento (\emph{yield}).
+    \item \(\Delta y\): cambio diario en el rendimiento.
+    \item \(D\): duración modificada.
+\end{itemize}
+
+\vspace{0.5cm}
+
+Entonces:
+\[
+\frac{\Delta P}{P}
+\]
+representa el cambio porcentual en el precio del bono.\\
+
+\paragraph{2. Duración modificada}
+
+La duración modificada se define como
+\[
+D \;=\; -\frac{1}{P}\frac{dP}{dy}.
+\]
+Que se obtiene a partir de:
+\[
+P(y)=\frac{F}{(1+y)^T}.
+\]
+
+Derivando respecto de \(y\). Esta definición dice que \(D\) mide qué tan sensible es el precio del bono a cambios
+pequeños en la yield, se puede interpretar que dividir entre \(P\) normaliza por el precio, eso convierte una sensibilidad en moneda a una sensibilidad porcentual. 
+
+Haciendo álgrebra de la NASA,
+\[
+\frac{dP}{P} \;=\; -D\,dy.
+\]
+
+Para movimientos pequeños de tasas, reemplazamos diferenciales por cambios finitos
+pequeños y obtenemos la aproximación lineal:
+\[
+\frac{\Delta P}{P}\approx -D\,\Delta y.
+\]
+
+Multiplicando ambos lados por \(P\),
+\[
+\Delta P \approx -D\,P\,\Delta y.
+\]
+
+\paragraph{3. Interpretación de la fórmula}
+
+La expresión
+\[
+\Delta P \approx -D\,P\,\Delta y
+\]
+significa lo siguiente:
+
+\begin{itemize}
+    \item si la tasa sube (\(\Delta y>0\)), el precio del bono baja (\(\Delta P<0\));
+    \item si la tasa baja (\(\Delta y<0\)), el precio del bono sube (\(\Delta P>0\));
+    \item mientras mayor sea \(D\), más sensible es el bono a cambios en tasa;
+    \item mientras mayor sea \(P\), mayor será el cambio en dólares.
+\end{itemize}
+
+Así, \(D\,P\) es la exposición en una moneda \(P\) del bono al factor de riesgo
+\(\Delta y\).
+
+\paragraph{4. Aplicación a cada bono}
+
+El portafolio tiene dos bonos cupón cero, cada uno con precio actual
+\[
+P_1=P_2=10.
+\]
+
+Sus duraciones modificadas son
+\[
+D_1=1,
+\qquad
+D_2=9.
+\]
+
+Como el problema dice que todos los movimientos de la curva son
+\textbf{desplazamientos paralelos}, ambos bonos enfrentan el mismo cambio
+\(\Delta y\).
+
+Entonces, para el bono 1:
+\[
+\Delta P_1 \approx -D_1P_1\Delta y = -(1)(10)\Delta y = -10\Delta y.
+\]
+
+Para el bono 2:
+\[
+\Delta P_2 \approx -D_2P_2\Delta y = -(9)(10)\Delta y = -90\Delta y.
+\]
+
+\paragraph{5. Cambio del valor del portafolio}
+
+El cambio total del portafolio es la suma de ambos cambios:
+\[
+\Delta P_{\text{port}}=\Delta P_1+\Delta P_2.
+\]
+
+Sustituyendo:
+\[
+\Delta P_{\text{port}}
+\approx -10\Delta y-90\Delta y
+= -100\Delta y.
+\]
+
+Esto muestra que el portafolio tiene una exposición total de \$100 por unidad de cambio en el rendimiento.
+
+\paragraph{6. ¿Cómo entra la volatilidad del yield?}
+
+El problema dice que la volatilidad diaria del rendimiento es
+\[
+\sigma_y=1\%=0.01.
+\]
+
+Como
+\[
+\Delta P_{\text{port}}\approx -100\Delta y,
+\]
+entonces la desviación estándar del cambio diario en el valor del portafolio es
+\[
+\sigma_{\Delta P}
+=100\,\sigma_y
+=100(0.01)
+=1.
+\]
+
+Es decir, el cambio diario del valor del portafolio tiene una volatilidad
+aproximada de \$1.
+
+\paragraph{7. Cálculo del VaR al 95\%}
+
+Bajo la aproximación paramétrica, el VaR diario al 95\% se estima como
+\[
+\mathrm{VaR}_{0.95}\approx z_{0.95}\,\sigma_{\Delta P}.
+\]
+
+Para una normal estándar,
+\[
+z_{0.95}\approx 1.645.
+\]
+
+Por tanto,
+\[
+\mathrm{VaR}_{0.95}\approx 1.645(1)=1.645.
+\]
+
+Redondeando:
+\[
+{\mathrm{VaR}_{0.95}\approx \$1.65.}
+\]

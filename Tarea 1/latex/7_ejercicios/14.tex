@@ -1,0 +1,46 @@
+﻿\subsection{FRM Exam 2008: scale VaR from 1-day 95\% to 10-day 99\%}
+
+\textbf{Enunciado}
+
+\emph{Assume that the P\&L distribution of a liquid asset is i.i.d. normally distributed. The position has a one-day VAR at the 95\% confidence level of \$100,000. Estimate the 10-day VAR of the same position at the 99\% confidence level.}
+\begin{enumerate}[label=\alph*.]
+\item \$1,000,000
+\item \hl{\$450,000}
+\item \$320,000
+\item \$220,000
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Escala bajo normal i.i.d. y delta-normral. }Si \(L_1\sim\mathcal N(0,\sigma^2)\), entonces \(L_{10}\sim\mathcal N(0,10\sigma^2)\) y:
+\[
+\VaR_\alpha(h)=z_\alpha\,\sigma\sqrt{h}.
+\]
+
+\textbf{Usar el VaR dado para eliminar \(\sigma\). }Dado 
+\[\VaR_{0.95}(1)=100{,}000=z_{0.95}\sigma,\]
+se tiene:
+\[\sigma=100{,}000/z_{0.95}\].
+
+\textbf{Para calcular \(\VaR_{0.99}(10)\)}\\
+\[
+\VaR_{0.99}(10)=z_{0.99}\sigma\sqrt{10}
+=100{,}000\left(\frac{z_{0.99}}{z_{0.95}}\right)\sqrt{10}.
+\]
+Con \(z_{0.95}\approx 1.645\), \(z_{0.99}\approx 2.33\), \(\sqrt{10}\approx 3.16\):
+\[
+\VaR_{0.99}(10)\approx 100{,}000\,(2.33/1.645)\,(3.16)\approx 4.47\times 10^5 \approx 450{,}000.
+\]
+
+
+
+
+
+
+
+
+
+
+
+

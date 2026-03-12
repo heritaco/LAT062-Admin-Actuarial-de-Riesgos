@@ -1,0 +1,72 @@
+﻿\subsection{EXAMPLE 5.5: FRM EXAM 2004---QUESTION 39 (portfolio volatility)}
+
+\textbf{Enunciado}
+
+\emph{Consider a portfolio with 40\% invested in asset X and 60\% invested in
+asset Y. The mean and variance of return on X are 0 and 25
+respectively. The mean and variance of return on Y are 1 and 121
+respectively. The correlation coefficient between X and Y is 0.3. What is
+the nearest value for portfolio volatility?}
+\begin{enumerate}[label=\alph*.]
+\item 9.51
+\item 8.60
+\item 13.38
+\item \hl{7.45}
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+Sea \(R_P\) el rendimiento del portafolio. Como el 40\% está invertido en \(X\) y el 60\%
+en \(Y\), se tiene
+\[
+R_P = 0.4\,R_X + 0.6\,R_Y.
+\]
+
+Además, se nos dan las varianzas, desviaciones estándar y correlación de los rendimientos de \(X\) e \(Y\):
+\[
+\Var(R_X)=25,\qquad \Var(R_Y)=121,
+\]
+\[
+\sigma_X=\sqrt{25}=5,\qquad \sigma_Y=\sqrt{121}=11.
+\]\[
+\rho_{XY}=0.3.
+\]
+
+La fórmula de la varianza de un portafolio de dos activos para constantes \(a,b\) es:
+\[
+\Var(aA+bB)=a^2\Var(A)+b^2\Var(B)+2ab\,\mathrm{Cov}(A,B).
+\]
+\[
+\Var(R_P)
+=
+w_X^2\sigma_X^2+w_Y^2\sigma_Y^2+2w_Xw_Y\rho_{XY}\sigma_X\sigma_Y.
+\]
+\[
+\sigma_P^2
+=
+(0.4)^2(5)^2+(0.6)^2(11)^2+2(0.4)(0.6)(0.3)(5)(11).
+\]
+\[
+\sigma_P^2=4+43.56+7.92=55.48.
+\]
+
+Finalmente, la volatilidad del portafolio es
+\[
+\sigma_P=\sqrt{55.48}\approx 7.45.
+\]
+
+\paragraph{Observación.}
+Si la correlación hubiera sido \(\rho=1\), entonces la volatilidad sería
+\[
+0.4(5)+0.6(11)=8.6,
+\]
+pero como \(\rho=0.3<1\), hay beneficio de diversificación y la volatilidad
+resulta menor.
+
+
+
+
+
+
+
+

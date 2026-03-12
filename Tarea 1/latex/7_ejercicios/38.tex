@@ -1,0 +1,67 @@
+﻿\subsection{VaR normal 1 día vs 5 días; efecto de autocorrelación}
+
+\textbf{Enunciado}
+\begin{itemize}
+\item \emph{Suppose that the change in the value of a portfolio over a one-day time period is normal with a mean of zero and a standard deviation of \$2 million; what is 
+(a) the one-day 97.5\% VaR, (b) the five-day 97.5\% VaR, and (c) the five-day 99\% VaR?}
+\item \emph{What difference does it make if there is first-order daily autocorrelation with a correlation parameter equal to 0.16?}
+\end{itemize}
+
+
+\subsubsection*{Solución}
+
+\textbf{Parte A: sin autocorrelación (i.i.d.)}\\
+\[
+\Delta V_1\sim \mathcal N(0,\sigma^2),\qquad \sigma=\$2\text{M}.
+\]
+Cuantiles: \(z_{0.975}\approx 1.960\), \(z_{0.99}\approx 2.326\).
+
+\textbf{(a) One-day VaR(97.5\%)}\\
+\[
+\VaR_{0.975}(1)=z_{0.975}\sigma\approx 1.960\cdot 2 = 3.92\text{M}.
+\]
+
+\textbf{(b) Five-day VaR(97.5\%) (raíz del tiempo)}\\
+\[
+\sd(\Delta V_5)=\sigma\sqrt{5}=2\sqrt{5}\approx 4.472\text{M},
+\]
+\[
+\VaR_{0.975}(5)\approx z_{0.975}\sd(\Delta V_5)\approx 1.960\cdot 4.472 = 8.77\text{M}.
+\]
+
+\textbf{(c) Five-day VaR(99\%)}\\
+\[
+\VaR_{0.99}(5)\approx z_{0.99}\sd(\Delta V_5)\approx 2.326\cdot 4.472 = 10.40\text{M}.
+\]
+
+\textbf{Parte B: con autocorrelación de primer orden \(\rho=0.16\)}\\
+Si \(\mathrm{Corr}(X_t,X_{t-k})=\rho^k\), entonces para \(n\) días:
+\[
+\Var\Big(\sum_{t=1}^n X_t\Big)=\sigma^2\Big[n+2\sum_{k=1}^{n-1}(n-k)\rho^k\Big].
+\]
+Para \(n=5\) y \(\rho=0.16\), el factor es:
+\[
+5+2\sum_{k=1}^4 (5-k)\rho^k \approx 6.451295.
+\]
+Entonces:
+\[
+\sd(\Delta V_5)=\sigma\sqrt{6.451295}=2\sqrt{6.451295}\approx 5.080\text{M}.
+\]
+En consecuencia:
+\[
+\VaR_{0.975}(5)\approx 1.960\cdot 5.080 = 9.96\text{M},
+\qquad
+\VaR_{0.99}(5)\approx 2.326\cdot 5.080 = 11.82\text{M}.
+\]
+
+
+La autocorrelación positiva aumenta la varianza acumulada, por lo que el VaR multi-día es mayor que el obtenido con \(\sqrt{5}\).
+
+
+
+
+
+
+
+
+

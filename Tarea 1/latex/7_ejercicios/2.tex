@@ -1,0 +1,41 @@
+﻿\subsection{Example 16-3a: FRM Exam 1999 - Question 83 (Fat tails)}
+
+\textbf{Enunciado}
+
+\emph{In the presence of fat tails in the distribution of returns, VAR based on
+the delta-normal method would (for a linear portfolio)}
+\begin{enumerate}[label=\alph*.]
+\item \hl{Underestimate the true VAR}
+\item Be the same as the true VAR
+\item Overestimate the true VAR
+\item Cannot be determined from the information provided
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Qué hace el delta-normal. }Para un portafolio lineal, el método delta-normal supone P\&L aproximadamente normal y calcula
+\[
+\VaR_\alpha^{DN}\approx z_\alpha \,\sigma,
+\]
+donde \(\sigma\) es la desviación estándar del P\&L y \(z_\alpha\) es el cuantil normal.
+
+\textbf{Efecto de colas pesadas. }``Fat tails'' implica más probabilidad de pérdidas extremas que bajo normalidad, manteniendo varianza comparable.
+Por ello, para niveles altos \(\alpha\), el cuantil verdadero suele ser más grande que el cuantil normal con la misma \(\sigma\):
+\[
+\VaR_\alpha^{true} > \VaR_\alpha^{DN}.
+\]
+
+
+El delta-normal \textbf{subestima} el VaR verdadero:
+(a) Underestimate the true VAR.
+
+
+
+
+
+
+
+
+
+

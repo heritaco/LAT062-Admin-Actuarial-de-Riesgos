@@ -1,0 +1,6 @@
+LHSName "ebg-dash"
+RHSName "UNICODE"
+pass(Unicode)
+
+U+002D U+002D        <> U+2013   ; --  -> en dash
+U+002D U+002D U+002D <> U+2014   ; --- -> em dash

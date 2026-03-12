@@ -1,0 +1,78 @@
+﻿\subsection{FRM Exam 1998---Question 22 (Capital Markets): aggregation of VaR}
+
+\textbf{Enunciado}
+
+\emph{Considering arbitrary portfolios \(A\) and \(B\), and their combined portfolio \(C\),
+which of the following relationships always holds for VARs of \(A\), \(B\), and \(C\)?}
+\begin{enumerate}[label=\alph*.]
+\item \( \VaR_A+\VaR_B=\VaR_C\)
+\item \( \VaR_A+\VaR_B\ge \VaR_C\)
+\item \( \VaR_A+\VaR_B\le \VaR_C\)
+\item \hl{None of the above}
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+Para portafolios arbitrarios, ninguna de (a)--(c) es una identidad universal. En particular:
+\begin{itemize}
+\item VaR \textbf{puede} violar subaditividad \((b)\) (existen contraejemplos discretos).
+\item La diversificación hace que muchas veces \(\VaR_C<\VaR_A+\VaR_B\), por lo que \((c)\) tampoco es universal.
+\item La igualdad \((a)\) solo ocurre en casos especiales (p.\,ej. comonotonía).
+\end{itemize}
+
+Sea \(X_A\) la pérdida del portafolio \(A\), \(X_B\) la pérdida del portafolio \(B\), y
+\(X_C=X_A+X_B\) la pérdida del portafolio combinado \(C\). Entonces
+\[
+\VaR_A=\VaR_\delta(X_A),\qquad
+\VaR_B=\VaR_\delta(X_B),\qquad
+\VaR_C=\VaR_\delta(X_C)=\VaR_\delta(X_A+X_B).
+\]
+
+Para portafolios arbitrarios, el VaR no satisface la propiedad de subaditividad. Es decir, no siempre ocurre que
+\[
+\VaR_\delta(X_A+X_B)\le \VaR_\delta(X_A)+\VaR_\delta(X_B).
+\]
+
+De hecho, en la diapositiva de \emph{Medidas de riesgo} se presenta un contraejemplo
+con dos bonos idénticos e independientes, cada uno con pérdida de \(100\) con
+probabilidad \(0.03\) y pérdida \(0\) con probabilidad \(0.97\). Para cada bono,
+\[
+\VaR_{95\%}(X_A)=\VaR_{95\%}(X_B)=0,
+\]
+pero para el portafolio conjunto,
+\[
+\VaR_{95\%}(X_A+X_B)=100.
+\]
+Por tanto,
+\[
+\VaR_A+\VaR_B=0<100=\VaR_C.
+\]
+Esto muestra que la afirmación
+\[
+\VaR_A+\VaR_B\ge \VaR_C
+\]
+\textbf{no} siempre es cierta; luego la opción \textbf{(b)} no es universal.
+
+Además, la igualdad
+\[
+\VaR_A+\VaR_B=\VaR_C
+\]
+tampoco puede valer siempre, pues el mismo contraejemplo da
+\[
+0\neq 100.
+\]
+Por lo tanto, la opción \textbf{(a)} también es falsa en general.
+
+Por otro lado, tampoco es cierto en general que
+\[
+\VaR_A+\VaR_B\le \VaR_C.
+\]
+En muchos casos la diversificación reduce el riesgo, de modo que
+\[
+\VaR_C<\VaR_A+\VaR_B.
+\]
+Así, la opción \textbf{(c)} tampoco es una identidad universal.
+
+En conclusión, para portafolios arbitrarios no existe una relación de validez
+universal entre \(\VaR_A\), \(\VaR_B\) y \(\VaR_C\) de los tipos (a), (b) o (c).
+Por ello, la respuesta correcta es (d).

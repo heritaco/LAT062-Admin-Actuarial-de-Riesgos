@@ -1,0 +1,76 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{I. Explicación}{4}{section*.3}%
+\contentsline {subsection}{Riesgos Financieros}{5}{section*.4}%
+\contentsline {subsection}{Estados Financieros}{7}{section*.10}%
+\contentsline {subsection}{Circulares Únicas}{13}{section*.11}%
+\contentsline {section}{II. Línea del Tiempo}{15}{section*.12}%
+\contentsline {section}{III. Ensayos}{16}{section*.13}%
+\contentsline {subsection}{El Cap\'itulo 1 de \textit {Essentials of Risk Management}}{17}{section*.14}%
+\contentsline {subsection}{Margin Call (2011)}{19}{section*.15}%
+\contentsline {subsection}{The Corporation (2003)}{20}{section*.16}%
+\contentsline {subsection}{Inside Job (2010)}{21}{section*.17}%
+\contentsline {section}{IV y V. Ejemplo}{23}{section*.18}%
+\contentsline {section}{VI. GBM}{24}{section*.19}%
+\contentsline {section}{VII. Lema de Ito}{25}{section*.20}%
+\contentsline {section}{VIII. CVaR}{27}{section*.22}%
+\contentsline {section}{IX. Ejemplos de Pérdidas}{28}{section*.24}%
+\contentsline {section}{X. Medidas de Riesgo}{30}{section*.25}%
+\contentsline {subsection}{Prima de varianza}{31}{section*.26}%
+\contentsline {subsection}{Prima de desviación estándar}{32}{section*.27}%
+\contentsline {subsection}{Valor esperado de la transformada PH}{33}{section*.28}%
+\contentsline {section}{XI. Coherencia}{34}{section*.29}%
+\contentsline {section}{XII. FRM}{36}{section*.30}%
+\contentsline {subsection}{EXAMPLE 5.2: INDEPENDENCE}{37}{section*.31}%
+\contentsline {subsection}{Example 16-3a: FRM Exam 1999 - Question 83 (Fat tails)}{38}{section*.36}%
+\contentsline {subsection}{FRM Exam 1999---Question 89 (Market Risk): interpretation of VaR}{39}{section*.41}%
+\contentsline {subsection}{FRM Exam 1998---Question 22 (Capital Markets): aggregation of VaR}{40}{section*.46}%
+\contentsline {subsection}{FRM EXAM 2007---QUESTION 50 (Bonds): duration-based VaR}{42}{section*.51}%
+\contentsline {paragraph}{1. Definiciones}{42}{Item.55}%
+\contentsline {paragraph}{2. Duración modificada}{42}{Item.55}%
+\contentsline {paragraph}{3. Interpretación de la fórmula}{43}{Item.55}%
+\contentsline {paragraph}{4. Aplicación a cada bono}{43}{Item.55}%
+\contentsline {paragraph}{5. Cambio del valor del portafolio}{43}{Item.55}%
+\contentsline {paragraph}{6. ¿Cómo entra la volatilidad del yield?}{44}{Item.55}%
+\contentsline {paragraph}{7. Cálculo del VaR al 95\%}{44}{Item.55}%
+\contentsline {subsection}{FRM Exam 1999: VaR interpretation}{45}{section*.56}%
+\contentsline {subsection}{FRM Exam 2005: Monthly VaR interpretation (95\%)}{46}{section*.61}%
+\contentsline {subsection}{FRM EXAM 2003---QUESTION 11: expected exceptions (90\%)}{47}{section*.66}%
+\contentsline {subsection}{FRM Exam 1998: aggregation of VaR}{48}{section*.71}%
+\contentsline {subsection}{FRM Exam 1997: scaling VaR from 1 day to 10 days}{49}{section*.76}%
+\contentsline {subsection}{FRM Exam 2001: Rank portfolios from least risky to most risky}{50}{section*.81}%
+\contentsline {subsection}{FRM Exam 1997: quantitative standard NOT required by the Market Risk Amendment}{51}{section*.86}%
+\contentsline {subsection}{FRM Exam 2003: VaR and Expected Shortfall (90\%) from ordered returns}{52}{section*.91}%
+\contentsline {subsection}{FRM Exam 2008: scale VaR from 1-day 95\% to 10-day 99\%}{53}{section*.96}%
+\contentsline {subsection}{FRM Exam 2009: which multi-day VaR is inconsistent?}{54}{section*.101}%
+\contentsline {subsection}{FRM Exam 2008: which stress testing statements are true?}{55}{section*.106}%
+\contentsline {subsection}{FRM Exam 2006: what is true about stress testing?}{56}{section*.115}%
+\contentsline {subsection}{FRM Exam 2008: 4-sigma daily event on a \$150M portfolio}{57}{section*.120}%
+\contentsline {subsection}{FRM Exam 2009: peakedness and left-tail statement}{58}{section*.125}%
+\contentsline {subsection}{FRM Exam 2007: \(\mathrm {Var}(3A+2B)\) with \(\mathrm {Cov}(A,B)=0.35\)}{59}{section*.130}%
+\contentsline {subsection}{FRM Exam 2009: probability NOT between 32 and 116}{60}{section*.135}%
+\contentsline {subsection}{FRM Exam 1999: relationship between normal and lognormal}{61}{section*.140}%
+\contentsline {subsection}{FRM Exam 1997 Question 7 (Risk Measurement): 1-day to 10-day VaR scaling}{62}{section*.145}%
+\contentsline {subsection}{FRM Exam 2007: skewness of a lognormal distribution}{63}{section*.150}%
+\contentsline {subsection}{FRM EXAM 2009---QUESTION 1-11: rare event vs risk management failure}{64}{section*.155}%
+\contentsline {subsection}{FRM EXAM 2002---QUESTION 126: Geometric Brownian Motion (GBM)}{65}{section*.160}%
+\contentsline {subsection}{FRM EXAM 2006---QUESTION 87: stress testing}{66}{section*.165}%
+\contentsline {subsection}{FRM EXAM 2007---QUESTION 101: evidence of poor 1-day VaR(95\%) estimation}{67}{section*.170}%
+\contentsline {subsection}{FRM EXAM 2009---QUESTION 5-8: ES (99\%),}{68}{section*.175}%
+\contentsline {paragraph}{Comentario.}{69}{Item.179}%
+\contentsline {subsection}{FRM EXAM 2009---QUESTION 5-14: which statement about ES is incorrect?}{70}{section*.180}%
+\contentsline {subsection}{EXAMPLE 1.4: FRM EXAM 2009---QUESTION 1-6 (Jensen's alpha)}{71}{section*.185}%
+\contentsline {paragraph}{Paso 1. Prima de riesgo del mercado}{71}{Item.189}%
+\contentsline {paragraph}{Paso 2. Prima de riesgo correspondiente al portafolio}{71}{Item.189}%
+\contentsline {paragraph}{Paso 3. Rendimiento requerido por CAPM}{71}{Item.189}%
+\contentsline {paragraph}{Paso 4. Calcular el alpha}{72}{Item.189}%
+\contentsline {subsection}{EXAMPLE 5.3: FRM EXAM 2002---QUESTION 3 (weekly volatility)}{73}{section*.190}%
+\contentsline {subsection}{EXAMPLE 6.3: FRM EXAM 2002---QUESTION 51 (time to double)}{74}{section*.195}%
+\contentsline {subsection}{EXAMPLE 6.2: FRM EXAM 2009---QUESTION 4-9 (highest EAR)}{75}{section*.200}%
+\contentsline {subsection}{13-1: currency pair with the lowest volatility}{76}{section*.205}%
+\contentsline {subsection}{EXAMPLE 5.5: FRM EXAM 2004---QUESTION 39 (portfolio volatility)}{77}{section*.210}%
+\contentsline {paragraph}{Observación.}{77}{Item.214}%
+\contentsline {subsection}{Interpretación de VaR y ES como 6\% del portafolio}{78}{section*.215}%
+\contentsline {subsection}{VaR normal 1 día vs 5 días; efecto de autocorrelación}{79}{section*.216}%
+\contentsline {subsection}{Backtesting: 1,000 días, VaR 99\%, 17 excepciones (prueba one-tailed 5\%)}{81}{section*.217}%
+\contentsline {subsection}{VaR y ES (98\%) a 3 meses con normalidad}{82}{section*.218}%
+\contentsline {section}{Referencias}{83}{section*.219}%

@@ -1,0 +1,29 @@
+﻿\subsection{FRM EXAM 2002---QUESTION 126: Geometric Brownian Motion (GBM)}
+
+\textbf{Enunciado}
+
+\emph{Consider that a stock price \(S\) follows a geometric Brownian motion \(dS=aSdt+bSdz\), with \(b>0\). Which statement is false?}
+\begin{enumerate}[label=\alph*.]
+\item \hl{If the drift $\alpha$ is positive, the price one year from now will be above today’s price.} 
+\item The instantaneous rate of return on the stock follows a normal distribution.
+\item The stock price \(S\) follows a lognormal distribution.
+\item This model does not impose mean reversion.
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{Propiedades del GBM. }La solución del GBM implica que \(\ln S_t\) es normal (entiendo que esto se asume porque los retornos siguen un proceso multiplicativo y si le aplicamos la transformación logarítmica son aditivos, luego TLC) por lo que \(S_t\) es lognormal: (c) es verdadera. Además, el GBM no impone reversión a la media: (d) es verdadera.\\
+
+\textbf{Por qué (a) es falsa. }Si \(a>0\), entonces \(\E[S_{1\text{ año}}]>S_0\), pero \(S_{1\text{ año}}\) es aleatorio y puede quedar por debajo de \(S_0\) con probabilidad positiva. Por eso ``will be above'' (determinista) es falso.
+
+
+
+
+
+
+
+
+
+
+

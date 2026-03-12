@@ -1,0 +1,54 @@
+﻿\subsection{FRM Exam 2003: VaR and Expected Shortfall (90\%) from ordered returns}
+
+\textbf{Enunciado}
+
+\emph{Given the following 30 ordered percentage returns of an asset, calculate the VAR and expected shortfall at a 90\% confidence level:}
+\[
+-16,-14,-10,-7,-7,-5,-4,-4,-4,-3,-1,-1,0
+\]
+\[
+0,0,1,2,2,4,6,7,8,9,11,12,12,14,18,21,23.
+\]
+\begin{enumerate}[label=\alph*.]
+\item VaR (90\%) = 10, expected shortfall = 14
+\item \hl{VaR (90\%) = 10, expected shortfall = 15}
+\item VaR (90\%) = 14, expected shortfall = 15
+\item VaR (90\%) = 18, expected shortfall = 22
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+
+\textbf{VaR(90\%) por simulación histórica.} Los retornos están ordenados de peor a mejor. Un nivel de confianza 90\% equivale a una cola izquierda del 10\%.
+Con \(n=30\):
+\[
+0.10\times 30=3.
+\]
+El 3er peor retorno es \(-10\%\). Entonces el VaR(90\%) como magnitud de pérdida es:
+\[
+\VaR_{90\%}\approx 10.
+\]
+
+\textbf{ES(90\%) como promedio en la cola.} Bajo la convención habitual de examen ``más allá del VaR'' (estrictamente peores que \(-10\%\)):
+\[
+\{-16\%,-14\%\}.
+\]
+El ES(90\%) como magnitud de pérdida es:
+\[
+\ES_{90\%}\approx \frac{16+14}{2}=15.
+\]
+
+
+Con esto, \(\VaR=10\) y \(\ES=15\), así que la opción (b) es correcta.
+
+
+
+
+
+
+
+
+
+
+
+

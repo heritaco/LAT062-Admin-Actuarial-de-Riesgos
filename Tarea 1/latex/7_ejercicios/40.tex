@@ -1,0 +1,34 @@
+﻿\subsection{VaR y ES (98\%) a 3 meses con normalidad}
+
+\textbf{Enunciado}
+
+\emph{The change in the value of a portfolio in one month is normally distributed with a mean of zero and a standard deviation of \$2 million. Calculate the VaR and ES for a confidence level of 98\% and a time horizon of three months.}
+
+\subsubsection*{Solución}
+
+\(\VaR_{0.98}^{3m}\approx \$7.11\text{M}\) y \(\ES_{0.98}^{3m}\approx \$8.39\text{M}\).
+
+
+\textbf{Escalar \(\sigma\) a 3 meses}\\
+\[
+\sigma_{1m}=\$2\text{M}\quad\Rightarrow\quad \sigma_{3m}=2\sqrt{3}\approx 3.464\text{M}.
+\]
+
+\textbf{VaR(98\%)}\\
+\[
+\VaR_{0.98}^{3m}=z_{0.98}\sigma_{3m},\qquad z_{0.98}\approx 2.054.
+\]
+
+\textbf{ES(98\%) para normal}\\
+\[
+\ES_\alpha=\sigma\frac{\varphi(z_\alpha)}{1-\alpha},\qquad \varphi(z_{0.98})\approx 0.0484, \quad 1-\alpha=0.02.
+\]
+
+
+
+
+
+
+
+
+

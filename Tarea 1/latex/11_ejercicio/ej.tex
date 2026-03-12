@@ -1,0 +1,99 @@
+
+Una medida de riesgo es coherente si satisface, entre otras propiedades, la \textbf{subaditividad}:
+
+\[
+\rho(X+Y)\leq \rho(X)+\rho(Y)
+\]
+
+Esta propiedad implica que la diversificación no debe aumentar el riesgo.
+
+Supóngase que \(X\) y \(Y\) son pérdidas independientes con distribución:
+
+\[
+X=
+\begin{cases}
+0, & \text{con probabilidad } 0.99 \\
+10, & \text{con probabilidad } 0.01
+\end{cases}
+\qquad
+Y=
+\begin{cases}
+0, & \text{con probabilidad } 0.99 \\
+10, & \text{con probabilidad } 0.01
+\end{cases}
+\]
+
+Entonces, al nivel \(99\%\),
+
+\[
+VaR_{0.99}(X)=0, \qquad VaR_{0.99}(Y)=0
+\]
+
+Ahora, para la suma \(X+Y\):
+
+\[
+X+Y=
+\begin{cases}
+0, & \text{con probabilidad } 0.9801 \\
+10, & \text{con probabilidad } 0.0198 \\
+20, & \text{con probabilidad } 0.0001
+\end{cases}
+\]
+
+Como
+
+\[
+P(X+Y\leq 0)=0.9801<0.99
+\]
+
+y
+
+\[
+P(X+Y\leq 10)=0.9999>0.99
+\]
+
+se tiene que
+
+\[
+VaR_{0.99}(X+Y)=10
+\]
+
+Por tanto,
+
+\[
+VaR_{0.99}(X+Y)=10 > VaR_{0.99}(X)+VaR_{0.99}(Y)=0
+\]
+
+lo cual viola la subaditividad. Así, el \textbf{VaR no es coherente}.
+
+En cambio, para cada posición individual,
+
+\[
+CVaR_{0.99}(X)=10, \qquad CVaR_{0.99}(Y)=10
+\]
+
+por lo que
+
+\[
+CVaR_{0.99}(X)+CVaR_{0.99}(Y)=20
+\]
+
+Para la cartera combinada, el peor \(1\%\) de los casos está formado por una probabilidad de \(0.0001\) con pérdida \(20\) y una probabilidad de \(0.0099\) con pérdida \(10\). Entonces,
+
+\[
+CVaR_{0.99}(X+Y)=\frac{20(0.0001)+10(0.0099)}{0.01}=10.1
+\]
+
+Así,
+
+\[
+CVaR_{0.99}(X+Y)=10.1 \leq 20
+\]
+
+y en consecuencia,
+
+\[
+CVaR_{0.99}(X+Y)\leq CVaR_{0.99}(X)+CVaR_{0.99}(Y)
+\]
+
+Por ello, mientras el VaR viola la subaditividad, el \textbf{CVaR sí la satisface} y por tanto \textbf{sí es una medida coherente de riesgo}.

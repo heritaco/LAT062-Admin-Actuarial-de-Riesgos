@@ -1,0 +1,82 @@
+﻿    \subsection{FRM EXAM 2009---QUESTION 5-8: ES (99\%),}
+
+    \textbf{Enunciado}
+
+    \emph{Greg Lawrence is a risk analyst at ES Bank. After
+    estimating the 99\%, one day VAR of the bank’s portfolio using historical simulation with
+    1,200 past days, he is concerned that the VAR measure is not providing enough information
+    about tail losses. He decides to reexamine the simulation results. Sorting the simulated daily
+    P\&L from worst to best gives the following results:}
+
+    \[
+    \begin{array}{c c}
+    \toprule
+    \text{Rank} & \text{P\&L}\\
+    \midrule
+    1 & -2{,}833\\
+    2 & -2{,}333\\
+    3 & -2{,}228\\
+    4 & -2{,}084\\
+    5 & -1{,}960\\
+    6 & -1{,}751\\
+    7 & -1{,}679\\
+    8 & -1{,}558\\
+    9 & -1{,}542\\
+    10 & -1{,}484\\
+    11 & -1{,}450\\
+    12 & -1{,}428\\
+    13 & -1{,}368\\
+    14 & -1{,}347\\
+    15 & -1{,}319\\
+    \bottomrule
+    \end{array}
+    \]
+
+
+    \emph{What is the 99\%, one-day expected shortfall (ES) of the portfolio?}
+
+
+    \begin{enumerate}[label=\alph*.]
+    \item USD 433
+    \item USD 1,428
+    \item \hl{USD 1,861}
+    \item USD 2,259
+    \end{enumerate}
+
+    \subsubsection*{Solución}
+
+    Con \(N=1{,}200\) observaciones, el 1\% peor corresponde a $0.01\times 1{,}200=12 \text{ observaciones.}$
+    El ES(99\%) se calcula como el promedio de los peores 12 P\&L.
+
+    Suma:
+    \[
+    \sum_{i=1}^{12} \text{P\&L}_i=-22330.
+    \]
+    Promedio:
+    \[
+    \ES_{0.99}=\frac{-22330}{12}\approx -1860.83.
+    \]
+    Reportando como magnitud de pérdida:
+    \[
+    |\ES_{0.99}|\approx 1861.
+    \]
+
+    
+\paragraph{Comentario.}
+Si se promediaran solo las 11 observaciones estrictamente peores que el VaR,
+se obtendría
+\[
+\frac{-20902}{11}\approx -1900.18,
+\]
+pero ese valor no corresponde a la convención de simulación histórica empleada
+en este tipo de ejercicios FRM.
+
+
+
+
+
+
+
+
+
+

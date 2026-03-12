@@ -1,0 +1,68 @@
+﻿\subsection{FRM Exam 2009: peakedness and left-tail statement}
+
+\textbf{Enunciado}
+
+\emph{An analyst gathered information about the return distributions for two portfolios during the same period.
+The analyst states that Portfolio A is more peaked than a normal distribution and Portfolio B has a long tail on the left side. Which is correct?}
+
+
+\[
+\begin{array}{c|cc}
+\text{Portafolio} & \text{Skewness} & \text{Kurtosis} \\
+\hline
+A & -1.6 & 1.9 \\
+B & 0.8 & 3.2
+\end{array}
+\]
+
+
+\begin{enumerate}[label=\alph*.]
+\item The analyst’s assessment is correct.
+\item The analyst’s assessment is correct for Portfolio A and incorrect for Portfolio B.
+\item The analyst’s assessment is not correct for Portfolio A but is correct for Portfolio B.
+\item \hl{The analyst’s assessment is incorrect for both portfolios.}
+\end{enumerate}
+
+\subsubsection*{Solución}
+
+\begin{itemize}
+\item ``More peaked than normal'' es leptocurtosis (kurtosis/exceso positivo).
+\item ``Long left tail'' es skewness negativa.
+\end{itemize}
+
+\vspace{1cm}
+Recordemos lo siguiente:
+\[
+\text{Skewness}<0 \text{ es cola izquierda más larga},
+\qquad
+\text{Skewness}>0 \text{ es cola derecha más larga}.
+\]
+
+Además, la \(\text{Kurtosis de una normal}=3.\) Por tanto:
+\[
+\text{Kurtosis}>3 \text{ es más picuda que la normal},
+\qquad
+\text{Kurtosis}<3 \text{ es menos picuda que la normal}.
+\]
+
+Para el portafolio \(A\):
+\[
+\text{Skewness}=-1.6,\qquad \text{Kurtosis}=1.9.
+\]
+El sesgo negativo indica una cola larga a la izquierda, pero como
+\[
+1.9<3,
+\]
+su distribución \emph{no} es más picuda que la normal. Entonces, la afirmación
+del analista sobre \(A\) es falsa.
+
+Para el portafolio \(B\):
+\[
+\text{Skewness}=0.8,\qquad \text{Kurtosis}=3.2.
+\]
+El sesgo positivo indica una cola larga a la derecha, no a la izquierda.
+Entonces, la afirmación del analista sobre \(B\) también es falsa.
+
+
+
+

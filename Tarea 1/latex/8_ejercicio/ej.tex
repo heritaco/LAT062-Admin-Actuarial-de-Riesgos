@@ -1,0 +1,15 @@
+El Valor en Riesgo Condicional (CVaR) surge como una extensión directa del VaR. Mientras que el VaR se limita a establecer un umbral de pérdida máxima para un nivel de confianza, el CVaR evalúa la severidad de los escenarios donde ese límite ya ha sido superado. En términos prácticos, representa la pérdida promedio esperada asumiendo que ya nos encontramos en la región de pérdidas extremas.
+
+Formalmente, si definimos el VaR como $-q$, el CVaR corresponde al negativo de la esperanza condicional de la pérdida:
+\begin{equation}
+    \mathbb{E}[X \mid X < q] = \frac{\int_{-\infty}^{q} xf(x)dx}{\int_{-\infty}^{q} f(x)dx}
+\end{equation}
+
+La preferencia de los reguladores por el CVaR se fundamenta en que es una \textit{medida de riesgo coherente}. A diferencia del VaR, el CVaR cumple rigurosamente con los siguientes cuatro axiomas matemáticos para cualquier medida de riesgo $Q$:
+
+\begin{itemize}
+    \item \textbf{Invarianza traslacional} ($Q(X + a) = Q(X) + a$): Sumar o restar una cantidad de capital determinista $a$ al portafolio impacta el riesgo exactamente en esa misma magnitud.
+    \item \textbf{Subaditividad} ($Q(X + Y) \leq Q(X) + Q(Y)$): El riesgo combinado de dos posiciones nunca superará la suma de sus riesgos individuales. Esta propiedad es vital porque justifica y cuantifica el beneficio de la diversificación.
+    \item \textbf{Homogeneidad positiva} ($Q(aX) = aQ(X)$, para $a > 0$): Escalar el tamaño de la posición en un factor $a$ modifica el riesgo en esa misma proporción, lo que hace a la medida independiente de la moneda o escala.
+    \item \textbf{Monotonicidad}: Si un portafolio $X$ presenta siempre pérdidas mayores o iguales que un portafolio $Y$, la métrica debe reflejarlo de forma consistente ($Q(X) \geq Q(Y)$).
+\end{itemize}
