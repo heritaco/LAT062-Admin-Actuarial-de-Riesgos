@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creditmetrics-project"
+version = "0.1.0"
+description = "Proyecto de CreditMetrics para 3 bonos independientes"
+requires-python = ">=3.10"
+dependencies = ["matplotlib>=3.8", "openpyxl>=3.1"]
+
+[project.scripts]
+creditmetrics = "creditmetrics_project.main:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

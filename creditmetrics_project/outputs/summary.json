@@ -1,0 +1,67 @@
+{
+  "nr_policy": "keep_current",
+  "bond_summaries": [
+    {
+      "bond": {
+        "name": "Bono_A_menos",
+        "rating": "A-",
+        "coupon_rate": 0.075,
+        "face_value": 100.0,
+        "recovery_rate": 0.45,
+        "maturity_years": 5
+      },
+      "current_price": 109.74875572353965,
+      "expected_horizon_value": 115.5997855129778,
+      "expected_loss": -5.851029789438158,
+      "volatility": 1.7533806303367332,
+      "var_999": 6.165427805987477
+    },
+    {
+      "bond": {
+        "name": "Bono_BBB_menos",
+        "rating": "BBB-",
+        "coupon_rate": 0.09,
+        "face_value": 100.0,
+        "recovery_rate": 0.35,
+        "maturity_years": 5
+      },
+      "current_price": 113.04385434584871,
+      "expected_horizon_value": 119.62330744050129,
+      "expected_loss": -6.579453094652578,
+      "volatility": 4.342588175359322,
+      "var_999": 78.04385434584871
+    },
+    {
+      "bond": {
+        "name": "Bono_B_menos",
+        "rating": "B-",
+        "coupon_rate": 0.11,
+        "face_value": 100.0,
+        "recovery_rate": 0.25,
+        "maturity_years": 5
+      },
+      "current_price": 104.43068658288183,
+      "expected_horizon_value": 108.87341771798395,
+      "expected_loss": -4.442731135102122,
+      "volatility": 21.373160961262798,
+      "var_999": 79.43068658288183
+    }
+  ],
+  "portfolio_summary": {
+    "current_value": 327.22329665227016,
+    "expected_horizon_value": 344.088878,
+    "expected_loss": -16.865581347729858,
+    "volatility": 21.87955183972062,
+    "var_999": 72.29,
+    "es_999": 89.4921771906164,
+    "lower_tail_value_001": 254.93,
+    "support_size_cents": 3889,
+    "support_size_bruteforce": 5832,
+    "convolution_matches_bruteforce_cents": true,
+    "quantile_state_example": [
+      "A-",
+      "D",
+      "CCC"
+    ]
+  }
+}

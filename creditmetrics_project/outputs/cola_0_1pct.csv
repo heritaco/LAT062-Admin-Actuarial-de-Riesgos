@@ -1,0 +1,13 @@
+metric,value
+nr_policy,keep_current
+current_value,327.223297
+expected_horizon_value,344.088878
+expected_loss,-16.865581
+volatility,21.879552
+var_999,72.290000
+es_999,89.492177
+lower_tail_value_001,254.930000
+support_size_cents,3889
+support_size_bruteforce,5832
+convolution_matches_bruteforce_cents,True
+quantile_state_example,A- | D | CCC

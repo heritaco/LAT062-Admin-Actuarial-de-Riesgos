@@ -1,0 +1,82 @@
+{
+  // Set the Jupyter notebook file root to the workspace folder
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+
+  // Prefer the project-local virtual environment in this workspace.
+  "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+
+  // Specify the environment file for Python
+  "python.envFile": "${workspaceFolder}/.vscode/.env",
+
+  // Make manual terminals inherit the same import path as the debugger.
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${workspaceFolder}\\src"
+  },
+
+  // Build LaTeX documents with biber-aware recipes in this workspace.
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-xelatex",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (xelatex recommended)",
+      "tools": [
+        "latexmk-xelatex"
+      ]
+    },
+    {
+      "name": "latexmk (pdflatex)",
+      "tools": [
+        "latexmk"
+      ]
+    },
+    {
+      "name": "pdflatex -> biber -> pdflatex x2",
+      "tools": [
+        "pdflatex",
+        "biber",
+        "pdflatex",
+        "pdflatex"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first"
+}

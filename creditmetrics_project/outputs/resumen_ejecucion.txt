@@ -1,0 +1,13 @@
+CreditMetrics — Portafolio de 3 bonos independientes
+Política NR                : renormalize
+Valor actual portafolio    : 327.223297
+Valor esperado a 1 año     : 343.064302
+Pérdida esperada           : -15.841005
+Volatilidad                : 23.425534
+VaR 99.9%                  : 73.810000
+ES 99.9%                   : 93.591679
+Valor en cuantil 0.1%      : 253.410000
+Escenario umbral ejemplo   : A- | B+ | D
+Soporte por convolución    : 3,889
+Escenarios brute force     : 5,832
+Convolución = brute force? : True
