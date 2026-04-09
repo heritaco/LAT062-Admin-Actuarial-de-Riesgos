@@ -1,0 +1,100 @@
+La l\'ogica financiera del c\'odigo sigue la estructura cl\'asica de CreditMetrics para bonos con cupones anuales.
+
+\section*{1. Precio actual}
+
+Para cada bono se calcula primero su precio actual:
+
+\[
+P_0 = \sum_{t=1}^{T-1}\frac{C}{(1+y_t)^t} + \frac{C+N}{(1+y_T)^T},
+\]
+
+donde \(C\) es el cup\'on, \(N\) es el valor nominal y \(y_t\) combina la curva libre de riesgo con el spread del rating actual.
+
+\section*{2. Valor al horizonte condicionado al estado}
+
+En el horizonte de 1 a\~no, el modelo distingue dos casos:
+
+\begin{itemize}
+  \item si el bono no entra en default, se recibe el cup\'on del a\~no 1 y luego se reval\'ua el bono remanente con vencimiento residual de 4 a\~nos;
+  \item si el bono migra a \(D\), se usa el valor de recuperaci\'on definido en el ejercicio.
+\end{itemize}
+
+Para un estado migrado \(r \neq D\), el valor al horizonte es:
+
+\[
+V_1(r)=C+\sum_{u=1}^{3}\frac{C}{(1+y_u(r))^u}+\frac{C+N}{(1+y_4(r))^4}.
+\]
+
+\section*{3. Distribuci\'on discreta por bono}
+
+Una vez que se tiene el valor \(V_1(r)\) para cada uno de los 18 estados, se asigna a cada estado su probabilidad de migraci\'on. Esto produce una distribuci\'on discreta del valor del bono a 1 a\~no.
+
+\section*{4. Compresi\'on a centavos}
+
+El c\'odigo agrupa los valores a nivel centavos. Esa decisi\'on tiene dos ventajas:
+
+\begin{itemize}
+  \item reduce el tama\~no del soporte de la distribuci\'on;
+  \item permite una convoluci\'on exacta sobre una PMF discreta ordenada.
+\end{itemize}
+
+La funci\'on \texttt{compress\_distribution\_to\_cents} es clave para este paso.
+
+\section*{5. Convoluci\'on del portafolio}
+
+Si \(X_1\), \(X_2\) y \(X_3\) son las distribuciones de los tres bonos, la del portafolio es:
+
+\[
+X_P = X_1 + X_2 + X_3.
+\]
+
+Bajo independencia:
+
+\[
+\mathbb{P}(X_P=v)=\left(\mathbb{P}_{X_1} * \mathbb{P}_{X_2} * \mathbb{P}_{X_3}\right)(v).
+\]
+
+Esto permite construir la PMF del portafolio sin crear manualmente toda la tabla de escenarios.
+
+\section*{6. Validaci\'on por brute force}
+
+Aunque la convoluci\'on es el m\'etodo eficiente, el proyecto calcula tambi\'en la distribuci\'on por enumeraci\'on completa de los \(5{,}832\) escenarios. La PMF resultante se compara contra la de convoluci\'on.
+
+La corrida actual confirma:
+
+\begin{itemize}
+  \item soporte por convoluci\'on: \SupportConv;
+  \item escenarios \textit{brute force}: \SupportBrute;
+  \item coincidencia entre ambos m\'etodos a nivel centavos.
+\end{itemize}
+
+\section*{7. M\'etricas finales}
+
+Con la distribuci\'on final del portafolio, el modelo calcula:
+
+\begin{itemize}
+  \item valor esperado a 1 a\~no;
+  \item p\'erdida esperada;
+  \item volatilidad;
+  \item VaR al 99.9\%;
+  \item ES al 99.9\%;
+  \item cuantil inferior 0.1\% del valor del portafolio.
+\end{itemize}
+
+En la corrida actual, los principales resultados del portafolio son:
+
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+M\'etrica & Valor \\
+\midrule
+Valor actual & \CurrentValue \\
+Valor esperado a 1 a\~no & \ExpectedValue \\
+P\'erdida esperada & \ExpectedLoss \\
+Volatilidad & \PortfolioVol \\
+VaR 99.9\% & \PortfolioVaR \\
+ES 99.9\% & \PortfolioES \\
+Cuantil 0.1\% del valor & \LowerTail \\
+\bottomrule
+\end{tabular}
+\end{center}

@@ -1,0 +1,89 @@
+Esta secci\'on presenta las salidas visuales generadas por el propio proyecto en Python. Las figuras se insertan directamente desde \texttt{outputs/figuras/}, de modo que el documento queda alineado con la corrida actual.
+
+\section*{Resumen ejecutivo del portafolio}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{01_tabla_resumen_portafolio.png}
+\caption{Resumen del portafolio para la corrida actual.}
+\end{figure}
+
+La tabla anterior resume las magnitudes centrales del ejercicio. El valor esperado a 1 a\~no es mayor que el valor actual, por lo que la p\'erdida esperada aparece con signo negativo. Eso refleja que, en promedio, el efecto de carry y cupones domina a la p\'erdida esperada por migraci\'on crediticia.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{02_tabla_resumen_bonos.png}
+\caption{Resumen comparativo de los tres bonos.}
+\end{figure}
+
+La tabla por bono deja ver una diferencia importante en perfil de riesgo: el bono A- es mucho m\'as estable, mientras que los bonos BBB- y B- concentran la mayor parte del riesgo extremo del portafolio.
+
+\section*{Distribuciones marginales por bono}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{03_grafica_bono_a_menos.png}
+\caption{Distribuci\'on de probabilidad y valor al horizonte para el bono A-.}
+\end{figure}
+
+En el bono A-, la masa de probabilidad permanece concentrada en ratings cercanos a su estado inicial. La dispersi\'on del valor al horizonte es baja y el default tiene muy baja probabilidad, por eso su volatilidad es la menor del grupo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{04_grafica_bono_bbb_menos.png}
+\caption{Distribuci\'on de probabilidad y valor al horizonte para el bono BBB-.}
+\end{figure}
+
+En el bono BBB- aparece una combinaci\'on m\'as delicada: el valor esperado sigue siendo alto, pero la cola de p\'erdidas crece de forma visible. Su VaR individual es elevado porque el default produce una ca\'ida marcada respecto al precio actual.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{05_grafica_bono_b_menos.png}
+\caption{Distribuci\'on de probabilidad y valor al horizonte para el bono B-.}
+\end{figure}
+
+El bono B- es el activo m\'as riesgoso del portafolio. La probabilidad de deterioro severo y default es sustancialmente mayor, y eso se traduce en la mayor volatilidad individual del conjunto.
+
+\section*{Distribuci\'on del portafolio}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{06_grafica_portafolio_distribucion.png}
+\caption{PMF y CDF del portafolio: convoluci\'on vs brute force.}
+\end{figure}
+
+La superposici\'on entre ambas curvas muestra que la convoluci\'on reproduce exactamente la distribuci\'on obtenida por enumeraci\'on completa a nivel centavos. Adem\'as, el cuantil inferior del 0.1\% se ubica alrededor de \LowerTail, lo que equivale a una p\'erdida de aproximadamente \PortfolioVaR\ respecto al valor actual.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{07_grafica_pasos_convolucion.png}
+\caption{Pasos intermedios de la convoluci\'on.}
+\end{figure}
+
+Esta figura es importante porque muestra que la distribuci\'on del portafolio se construye de forma incremental: primero se toma el soporte del primer bono, luego se suma el segundo y finalmente el tercero. El soporte crece, pero sin necesidad de mantener una tabla manual de los \(5{,}832\) escenarios.
+
+\section*{Tablas visuales para el reporte}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{08_tabla_cola_portafolio.png}
+\caption{Cola inferior del portafolio ordenada por valor.}
+\end{figure}
+
+La cola inferior concentra los peores valores del portafolio. Es la parte relevante para VaR y ES, porque all\'i viven los escenarios de estr\'es m\'aximo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{09_tabla_peores_escenarios_bruteforce.png}
+\caption{Peores escenarios obtenidos por brute force.}
+\end{figure}
+
+Los peores escenarios muestran que el riesgo extremo no proviene del bono A-, sino de eventos severos en los bonos BBB- y B-. El escenario umbral reportado por el modelo es \texttt{\ThresholdScenario}, que combina estabilidad relativa del bono A- con deterioro extremo en los bonos m\'as riesgosos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10_tabla_comparacion_convolucion_vs_bruteforce.png}
+\caption{Comparaci\'on fila a fila entre convoluci\'on y brute force en la cola.}
+\end{figure}
+
+La comparaci\'on visual de la cola sirve como evidencia metodol\'ogica: la diferencia entre ambas PMF es nula o despreciable al nivel de redondeo usado por el proyecto.

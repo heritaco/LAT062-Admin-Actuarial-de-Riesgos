@@ -1,0 +1,49 @@
+Desde el punto de vista financiero, el resultado principal del portafolio tiene una lectura clara.
+
+\section*{1. La p\'erdida esperada es negativa}
+
+La p\'erdida esperada del portafolio es \ExpectedLoss. En este contexto, un valor negativo no significa que el modelo est\'e mal; significa que, en promedio, el carry de los cupones y el rendimiento esperado a 1 a\~no superan la p\'erdida media por deterioro crediticio.
+
+\section*{2. El riesgo extremo sigue siendo material}
+
+Aunque el promedio es favorable, la cola izquierda sigue siendo pesada. El VaR 99.9\% es \PortfolioVaR\ y el ES 99.9\% es \PortfolioES. Eso implica que:
+
+\begin{itemize}
+  \item en el cuantil 99.9\%, la p\'erdida no excede aproximadamente \PortfolioVaR;
+  \item pero si se entra en la cola m\'as extrema, la p\'erdida promedio sube hasta alrededor de \PortfolioES.
+\end{itemize}
+
+En otras palabras, el portafolio gana en promedio, pero est\'a expuesto a eventos raros con impacto considerable.
+
+\section*{3. La mayor parte del riesgo no viene del bono A-}
+
+La evidencia visual y los res\'umenes por bono indican que:
+
+\begin{itemize}
+  \item el bono A- tiene baja volatilidad y una distribuci\'on relativamente compacta;
+  \item el bono BBB- contribuye de forma importante a la cola por su sensibilidad a migraciones severas y default;
+  \item el bono B- es el principal generador de volatilidad y de escenarios extremos.
+\end{itemize}
+
+\section*{4. La convoluci\'on s\'i es una herramienta adecuada}
+
+El c\'odigo demuestra algo metodol\'ogicamente valioso: en este ejercicio, la convoluci\'on no solo es m\'as c\'omoda que la enumeraci\'on completa, sino que reproduce exactamente el mismo resultado una vez que se trabaja a nivel centavos.
+
+Eso significa que:
+
+\begin{itemize}
+  \item no se pierde precisi\'on relevante para el trabajo;
+  \item se gana claridad computacional;
+  \item se obtiene una validaci\'on robusta contra \textit{brute force}.
+\end{itemize}
+
+\section*{5. Interpretaci\'on final}
+
+La lectura ejecutiva del portafolio es la siguiente:
+
+\begin{itemize}
+  \item el portafolio tiene carry positivo esperado;
+  \item el riesgo de cola sigue siendo importante por la exposici\'on a bonos de menor calidad crediticia;
+  \item el escenario umbral \texttt{\ThresholdScenario} muestra que una sola migraci\'on extrema puede dominar el comportamiento del portafolio;
+  \item la implementaci\'on del repositorio es consistente con la teor\'ia de CreditMetrics y queda bien documentada para fines acad\'emicos o laborales.
+\end{itemize}

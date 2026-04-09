@@ -1,0 +1,94 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{caption}
+
+\graphicspath{{../outputs/figuras/}}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black
+}
+
+\setlist[itemize]{itemsep=0.35em}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\newcommand{\NRPolicy}{\texttt{keep\_current}}
+\newcommand{\CurrentValue}{327.223297}
+\newcommand{\ExpectedValue}{344.088878}
+\newcommand{\ExpectedLoss}{-16.865581}
+\newcommand{\PortfolioVol}{21.879552}
+\newcommand{\PortfolioVaR}{72.290000}
+\newcommand{\PortfolioES}{89.492177}
+\newcommand{\LowerTail}{254.930000}
+\newcommand{\SupportConv}{3889}
+\newcommand{\SupportBrute}{5832}
+\newcommand{\ThresholdScenario}{A- | D | CCC}
+
+\title{Reporte T\'ecnico del Proyecto CreditMetrics}
+\author{Proyecto en Python con validaci\'on exacta por convoluci\'on y \textit{brute force}}
+\date{08 de abril de 2026}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+{\Huge Reporte T\'ecnico del Proyecto CreditMetrics\par}
+\vspace{0.7cm}
+{\Large Portafolio de 3 bonos independientes\par}
+\vspace{1.2cm}
+\includegraphics[width=0.95\textwidth]{00_portada_resumen.png}\par
+\vspace{1.0cm}
+{\large Documento LaTeX generado para explicar c\'omo funciona el c\'odigo, qu\'e resultados produce e interpretar las salidas visuales.\par}
+\vfill
+\begin{tabular}{>{\bfseries}l l}
+Pol\'itica NR usada en la corrida actual: & \NRPolicy \\
+Valor actual del portafolio: & \CurrentValue \\
+Valor esperado a 1 a\~no: & \ExpectedValue \\
+VaR 99.9\%: & \PortfolioVaR \\
+ES 99.9\%: & \PortfolioES \\
+\end{tabular}
+\vfill
+{\large 08 de abril de 2026\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\chapter{Objetivo del proyecto}
+\input{sections/01_objetivo}
+
+\chapter{Arquitectura y flujo del c\'odigo}
+\input{sections/02_codigo}
+
+\chapter{Metodolog\'ia implementada}
+\input{sections/03_metodologia}
+
+\chapter{Resultados y visualizaciones}
+\input{sections/04_resultados}
+
+\chapter{Interpretaci\'on financiera}
+\input{sections/05_interpretacion}
+
+\appendix
+\chapter{C\'omo compilar el reporte}
+\input{sections/06_compilacion}
+
+\end{document}

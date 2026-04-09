@@ -1,0 +1,57 @@
+El proyecto est\'a organizado de manera simple y funcional. Los archivos principales son:
+
+\begin{itemize}
+  \item \texttt{src/creditmetrics\_project/data.py}: concentra los insumos del ejercicio.
+  \item \texttt{src/creditmetrics\_project/model.py}: contiene toda la l\'ogica cuantitativa y de exportaci\'on.
+  \item \texttt{src/creditmetrics\_project/main.py}: expone la interfaz de l\'inea de comandos.
+\end{itemize}
+
+\section*{Qu\'e hace \texttt{data.py}}
+
+En este archivo se definen:
+
+\begin{itemize}
+  \item el espacio de 18 estados de rating;
+  \item la curva libre de riesgo del ejercicio;
+  \item los spreads de cr\'edito por rating;
+  \item la matriz de transici\'on anual;
+  \item la especificaci\'on de los tres bonos del portafolio.
+\end{itemize}
+
+Es, en la pr\'actica, la capa de entrada del modelo.
+
+\section*{Qu\'e hace \texttt{model.py}}
+
+Este archivo implementa casi todo el trabajo cuantitativo. Sus bloques m\'as importantes son:
+
+\begin{itemize}
+  \item \texttt{price\_bond\_today}: calcula el precio actual de un bono con la curva libre de riesgo m\'as el spread correspondiente a su rating.
+  \item \texttt{price\_bond\_at\_horizon\_given\_state}: calcula el valor del bono a 1 a\~no, condicionado al estado migrado.
+  \item \texttt{normalized\_transition\_row}: ajusta la fila de probabilidades seg\'un la pol\'itica aplicada a \texttt{NR}.
+  \item \texttt{single\_bond\_distribution}: genera la distribuci\'on discreta de cada bono.
+  \item \texttt{compress\_distribution\_to\_cents}: agrupa valores a nivel centavos para poder convolucionar una PMF discreta limpia.
+  \item \texttt{convolve\_pmfs}: suma distribuciones discretas independientes.
+  \item \texttt{portfolio\_distribution\_bruteforce}: enumera los \(5{,}832\) escenarios posibles y sirve de validaci\'on exacta.
+  \item \texttt{write\_outputs}: exporta CSV, JSON, Excel, gr\'aficas e informe visual.
+\end{itemize}
+
+\section*{Qu\'e hace \texttt{main.py}}
+
+El archivo principal recibe los argumentos de ejecuci\'on, lanza \texttt{run\_analysis} y muestra en consola un resumen del portafolio y de cada bono.
+
+\section*{Flujo operativo}
+
+El flujo completo del programa es el siguiente:
+
+\begin{enumerate}
+  \item cargar datos del ejercicio;
+  \item valuar el precio actual de cada bono;
+  \item construir la distribuci\'on de valor a 1 a\~no por bono;
+  \item resumir media, volatilidad y VaR individual;
+  \item convolucionar las tres distribuciones;
+  \item construir la PMF del portafolio por \textit{brute force};
+  \item comparar ambos resultados;
+  \item exportar tablas y reportes.
+\end{enumerate}
+
+La decisi\'on de separar datos, l\'ogica y CLI vuelve al repositorio f\'acil de modificar. Por ejemplo, si cambia la pol\'itica \texttt{NR}, la curva libre de riesgo o el conjunto de bonos, no hace falta reescribir el flujo general.
