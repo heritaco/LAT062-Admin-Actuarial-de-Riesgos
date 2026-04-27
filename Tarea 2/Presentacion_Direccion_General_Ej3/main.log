@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.26)  26 APR 2026 20:26
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.2) (preloaded format=xelatex 2026.4.26)  26 APR 2026 21:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -13,20 +13,20 @@ Document Class: beamer 2026/01/22 v3.77 A class for typesetting presentations
 sty
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count275
+\etb@tempcnta=\count271
 )
 \beamer@tempbox=\box53
-\beamer@tempcount=\count276
-\c@beamerpauses=\count277
+\beamer@tempcount=\count272
+\c@beamerpauses=\count273
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasedecode
 .sty
-\beamer@slideinframe=\count278
-\beamer@minimum=\count279
+\beamer@slideinframe=\count274
+\beamer@minimum=\count275
 \beamer@decode@box=\box54
 )
 \beamer@commentbox=\box55
-\beamer@modecount=\count280
+\beamer@modecount=\count276
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
@@ -54,26 +54,26 @@ Package: iftex 2024/12/12 v1.0g TeX engine tests
 \beamer@sectionbox=\box59
 \beamer@logobox=\box60
 \beamer@linebox=\box61
-\beamer@sectioncount=\count281
-\beamer@subsubsectionmax=\count282
-\beamer@subsectionmax=\count283
-\beamer@sectionmax=\count284
-\beamer@totalheads=\count285
-\beamer@headcounter=\count286
-\beamer@partstartpage=\count287
-\beamer@sectionstartpage=\count288
-\beamer@subsectionstartpage=\count289
-\beamer@animationtempa=\count290
-\beamer@animationtempb=\count291
-\beamer@xpos=\count292
-\beamer@ypos=\count293
-\beamer@ypos@offset=\count294
-\beamer@showpartnumber=\count295
-\beamer@currentsubsection=\count296
-\beamer@coveringdepth=\count297
-\beamer@sectionadjust=\count298
-\beamer@toclastsection=\count299
-\beamer@tocsectionnumber=\count300
+\beamer@sectioncount=\count277
+\beamer@subsubsectionmax=\count278
+\beamer@subsectionmax=\count279
+\beamer@sectionmax=\count280
+\beamer@totalheads=\count281
+\beamer@headcounter=\count282
+\beamer@partstartpage=\count283
+\beamer@sectionstartpage=\count284
+\beamer@subsectionstartpage=\count285
+\beamer@animationtempa=\count286
+\beamer@animationtempb=\count287
+\beamer@xpos=\count288
+\beamer@ypos=\count289
+\beamer@ypos@offset=\count290
+\beamer@showpartnumber=\count291
+\beamer@currentsubsection=\count292
+\beamer@coveringdepth=\count293
+\beamer@sectionadjust=\count294
+\beamer@toclastsection=\count295
+\beamer@tocsectionnumber=\count296
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseoption
 s.sty
@@ -90,9 +90,9 @@ Package: geometry 2026/03/07 v6.0 Page Geometry
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count301
-\Gm@cntv=\count302
-\c@Gm@tempcnt=\count303
+\Gm@cnth=\count297
+\Gm@cntv=\count298
+\c@Gm@tempcnt=\count299
 \Gm@bindingoffset=\dimen166
 \Gm@wd@mp=\dimen167
 \Gm@odd@mp=\dimen168
@@ -145,15 +145,15 @@ code.tex
 \pgf@ya=\dimen181
 \pgf@yb=\dimen182
 \pgf@yc=\dimen183
-\c@pgf@counta=\count304
-\c@pgf@countb=\count305
-\c@pgf@countc=\count306
-\c@pgf@countd=\count307
+\c@pgf@counta=\count300
+\c@pgf@countb=\count301
+\c@pgf@countc=\count302
+\c@pgf@countd=\count303
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen184
-\pgfmath@count=\count308
+\pgfmath@count=\count304
 \pgfmath@box=\box63
 \pgfmath@toks=\toks23
 \pgfmath@stack@operand=\toks24
@@ -181,7 +181,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count309
+\c@pgfmathroundto@lastzeros=\count305
 )))
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
@@ -201,10 +201,10 @@ Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 fg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 106.
+Package graphics Info: Driver file: xetex.def on input line 106.
 
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
-File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def
+File: xetex.def 2025/11/01 v5.0p Graphics/color driver for xetex
 ))
 \Gin@req@height=\dimen185
 \Gin@req@width=\dimen186
@@ -226,34 +226,40 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@yd=\dimen196
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count310
-\c@pgf@countb=\count311
-\c@pgf@countc=\count312
-\c@pgf@countd=\count313
+\c@pgf@counta=\count306
+\c@pgf@countb=\count307
+\c@pgf@countc=\count308
+\c@pgf@countd=\count309
 \t@pgf@toka=\toks26
 \t@pgf@tokb=\toks27
 \t@pgf@tokc=\toks28
-\pgf@sys@id@count=\count314
+\pgf@sys@id@count=\count310
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
-Driver file for pgf: pgfsys-pdftex.def
+Driver file for pgf: pgfsys-xetex.def
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
-s-pdftex.def
-File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
+s-xetex.def
+File: pgfsys-xetex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2025-08-29 v3.1.11a (3.1.11a)
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 s-common-pdf.def
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)
+\pgfsys@objnum=\count311
 )))
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count315
-\pgfsyssoftpath@bigbuffer@items=\count316
+\pgfsyssoftpath@smallbuffer@items=\count312
+\pgfsyssoftpath@bigbuffer@items=\count313
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -265,10 +271,9 @@ Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 274.
+Package xcolor Info: Driver file: xetex.def on input line 274.
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
@@ -319,7 +324,7 @@ File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box64
 \pgf@hbox=\box65
 \pgf@layerbox@main=\box66
-\pgf@picture@serial@count=\count317
+\pgf@picture@serial@count=\count314
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -354,8 +359,8 @@ File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen276
-\pgf@sys@shading@range@num=\count318
-\pgf@shadingcount=\count319
+\pgf@sys@shading@range@num=\count315
+\pgf@shadingcount=\count316
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -385,8 +390,8 @@ File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\xxcolor.s
 ty
 Package: xxcolor 2003/10/24 ver 0.1
-\XC@nummixins=\count320
-\XC@countmixins=\count321
+\XC@nummixins=\count317
+\XC@countmixins=\count318
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
@@ -420,7 +425,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode not found.
 ))
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
@@ -438,7 +443,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count322
+\c@section@level=\count319
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
 ty
@@ -446,20 +451,16 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen277
-\Hy@linkcounter=\count323
-\Hy@pagecounter=\count324
+\Hy@linkcounter=\count320
+\Hy@pagecounter=\count321
  (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
 ) (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count325
+\Hy@SavedSpaceFactor=\count322
  (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
-Now handling font encoding PU ...
-... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Option `bookmarks' set `true' on input line 4072.
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 4072.
@@ -471,7 +472,7 @@ Package hyperref Info: Plain pages OFF on input line 4216.
 Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
 Package hyperref Info: Bookmarks ON on input line 4468.
-\c@Hy@tempcnt=\count326
+\c@Hy@tempcnt=\count323
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
@@ -488,7 +489,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count327
+\Fld@menulength=\count324
 \Field@Width=\dimen279
 \Fld@charsize=\dimen280
 Package hyperref Info: Hyper figures OFF on input line 6084.
@@ -498,17 +499,20 @@ Package hyperref Info: backreferencing OFF on input line 6099.
 Package hyperref Info: Link coloring OFF on input line 6104.
 Package hyperref Info: Link coloring with OCG OFF on input line 6109.
 Package hyperref Info: PDF/A mode OFF on input line 6114.
-\Hy@abspage=\count328
+\Hy@abspage=\count325
 
 
 Package hyperref Message: Stopped early.
 
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
- (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
-\Fld@listcount=\count329
-\c@bookmark@seq@number=\count330
+Package hyperref Info: Driver (autodetected): hxetex.
+ (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
+File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
+\pdfm@box=\box68
+\c@Hy@AnnotLevel=\count326
+\HyField@AnnotCount=\count327
+\Fld@listcount=\count328
+\c@bookmark@seq@number=\count329
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -565,36 +569,36 @@ ty)
 eens.sty)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseoverla
 y.sty
-\beamer@argscount=\count331
+\beamer@argscount=\count330
 \beamer@lastskipcover=\skip52
-\beamer@trivlistdepth=\count332
+\beamer@trivlistdepth=\count331
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetitle.
 sty)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasesectio
 n.sty
-\c@lecture=\count333
-\c@part=\count334
-\c@section=\count335
-\c@subsection=\count336
-\c@subsubsection=\count337
+\c@lecture=\count332
+\c@part=\count333
+\c@section=\count334
+\c@subsection=\count335
+\c@subsubsection=\count336
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseframe.
 sty
-\beamer@framebox=\box68
-\beamer@frametitlebox=\box69
-\beamer@zoombox=\box70
-\beamer@zoomcount=\count338
-\beamer@zoomframecount=\count339
+\beamer@framebox=\box69
+\beamer@frametitlebox=\box70
+\beamer@zoombox=\box71
+\beamer@zoomcount=\count337
+\beamer@zoomframecount=\count338
 \beamer@frametextheight=\dimen281
-\c@subsectionslide=\count340
+\c@subsectionslide=\count339
 \beamer@frametopskip=\skip53
 \beamer@framebottomskip=\skip54
 \beamer@frametopskipautobreak=\skip55
 \beamer@framebottomskipautobreak=\skip56
 \beamer@envbody=\toks30
 \framewidth=\dimen282
-\c@framenumber=\count341
+\c@framenumber=\count340
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseverbat
 im.sty
@@ -602,8 +606,8 @@ im.sty
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseframes
 ize.sty
-\beamer@splitbox=\box71
-\beamer@autobreakcount=\count342
+\beamer@splitbox=\box72
+\beamer@autobreakcount=\count341
 \beamer@autobreaklastheight=\dimen283
 \beamer@frametitletoks=\toks31
 \beamer@framesubtitletoks=\toks32
@@ -611,13 +615,13 @@ ize.sty
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseframec
 omponents.sty
 \beamer@colheight=\skip57
-\beamer@footins=\box72
+\beamer@footins=\box73
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasecolor.
 sty)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasenotes.
 sty
-\beamer@frameboxcopy=\box73
+\beamer@frameboxcopy=\box74
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasetoc.st
 y)
@@ -629,8 +633,8 @@ tes.sty
 plates.sty
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbaseboxes.
 sty
-\bmb@box=\box74
-\bmb@colorbox=\box75
+\bmb@box=\box75
+\bmb@colorbox=\box76
 \bmb@boxwidth=\dimen284
 \bmb@boxheight=\dimen285
 \bmb@prevheight=\dimen286
@@ -648,8 +652,8 @@ Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
 \@enLab=\toks34
 )
 \beamer@bibiconwidth=\skip58
-\c@figure=\count343
-\c@table=\count344
+\c@figure=\count342
+\c@table=\count343
 \abovecaptionskip=\skip59
 \belowcaptionskip=\skip60
 )
@@ -681,19 +685,19 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count345
+\inf@bad=\count344
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count346
-\leftroot@=\count347
+\uproot@=\count345
+\leftroot@=\count346
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count348
-\DOTSCASE@=\count349
+\classnum@=\count347
+\DOTSCASE@=\count348
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box76
-\strutbox@=\box77
+\Mathstrutbox@=\box77
+\strutbox@=\box78
 LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
@@ -701,20 +705,20 @@ LaTeX Info: Redefining \Bigg on input line 724.
 \big@size=\dimen295
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count350
+\macc@depth=\count349
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count351
+\c@MaxMatrixCols=\count350
 \dotsspace@=\muskip18
-\c@parentequation=\count352
-\dspbrk@lvl=\count353
+\c@parentequation=\count351
+\dspbrk@lvl=\count352
 \tag@help=\toks36
-\row@=\count354
-\column@=\count355
-\maxfields@=\count356
+\row@=\count353
+\column@=\count354
+\maxfields@=\count355
 \andhelp@=\toks37
 \eqnshift@=\dimen296
 \alignsep@=\dimen297
@@ -741,7 +745,7 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip66
 \dth@everypar=\toks45
 )
-\c@theorem=\count357
+\c@theorem=\count356
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerbasethemes
 .sty))
@@ -761,7 +765,7 @@ default.sty)))
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2026/03/24 v26.5 The multilingual framework for LuaLaTeX, pdfLaT
 eX and XeLaTeX
-\babel@savecnt=\count358
+\babel@savecnt=\count357
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
 ne 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
@@ -779,10 +783,10 @@ on input line 2111.
 \U@D=\dimen304
 \l@unhyphenated=\language79
 
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/babel\xebabel.def)
 \bbl@readstream=\read3
 LaTeX Info: Redefining \textlatin on input line 3974.
-\bbl@dirlevel=\count359
+\bbl@dirlevel=\count358
 Package babel Info: Configuration files are deprecated, as
 (babel)             they can break document portability.
 (babel)             Reported on input line 4206.
@@ -803,7 +807,7 @@ Package babel Info: Importing font and identification data for spanish
 df
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks46
-\es@quotdepth=\count360
+\es@quotdepth=\count359
 Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
@@ -815,13 +819,21 @@ LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1)
  on input line 4.
  (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-)
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
+16.
+
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks47
 \inpenc@posthook=\toks48
-)
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -868,29 +880,29 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen312
 \cmidrulekern=\dimen313
 \defaultaddspace=\dimen314
-\@cmidla=\count361
-\@cmidlb=\count362
+\@cmidla=\count360
+\@cmidlb=\count361
 \@aboverulesep=\dimen315
 \@belowrulesep=\dimen316
-\@thisruleclass=\count363
-\@lastruleclass=\count364
+\@thisruleclass=\count362
+\@lastruleclass=\count363
 \@thisrulewidth=\dimen317
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen318
-\ar@mcellbox=\box78
+\ar@mcellbox=\box79
 \extrarowheight=\dimen319
 \NC@list=\toks49
 \extratabsurround=\skip67
 \backup@length=\skip68
-\ar@cellbox=\box79
+\ar@cellbox=\box80
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 \everycr=\toks50
 \minrowclearance=\skip69
-\rownum=\count365
+\rownum=\count364
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/ragged2e\ragged2e.sty
 Package: ragged2e 2023/06/22 v3.6 ragged2e Package
@@ -911,40 +923,40 @@ Package: ragged2e 2023/06/22 v3.6 ragged2e Package
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx.sty
 Package: siunitx 2026-04-09 v3.5.3 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count366
-\l__siunitx_number_exponent_fixed_int=\count367
-\l__siunitx_number_min_decimal_int=\count368
-\l__siunitx_number_min_integer_int=\count369
-\l__siunitx_number_round_precision_int=\count370
-\l__siunitx_number_lower_threshold_int=\count371
-\l__siunitx_number_upper_threshold_int=\count372
-\l__siunitx_number_group_first_int=\count373
-\l__siunitx_number_group_size_int=\count374
-\l__siunitx_number_group_min_int=\count375
-\l__siunitx_number_group_minimum_int=\count376
-\l__siunitx_compound_count_int=\count377
+\l__siunitx_number_uncert_offset_int=\count365
+\l__siunitx_number_exponent_fixed_int=\count366
+\l__siunitx_number_min_decimal_int=\count367
+\l__siunitx_number_min_integer_int=\count368
+\l__siunitx_number_round_precision_int=\count369
+\l__siunitx_number_lower_threshold_int=\count370
+\l__siunitx_number_upper_threshold_int=\count371
+\l__siunitx_number_group_first_int=\count372
+\l__siunitx_number_group_size_int=\count373
+\l__siunitx_number_group_min_int=\count374
+\l__siunitx_number_group_minimum_int=\count375
+\l__siunitx_compound_count_int=\count376
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/translations\translatio
 ns.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
  (CN)
 )
-\l__siunitx_table_tmp_box=\box80
+\l__siunitx_table_tmp_box=\box81
 \l__siunitx_table_tmp_dim=\dimen320
 \l__siunitx_table_column_width_dim=\dimen321
-\l__siunitx_table_integer_box=\box81
-\l__siunitx_table_decimal_box=\box82
-\l__siunitx_table_uncert_box=\box83
-\l__siunitx_table_before_box=\box84
-\l__siunitx_table_after_box=\box85
+\l__siunitx_table_integer_box=\box82
+\l__siunitx_table_decimal_box=\box83
+\l__siunitx_table_uncert_box=\box84
+\l__siunitx_table_before_box=\box85
+\l__siunitx_table_after_box=\box86
 \l__siunitx_table_before_dim=\dimen322
 \l__siunitx_table_carry_dim=\dimen323
-\l__siunitx_unit_tmp_int=\count378
-\l__siunitx_unit_position_int=\count379
-\l__siunitx_unit_total_int=\count380
+\l__siunitx_unit_tmp_int=\count377
+\l__siunitx_unit_position_int=\count378
+\l__siunitx_unit_total_int=\count379
 \l__siunitx_sexagesimal_tmp_dim=\dimen324
-\l__siunitx_sexagesimal_marker_box=\box86
-\l__siunitx_sexagesimal_unit_box=\box87
+\l__siunitx_sexagesimal_marker_box=\box87
+\l__siunitx_sexagesimal_unit_box=\box88
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/beamertheme-metropolis\
 beamerthememetropolis.sty
@@ -961,15 +973,15 @@ Package: beamerinnerthememetropolis 2017/01/23 Metropolis inner theme
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count381
-\calc@Bcount=\count382
+\calc@Acount=\count380
+\calc@Bcount=\count381
 \calc@Adimen=\dimen325
 \calc@Bdimen=\dimen326
 \calc@Askip=\skip84
 \calc@Bskip=\skip85
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count383
+\calc@Ccount=\count382
 \calc@Cskip=\skip86
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
@@ -980,7 +992,7 @@ Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 shapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodeparttextbox=\box88
+\pgfnodeparttextbox=\box89
 )
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 plot.code.tex
@@ -1013,7 +1025,7 @@ Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count384
+\pgf@plot@mark@count=\count383
 \pgfplotmarksize=\dimen331
 )
 \tikz@lastx=\dimen332
@@ -1024,23 +1036,23 @@ File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \tikz@lastmovetoy=\dimen337
 \tikzleveldistance=\dimen338
 \tikzsiblingdistance=\dimen339
-\tikz@figbox=\box89
-\tikz@figbox@bg=\box90
-\tikz@tempbox=\box91
-\tikz@tempbox@bg=\box92
-\tikztreelevel=\count385
-\tikznumberofchildren=\count386
-\tikznumberofcurrentchild=\count387
-\tikz@fig@count=\count388
+\tikz@figbox=\box90
+\tikz@figbox@bg=\box91
+\tikz@tempbox=\box92
+\tikz@tempbox@bg=\box93
+\tikztreelevel=\count384
+\tikznumberofchildren=\count385
+\tikznumberofcurrentchild=\count386
+\tikz@fig@count=\count387
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count389
-\pgfmatrixcurrentcolumn=\count390
-\pgf@matrix@numberofcolumns=\count391
+\pgfmatrixcurrentrow=\count388
+\pgfmatrixcurrentcolumn=\count389
+\pgf@matrix@numberofcolumns=\count390
 )
-\tikz@expandcount=\count392
+\tikz@expandcount=\count391
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -1074,21 +1086,57 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2026-03-20 L3 programming layer (loader) 
 
-Package beamerthememetropolis Warning: You need to compile with XeLaTeX or LuaL
-aTeX to use the Fira fonts on input line 95.
-
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
+ex.def
+File: l3backend-xetex.def 2026-02-18 L3 backend support: XeTeX
+\g__graphics_track_int=\count392
+\g__pdfannot_backend_int=\count393
+\g__pdfannot_backend_link_int=\count394
 ))
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 7
-9.
- (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
-File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+Package: xparse 2025-10-09 L3 Experimental document command parser
 )
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
-tex.def
-File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count393
-) (main.aux
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
+.sty
+Package: fontspec-xetex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count395
+\l__fontspec_language_int=\count396
+\l__fontspec_strnum_int=\count397
+\l__fontspec_tmp_int=\count398
+\l__fontspec_tmpa_int=\count399
+\l__fontspec_tmpb_int=\count400
+\l__fontspec_tmpc_int=\count401
+\l__fontspec_em_int=\count402
+\l__fontspec_emdef_int=\count403
+\l__fontspec_strong_int=\count404
+\l__fontspec_strongdef_int=\count405
+\l__fontspec_tmpa_dim=\dimen340
+\l__fontspec_tmpb_dim=\dimen341
+\l__fontspec_tmpc_dim=\dimen342
+ (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
+)
+\c@fontsnotfound=\count406
+
+
+Package beamerthememetropolis Warning: Could not find Fira Sans fonts on input 
+line 95.
+
+
+Package beamerthememetropolis Warning: Could not find Fira Mono fonts on input 
+line 95.
+
+)) (main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
@@ -1096,29 +1144,31 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: xetex
 * paper: custom
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -1138,7 +1188,7 @@ LaTeX Font Info:    ... okay on input line 79.
 * \footskip=14.22636pt
 * \marginparwidth=3.0pt
 * \marginparsep=11.0pt
-* \columnsep=25.6073pt
+* \columnsep=22.76228pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
@@ -1149,83 +1199,57 @@ LaTeX Font Info:    ... okay on input line 79.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
-ii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count394
-\scratchdimen=\dimen340
-\scratchbox=\box93
-\nofMPsegments=\count395
-\nofMParguments=\count396
-\everyMPshowfont=\toks55
-\MPscratchCnt=\count397
-\MPscratchDim=\dimen341
-\MPnumerator=\count398
-\makeMPintoPDFobject=\count399
-\everyMPtoPDFconversion=\toks56
-)
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
-ase.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
-fg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
-Package hyperref Info: Link coloring OFF on input line 79.
- (main.out) (main.out)
+Package hyperref Info: Link coloring OFF on input line 86.
+(main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 79.
+(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 86.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/cmss/b/n on input line 79.
+(Font)                  OT1/lmr/bx/n --> OT1/cmss/b/n on input line 86.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 79.
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 86.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/lmss/b/n on input line 79.
+(Font)                  OT1/cmss/b/n --> OT1/lmss/b/n on input line 86.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmr/m/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 79.
+(Font)                  OT1/lmss/m/n --> TU/lmr/m/n on input line 86.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 79.
+(Font)                  OT1/lmr/bx/n --> TU/lmss/b/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmss/b/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 79.
+(Font)                  OT1/lmr/bx/n --> TU/lmss/b/n on input line 86.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmss/m/n on input line 79.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> T1/lmss/m/n on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 79.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/m/n on input line 86.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> T1/lmss/m/it on input line 79.
+(Font)                  OT1/lmr/m/it --> TU/lmss/m/it on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> T1/lmss/m/it on input line 79.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 79.
+(Font)                  OT1/lmr/bx/it --> TU/lmss/m/it on input line 86.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 79.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/n on input line 79.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 86.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 79.
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 86.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 79.
+(Font)                  TU/lmss/m/it --> TU/lmss/b/it on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/lmss/b/n --> T1/lmr/b/n on input line 79.
+(Font)                  OT1/lmss/b/n --> TU/lmr/b/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/lmss/b/n --> T1/lmss/b/n on input line 79.
+(Font)                  TU/lmss/b/n --> TU/lmss/b/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/lmss/m/n --> T1/lmss/b/n on input line 79.
+(Font)                  TU/lmss/m/n --> TU/lmss/b/n on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/lmss/m/it --> T1/lmss/b/it on input line 79.
+(Font)                  TU/lmss/m/it --> TU/lmss/b/it on input line 86.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/lmtt/m/n --> T1/lmtt/b/n on input line 79.
+(Font)                  TU/lmtt/m/n --> TU/lmtt/b/n on input line 86.
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/translator\translator-b
 asic-dictionary-English.dict
@@ -1251,8 +1275,8 @@ Dictionary: translator-numbers-dictionary, Language: English
 heorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \. on input line 79.
-LaTeX Info: Redefining \% on input line 79.
+LaTeX Info: Redefining \. on input line 86.
+LaTeX Info: Redefining \% on input line 86.
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\tran
 slations-basic-dictionary-spanish.trsl
@@ -1260,161 +1284,164 @@ File: translations-basic-dictionary-spanish.trsl (spanish translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `spanish'. on input line 79.
+or `spanish'. on input line 86.
  (main.nav)
-<../RiesgoActurial_T2/EscudoUDLAP.jpg, id=12, 72.27pt x 72.27pt>
-File: ../RiesgoActurial_T2/EscudoUDLAP.jpg Graphic file (type jpg)
-<use ../RiesgoActurial_T2/EscudoUDLAP.jpg>
-Package pdftex.def Info: ../RiesgoActurial_T2/EscudoUDLAP.jpg  used on input li
-ne 81.
-(pdftex.def)             Requested size: 45.52371pt x 45.52458pt.
+File: ../RiesgoActurial_T2/EscudoUDLAP.jpg Graphic file (type bmp)
+<../RiesgoActurial_T2/EscudoUDLAP.jpg>
 
-Overfull \vbox (65.52458pt too high) detected at line 81
+Overfull \vbox (65.52458pt too high) detected at line 88
  []
 
 
-Overfull \vbox (13.79993pt too high) detected at line 81
+Overfull \vbox (13.79993pt too high) detected at line 88
  []
 
 [1
 
-{C:/Users/herie/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/heri
-e/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc} <../RiesgoActuria
-l_T2/EscudoUDLAP.jpg>]
-LaTeX Font Info:    Trying to load font information for TS1+lmss on input line 
-108.
-
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmss.fd
-File: ts1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+]
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-108.
-
-(C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmss.fd
+118.
+ (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-08.
+18.
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-108.
+118.
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-108.
+118.
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 108.
+(Font)              <9> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 108.
+(Font)              <6> on input line 118.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 108.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 108
+(Font)              <5> on input line 118.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 118
 .
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 108
+LaTeX Font Info:    Trying to load font information for U+msb on input line 118
 .
 
 (C:\Users\herie\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 108.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <6> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 108.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <5> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 108.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <9> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <6> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <5> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 118.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <7> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 118.
 
 [2
 
-{C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:
-/Users/herie/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
+] [3
+
+]
+
+Package fontspec Warning: 
+(fontspec)                \addfontfeature(s) ignored on line 179; it cannot be
+(fontspec)                used with a font that wasn't selected by a fontspec
+(fontspec)                command.
+(fontspec)                 
+(fontspec)                 The current font is "\TU/lmss/m/n/8 ".
+(fontspec)                  The requested feature is "Numbers={Monospaced}". 
+
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 141.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <7> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 141.
-
-Overfull \hbox (16.81734pt too wide) in paragraph at lines 141--141
-[][]  
- []
-
-[3
-
-{C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 168.
-LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <8> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 168.
-
-Overfull \vbox (3.84702pt too high) detected at line 168
- []
-
+(Font)              <8> on input line 179.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 179.
 [4
 
-{C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}
 ]
-Overfull \hbox (14.76683pt too wide) in paragraph at lines 207--207
-[][]  
+
+Package fontspec Warning: 
+(fontspec)                \addfontfeature(s) ignored on line 217; it cannot be
+(fontspec)                used with a font that wasn't selected by a fontspec
+(fontspec)                command.
+(fontspec)                 
+(fontspec)                 The current font is "\TU/lmss/m/n/8 ".
+(fontspec)                  The requested feature is "Numbers={Monospaced}". 
+
+
+Overfull \hbox (4.05559pt too wide) in paragraph at lines 217--217
+ []|\TU/lmss/m/n/8 5,352,448.49|
  []
 
 
-Overfull \vbox (3.86331pt too high) detected at line 207
+Overfull \hbox (8.30359pt too wide) in paragraph at lines 217--217
+ []|\TU/lmss/m/n/8 24,422,788.77|
  []
 
 [5
 
 ]
-Overfull \hbox (14.76683pt too wide) in paragraph at lines 246--246
+
+Package fontspec Warning: 
+(fontspec)                \addfontfeature(s) ignored on line 255; it cannot be
+(fontspec)                used with a font that wasn't selected by a fontspec
+(fontspec)                command.
+(fontspec)                 
+(fontspec)                 The current font is "\TU/lmss/bx/n/8 ".
+(fontspec)                  The requested feature is "Numbers={Monospaced}". 
+
+
+Overfull \hbox (25.23802pt too wide) in paragraph at lines 255--255
 [][]  
- []
-
-
-Overfull \vbox (16.34381pt too high) detected at line 246
  []
 
 [6
 
 ]
-Overfull \hbox (14.76683pt too wide) in paragraph at lines 285--285
-[][]  
- []
 
-
-Overfull \vbox (16.34375pt too high) detected at line 285
- []
+Package fontspec Warning: 
+(fontspec)                \addfontfeature(s) ignored on line 288; it cannot be
+(fontspec)                used with a font that wasn't selected by a fontspec
+(fontspec)                command.
+(fontspec)                 
+(fontspec)                 The current font is "\TU/lmss/m/n/8 ".
+(fontspec)                  The requested feature is "Numbers={Monospaced}". 
 
 [7
 
+] [8
+
 ]
-Overfull \hbox (3.1564pt too wide) in paragraph at lines 324--324
- []|\T1/lmss/m/n/8 +415.61$ $%|
+
+Package fontspec Warning: 
+(fontspec)                \addfontfeature(s) ignored on line 356; it cannot be
+(fontspec)                used with a font that wasn't selected by a fontspec
+(fontspec)                command.
+(fontspec)                 
+(fontspec)                 The current font is "\TU/lmss/m/n/7 ".
+(fontspec)                  The requested feature is "Numbers={Monospaced}". 
+
+
+Overfull \hbox (8.99197pt too wide) in paragraph at lines 356--356
+ []|\TU/lmss/m/n/7 Volkswagen| 
  []
 
 
-Overfull \hbox (3.1564pt too wide) in paragraph at lines 324--324
- []|\T1/lmss/m/n/8 +236.51$ $%|
- []
-
-
-Overfull \hbox (14.76683pt too wide) in paragraph at lines 324--324
+Overfull \hbox (5.76662pt too wide) in paragraph at lines 356--356
 [][]  
- []
-
-[8
-
-]
-Overfull \vbox (17.03171pt too high) detected at line 348
  []
 
 [9
@@ -1422,6 +1449,8 @@ Overfull \vbox (17.03171pt too high) detected at line 348
 ] [10
 
 ] [11
+
+] [12
 
 ]
 \tf@nav=\write6
@@ -1445,24 +1474,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 31273 strings out of 467691
- 674076 string characters out of 5414987
- 1031115 words of memory out of 5000000
- 59720 multiletter control sequences out of 15000+600000
- 701570 words of font info for 89 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 128i,13n,128p,1916b,1054s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi7.pfb
-><C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb>
-<C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb><
-C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><
-C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C
-:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss9.pfb><C:
-/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><
-C:/Users/herie/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb>
-Output written on main.pdf (11 pages, 179223 bytes).
-PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
- 23 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 33097 strings out of 402807
+ 738716 string characters out of 5445135
+ 1155741 words of memory out of 5000000
+ 61413 multiletter control sequences out of 15000+600000
+ 650219 words of font info for 90 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 128i,13n,128p,1916b,941s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
+Output written on main.pdf (12 pages).

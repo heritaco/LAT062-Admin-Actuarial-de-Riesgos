@@ -12,24 +12,32 @@
 \usepackage{ragged2e}
 \usepackage{siunitx}
 
-\usetheme{Madrid}
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setlength{\columnsep}{0.9cm}
 
-\definecolor{udlapblue}{RGB}{25,63,118}
-\definecolor{udlaplight}{RGB}{232,238,248}
-\definecolor{softgray}{RGB}{245,245,245}
-\definecolor{goodgreen}{RGB}{0,110,80}
-\definecolor{alertred}{RGB}{170,45,45}
-\definecolor{warnorange}{RGB}{194,112,0}
+\definecolor{udlapblue}{RGB}{20,58,108}
+\definecolor{udlapgold}{RGB}{185,140,35}
+\definecolor{udlaplight}{RGB}{239,244,250}
+\definecolor{softgray}{RGB}{246,246,246}
+\definecolor{goodgreen}{RGB}{0,115,80}
+\definecolor{alertred}{RGB}{165,40,40}
 
-\setbeamercolor{title}{fg=udlapblue}
+\setbeamercolor{normal text}{fg=black,bg=white}
 \setbeamercolor{frametitle}{fg=white,bg=udlapblue}
-\setbeamercolor{structure}{fg=udlapblue}
-\setbeamercolor{block title}{fg=white,bg=udlapblue}
-\setbeamercolor{block body}{bg=udlaplight}
+\setbeamercolor{title}{fg=udlapblue}
+\setbeamercolor{subtitle}{fg=black}
+\setbeamercolor{progress bar}{fg=udlapgold,bg=udlaplight}
+\setbeamercolor{title separator}{fg=udlapgold}
+\setbeamercolor{block title}{fg=udlapblue,bg=udlaplight}
+\setbeamercolor{block body}{fg=black,bg=white}
 \setbeamercolor{itemize item}{fg=udlapblue}
-\setbeamercolor{itemize subitem}{fg=udlapblue}
+\setbeamercolor{kpi box}{fg=udlapblue,bg=udlaplight}
+
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{block title}{series=\bfseries}
 
 \sisetup{
   group-separator={,},
@@ -43,65 +51,84 @@
 
 \newcommand{\pp}{p.p.}
 \newcommand{\mdp}{mdp}
-\newcommand{\ok}[1]{\textcolor{goodgreen}{#1}}
-\newcommand{\risk}[1]{\textcolor{alertred}{#1}}
-\newcommand{\warn}[1]{\textcolor{warnorange}{#1}}
+\newcommand{\smallhead}[1]{\vspace{0.08cm}{\color{udlapblue}\textbf{#1}}\par\vspace{0.02cm}}
+\newcommand{\kpi}[2]{%
+  \begin{beamercolorbox}[wd=.22\linewidth,sep=0.55ex,rounded=true,center]{kpi box}
+    {\scriptsize\textbf{#1}}\\[1pt]
+    {\normalsize\textbf{#2}}
+  \end{beamercolorbox}
+}
+\newcommand{\portfoliobar}[4]{%
+  \centering
+  \begin{tabular}{C{2.8cm}C{2.45cm}C{2.45cm}C{2.45cm}}
+    \rowcolor{udlaplight}
+    \textbf{Saldo final} & \textbf{IMOR saldo} & \textbf{EL al cierre} & \textbf{CaR máximo} \\
+    #1 & #2 & #3 & #4 \\
+  \end{tabular}
+}
+
+\renewcommand{\arraystretch}{1.15}
 
 \title{Ejercicio 2: Riesgo de Crédito}
-\subtitle{Presentación ejecutiva para Dirección General\\Comparativo 202212 vs 202312}
+\subtitle{Presentación para Dirección General\\Comparativo 202212 vs 202312}
 \author{Pedro José García Guevara \and Owen Pardes Conde \and Jesús Corona Enríquez \and Heriberto Espino Montelongo}
 \institute{Administración Actuarial de Riesgos Financieros}
 \date{26 de abril de 2026}
+\titlegraphic{\hfill\includegraphics[height=1.6cm]{../RiesgoActurial_T2/EscudoUDLAP.jpg}}
 
 \begin{document}
 
-\begin{frame}
-  \titlepage
-  \vspace{-0.6cm}
-  \begin{center}
-    \includegraphics[width=1.7cm]{../RiesgoActurial_T2/EscudoUDLAP.jpg}
-  \end{center}
-\end{frame}
+\maketitle
 
-\begin{frame}{Objetivo y mensaje ejecutivo}
+\begin{frame}{Propósito y hallazgos principales}
 \small
-\begin{itemize}
-  \item Se comparan las carteras de \textbf{Empresas, Entidades Financieras, Gubernamental y Vivienda} entre \textbf{diciembre 2022} y \textbf{diciembre 2023}.
-  \item Se evalúan cinco métricas: \textbf{IMOR, pérdida esperada (EL), pérdida no esperada (UL), Credit at Risk (CaR) y capital económico}.
-  \item Para fines ejecutivos, el \textbf{capital económico} se presenta como \textbf{CaR máximo - EL}; el escenario vinculante es el de mayor CaR entre $\rho_1$ y $\rho_2$.
-\end{itemize}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.47\textwidth}
+    \smallhead{Alcance}
+    \begin{itemize}
+      \item Se comparan \textbf{Empresas, Entidades Financieras, Gubernamental y Vivienda}.
+      \item Las dos fechas de referencia son \textbf{diciembre de 2022} y \textbf{diciembre de 2023}.
+      \item Se revisan \textbf{IMOR, EL, UL, CaR} y \textbf{capital económico}.
+    \end{itemize}
 
-\begin{block}{Lectura directiva}
-\begin{itemize}
-  \item \textbf{Empresas} mejora en mora y pérdida esperada, pero su \textbf{CaR relativo sube} de 3.94\% a 4.82\% por menor escala y mayor concentración relativa.
-  \item \textbf{Entidades Financieras} conserva \textbf{mora casi nula}, aunque sigue requiriendo más de \textbf{\$3,423 \mdp} de CaR por concentración y correlación interna.
-  \item \textbf{Gubernamental} mantiene el \textbf{mayor consumo de capital económico}: \textbf{\$23,183 \mdp} al cierre, aun con calidad crediticia observada muy sólida.
-  \item \textbf{Vivienda} es la \textbf{alerta crítica}: IMOR en saldo de \textbf{2.52\% a 20.02\%} y CaR máximo de \textbf{3.95\% a 14.75\%}.
-\end{itemize}
-\end{block}
+    \smallhead{Criterio conservador}
+    Para cada cartera se usa el \textbf{CaR máximo} entre los escenarios con $\rho_1$ y $\rho_2$.
+    El \textbf{capital económico} se presenta como \textbf{CaR máximo - EL}.
+  \end{column}
+  \begin{column}{0.49\textwidth}
+    \smallhead{Cuatro mensajes}
+    \begin{itemize}
+      \item \textbf{Empresas} mejora en mora y pérdida esperada, pero su \textbf{CaR relativo} sube de 3.94\% a 4.82\%.
+      \item \textbf{Entidades Financieras} conserva mora casi nula, aunque todavía exige \textbf{\$3,423 \mdp} de CaR.
+      \item \textbf{Gubernamental} concentra el mayor consumo de capital económico: \textbf{\$23,183 \mdp} al cierre.
+      \item \textbf{Vivienda} es la alerta central: IMOR en saldo de \textbf{2.52\% a 20.02\%} y CaR de \textbf{3.95\% a 14.75\%}.
+    \end{itemize}
+  \end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Metodología y escenarios relevantes}
+\begin{frame}{Marco de análisis}
 \small
 \begin{columns}[T,onlytextwidth]
   \begin{column}{0.56\textwidth}
-    \begin{block}{Métricas usadas}
+    \smallhead{Métricas consideradas}
     \begin{itemize}
-      \item \textbf{EL}: pérdida esperada.
-      \item \textbf{UL}: volatilidad de la pérdida bajo dos correlaciones positivas.
-      \item \textbf{CaR}: $\mu + 3\sigma$ o $(1+\theta)\mu$, con $\theta=5\%$ y $\alpha=3$.
-      \item \textbf{CaR máximo}: escenario conservador para toma de decisión.
-      \item \textbf{Capital económico}: excedente sobre la pérdida esperada que debe absorberse con capital.
+      \item \textbf{EL}: pérdida esperada del portafolio.
+      \item \textbf{UL}: desviación de pérdidas bajo dos correlaciones positivas.
+      \item \textbf{CaR}: medida de pérdida extrema con $\theta = 5\%$ y $\alpha = 3$.
+      \item \textbf{Capital económico}: capital requerido para absorber la pérdida no esperada extrema.
     \end{itemize}
-    \end{block}
+
+    \smallhead{Interpretación}
+    Cuando domina $\rho_1$, la fuente principal de riesgo es la \textbf{concentración dentro del mismo segmento}.
+    Cuando domina $\rho_2$, el riesgo proviene sobre todo de un \textbf{choque sistémico transversal}.
   \end{column}
-  \begin{column}{0.44\textwidth}
-    \begin{block}{Escenario vinculante}
+  \begin{column}{0.34\textwidth}
+    \smallhead{Escenario vinculante}
     \scriptsize
-    \centering
-    \begin{tabular}{L{2.55cm}C{0.85cm}C{0.85cm}C{1.75cm}}
+    \begin{tabular}{L{1.75cm}C{0.55cm}C{0.55cm}C{0.95cm}}
       \toprule
-      \textbf{Portafolio} & \textbf{$\rho_1$} & \textbf{$\rho_2$} & \textbf{CaR máximo} \\
+      \textbf{Portafolio} & \textbf{$\rho_1$} & \textbf{$\rho_2$} & \textbf{Esc.} \\
       \midrule
       Empresas & 20\% & 5\% & $\rho_1$ \\
       Ent. Fin. & 40\% & 10\% & $\rho_1$ \\
@@ -109,261 +136,252 @@
       Vivienda & 5\% & 60\% & $\rho_2$ \\
       \bottomrule
     \end{tabular}
-    \end{block}
   \end{column}
 \end{columns}
-
-\vspace{0.15cm}
-\footnotesize
-\textbf{Interpretación clave:} en \textbf{Empresas}, \textbf{Entidades Financieras} y \textbf{Gubernamental}
-domina la correlación intra-segmento; en \textbf{Vivienda} domina el componente sistémico
-del mercado hipotecario.
 \end{frame}
 
-\begin{frame}{Comparativo general: apertura vs cierre}
-\scriptsize
+\begin{frame}{Comparativo consolidado: 202212 vs 202312}
+\footnotesize
 \centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{L{2.9cm}C{2.2cm}C{2.0cm}C{1.8cm}C{1.8cm}C{2.2cm}}
+\begin{tabular}{L{2.75cm}C{1.95cm}C{1.95cm}C{1.7cm}C{1.9cm}}
 \toprule
-\rowcolor{udlapblue}
-\textcolor{white}{\textbf{Portafolio}} &
-\textcolor{white}{\textbf{Saldo (\mdp)}} &
-\textcolor{white}{\textbf{IMOR saldo}} &
-\textcolor{white}{\textbf{EL \%}} &
-\textcolor{white}{\textbf{CaR máx. \%}} &
-\textcolor{white}{\textbf{Capital econ. (\mdp)}} \\
+\rowcolor{udlaplight}
+\textbf{Portafolio} & \textbf{Saldo (\mdp)} & \textbf{IMOR saldo} & \textbf{EL \%} & \textbf{CaR máx. \%} \\
 \midrule
-Empresas & 8,671 $\rightarrow$ 4,567 & 2.34\% $\rightarrow$ 1.48\% & 0.85\% $\rightarrow$ 0.53\% & 3.94\% $\rightarrow$ 4.82\% & 268.3 $\rightarrow$ 195.6 \\
+Empresas & 8,671 $\rightarrow$ 4,567 & 2.34\% $\rightarrow$ 1.48\% & 0.85\% $\rightarrow$ 0.53\% & 3.94\% $\rightarrow$ 4.82\% \\
 \rowcolor{softgray}
-Entidades Financieras & 29,580 $\rightarrow$ 35,347 & 0.03\% $\rightarrow$ 0.02\% & 1.19\% $\rightarrow$ 0.64\% & 11.96\% $\rightarrow$ 9.68\% & 3,186.7 $\rightarrow$ 3,197.8 \\
-Gubernamental & 166,986 $\rightarrow$ 132,751 & 0.00\% $\rightarrow$ 0.01\% & 1.43\% $\rightarrow$ 1.38\% & 18.90\% $\rightarrow$ 18.85\% & 29,178.7 $\rightarrow$ 23,183.3 \\
+Entidades Financieras & 29,580 $\rightarrow$ 35,347 & 0.03\% $\rightarrow$ 0.02\% & 1.19\% $\rightarrow$ 0.64\% & 11.96\% $\rightarrow$ 9.68\% \\
+Gubernamental & 166,986 $\rightarrow$ 132,751 & 0.00\% $\rightarrow$ 0.01\% & 1.43\% $\rightarrow$ 1.38\% & 18.90\% $\rightarrow$ 18.85\% \\
 \rowcolor{softgray}
-Vivienda & 2,396 $\rightarrow$ 2,556 & 2.52\% $\rightarrow$ 20.02\% & 1.37\% $\rightarrow$ 6.60\% & 3.95\% $\rightarrow$ 14.75\% & 61.9 $\rightarrow$ 208.4 \\
+Vivienda & 2,396 $\rightarrow$ 2,556 & 2.52\% $\rightarrow$ 20.02\% & 1.37\% $\rightarrow$ 6.60\% & 3.95\% $\rightarrow$ 14.75\% \\
 \bottomrule
-\end{tabular}}
+\end{tabular}
 
-\vspace{0.25cm}
-\small
+\vspace{0.3cm}
+\smallhead{Señal comparativa}
 \begin{itemize}
-  \item \textbf{Mejor desempeño relativo:} \textbf{Entidades Financieras}, por reducción de EL y CaR relativo con crecimiento de saldo.
-  \item \textbf{Mayor deterioro:} \textbf{Vivienda}, donde se triplica el consumo relativo de capital económico y el IMOR en saldo sube \textbf{17.50 \pp}.
-  \item \textbf{Mayor riesgo de cola absoluto:} \textbf{Gubernamental}, por tamaño y correlación sistémica.
+  \item \textbf{Mejor evolución relativa:} Entidades Financieras.
+  \item \textbf{Mayor deterioro observado:} Vivienda.
+  \item \textbf{Mayor riesgo de cola absoluto:} Gubernamental.
+  \item \textbf{Mejora operativa con mayor sensibilidad relativa:} Empresas.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Portafolio Empresas}
-\scriptsize
+\footnotesize
+\portfoliobar{4,567 \mdp}{1.48\%}{0.53\%}{4.82\%}
+
+\vspace{0.32cm}
 \begin{columns}[T,onlytextwidth]
-  \begin{column}{0.56\textwidth}
-    \centering
-    \begin{tabular}{L{3.0cm}R{1.55cm}R{1.55cm}R{1.75cm}}
+  \begin{column}{0.47\textwidth}
+    \footnotesize
+    \begin{tabular}{L{2.15cm}R{1.10cm}R{1.10cm}R{1.25cm}}
       \toprule
-      \textbf{Métrica} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
+      \textbf{Indicador} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
       \midrule
-      Saldo total (\mdp) & 8,671 & 4,567 & -47.33\% \\
+      Saldo (\mdp) & 8,671 & 4,567 & -47.33\% \\
       IMOR saldo & 2.34\% & 1.48\% & -0.86 \pp \\
       EL (\mdp) & 73.4 & 24.4 & -66.83\% \\
-      UL vinculante (\mdp) & 89.4 & 65.2 & -27.09\% \\
       UL vinculante / saldo & 1.03\% & 1.43\% & +0.40 \pp \\
-      CaR máximo (\mdp) & 341.7 & 220.0 & -35.63\% \\
       CaR máximo / saldo & 3.94\% & 4.82\% & +0.88 \pp \\
       Capital económico (\mdp) & 268.3 & 195.6 & -27.09\% \\
       \bottomrule
     \end{tabular}
   \end{column}
-  \begin{column}{0.44\textwidth}
-    \begin{block}{Lectura ejecutiva}
+  \begin{column}{0.39\textwidth}
+    \smallhead{Qué cambió}
     \begin{itemize}
-      \item La cartera \textbf{mejora en calidad observada}: baja el IMOR y la EL.
-      \item El saldo cae casi \textbf{48\%}; por ello, el riesgo relativo de concentración aumenta aunque el riesgo absoluto disminuye.
-      \item El CaR máximo baja en monto, pero sube como proporción del saldo de \textbf{3.94\% a 4.82\%}.
+      \item La cartera redujo saldo casi a la mitad.
+      \item El IMOR y la EL mejoraron de forma importante.
+      \item La UL y el CaR subieron en términos relativos.
     \end{itemize}
-    \end{block}
-    \textbf{Recomendación:} sostener la disciplina de originación, revisar la concentración
-    sectorial de la cartera remanente y fijar límites por acreditado para evitar que la mejora
-    de mora se traduzca en una falsa sensación de seguridad.
+
+    \smallhead{Implicación}
+    La cartera cerró con \textbf{mejor calidad observada}, pero con \textbf{más concentración relativa}
+    sobre el saldo remanente.
+
+    \smallhead{Acción sugerida}
+    Mantener disciplina de originación y revisar límites por acreditado y sector antes de volver a crecer.
   \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Portafolio Entidades Financieras}
-\scriptsize
+\footnotesize
+\portfoliobar{35,347 \mdp}{0.02\%}{0.64\%}{9.68\%}
+
+\vspace{0.32cm}
 \begin{columns}[T,onlytextwidth]
-  \begin{column}{0.56\textwidth}
-    \centering
-    \begin{tabular}{L{3.0cm}R{1.55cm}R{1.55cm}R{1.75cm}}
+  \begin{column}{0.47\textwidth}
+    \footnotesize
+    \begin{tabular}{L{2.15cm}R{1.10cm}R{1.10cm}R{1.25cm}}
       \toprule
-      \textbf{Métrica} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
+      \textbf{Indicador} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
       \midrule
-      Saldo total (\mdp) & 29,580 & 35,347 & +19.49\% \\
+      Saldo (\mdp) & 29,580 & 35,347 & +19.49\% \\
       IMOR saldo & 0.03\% & 0.02\% & -0.01 \pp \\
       EL (\mdp) & 351.9 & 225.5 & -35.91\% \\
-      UL vinculante (\mdp) & 1,062.2 & 1,065.9 & +0.35\% \\
       UL vinculante / saldo & 3.59\% & 3.02\% & -0.58 \pp \\
-      CaR máximo (\mdp) & 3,538.6 & 3,423.3 & -3.26\% \\
       CaR máximo / saldo & 11.96\% & 9.68\% & -2.28 \pp \\
       Capital económico (\mdp) & 3,186.7 & 3,197.8 & +0.35\% \\
       \bottomrule
     \end{tabular}
   \end{column}
-  \begin{column}{0.44\textwidth}
-    \begin{block}{Lectura ejecutiva}
+  \begin{column}{0.39\textwidth}
+    \smallhead{Qué cambió}
     \begin{itemize}
-      \item El portafolio exhibe \textbf{mora prácticamente nula} y mejoría en pérdida esperada.
-      \item El saldo promedio por crédito sigue siendo muy alto; la concentración explica que la UL y el capital económico \textbf{permanezcan casi sin cambio}.
-      \item La cartera crece, pero el CaR relativo baja de \textbf{11.96\% a 9.68\%}; es una mejora real, aunque todavía exigente en capital.
+      \item El saldo creció, pero la mora siguió prácticamente en cero.
+      \item La EL cayó de 1.19\% a 0.64\% del portafolio.
+      \item El capital económico quedó casi sin cambio.
     \end{itemize}
-    \end{block}
-    \textbf{Recomendación:} reforzar límites por contraparte, subsector y grupo económico;
-    complementar con monitoreo de liquidez, calificación externa y dependencia de fondeo
-    entre entidades.
+
+    \smallhead{Implicación}
+    La mejora crediticia es real, pero el portafolio sigue siendo \textbf{intensivo en capital}
+    por concentración y correlación interna.
+
+    \smallhead{Acción sugerida}
+    Reforzar límites por contraparte, subsector y grupo económico; complementar con monitoreo de liquidez y fondeo.
   \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Portafolio Gubernamental}
-\scriptsize
+\footnotesize
+\portfoliobar{132,751 \mdp}{0.01\%}{1.38\%}{18.85\%}
+
+\vspace{0.32cm}
 \begin{columns}[T,onlytextwidth]
-  \begin{column}{0.56\textwidth}
-    \centering
-    \begin{tabular}{L{3.0cm}R{1.55cm}R{1.55cm}R{1.75cm}}
+  \begin{column}{0.47\textwidth}
+    \footnotesize
+    \begin{tabular}{L{2.15cm}R{1.10cm}R{1.10cm}R{1.25cm}}
       \toprule
-      \textbf{Métrica} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
+      \textbf{Indicador} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
       \midrule
-      Saldo total (\mdp) & 166,986 & 132,751 & -20.50\% \\
+      Saldo (\mdp) & 166,986 & 132,751 & -20.50\% \\
       IMOR saldo & 0.00\% & 0.01\% & +0.01 \pp \\
       EL (\mdp) & 2,386.4 & 1,838.0 & -22.98\% \\
-      UL vinculante (\mdp) & 9,726.2 & 7,727.8 & -20.55\% \\
       UL vinculante / saldo & 5.82\% & 5.82\% & -0.00 \pp \\
-      CaR máximo (\mdp) & 31,565.2 & 25,021.3 & -20.73\% \\
       CaR máximo / saldo & 18.90\% & 18.85\% & -0.05 \pp \\
       Capital económico (\mdp) & 29,178.7 & 23,183.3 & -20.55\% \\
       \bottomrule
     \end{tabular}
   \end{column}
-  \begin{column}{0.44\textwidth}
-    \begin{block}{Lectura ejecutiva}
+  \begin{column}{0.39\textwidth}
+    \smallhead{Qué cambió}
     \begin{itemize}
-      \item Es la cartera de \textbf{mayor tamaño} y la de \textbf{mayor capital económico absoluto}.
-      \item La mora observada es mínima; sin embargo, la correlación $\rho_1=70\%$ mantiene un perfil de \textbf{riesgo sistémico estructural}.
-      \item Aun después de la reducción de saldo, el CaR máximo se conserva cerca de \textbf{19\% del portafolio}.
+      \item Se redujo el saldo, pero el perfil relativo de riesgo casi no cambió.
+      \item La mora observada se mantuvo prácticamente nula.
+      \item Sigue siendo la cartera con mayor capital económico absoluto.
     \end{itemize}
-    \end{block}
-    \textbf{Recomendación:} administrar esta cartera con límites de concentración por ente,
-    stress tests macro-fiscales y un colchón de capital explícito para escenarios sistémicos.
+
+    \smallhead{Implicación}
+    El riesgo dominante no es la mora histórica, sino la \textbf{correlación sistémica}
+    del segmento gubernamental.
+
+    \smallhead{Acción sugerida}
+    Administrar con límites por ente, pruebas de estrés macro-fiscales y un buffer explícito de capital.
   \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Portafolio Vivienda}
-\scriptsize
+\footnotesize
+\portfoliobar{2,556 \mdp}{20.02\%}{6.60\%}{14.75\%}
+
+\vspace{0.32cm}
 \begin{columns}[T,onlytextwidth]
-  \begin{column}{0.56\textwidth}
-    \centering
-    \begin{tabular}{L{3.0cm}R{1.55cm}R{1.55cm}R{1.75cm}}
+  \begin{column}{0.47\textwidth}
+    \footnotesize
+    \begin{tabular}{L{2.15cm}R{1.10cm}R{1.10cm}R{1.25cm}}
       \toprule
-      \textbf{Métrica} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
+      \textbf{Indicador} & \textbf{202212} & \textbf{202312} & \textbf{Cambio} \\
       \midrule
-      Saldo total (\mdp) & 2,396 & 2,556 & +6.68\% \\
+      Saldo (\mdp) & 2,396 & 2,556 & +6.68\% \\
       IMOR saldo & 2.52\% & 20.02\% & +17.50 \pp \\
       EL (\mdp) & 32.7 & 168.7 & +415.61\% \\
-      UL vinculante (\mdp) & 20.6 & 69.5 & +236.51\% \\
       UL vinculante / saldo & 0.86\% & 2.72\% & +1.86 \pp \\
-      CaR máximo (\mdp) & 94.6 & 377.1 & +298.42\% \\
       CaR máximo / saldo & 3.95\% & 14.75\% & +10.80 \pp \\
       Capital económico (\mdp) & 61.9 & 208.4 & +236.51\% \\
       \bottomrule
     \end{tabular}
   \end{column}
-  \begin{column}{0.44\textwidth}
-    \begin{block}{Lectura ejecutiva}
+  \begin{column}{0.39\textwidth}
+    \smallhead{Qué cambió}
     \begin{itemize}
-      \item Es la cartera con \textbf{deterioro más severo} del análisis.
-      \item La mora en saldo sube de \textbf{2.52\% a 20.02\%}; la EL se multiplica por \textbf{5.2 veces}.
-      \item El escenario crítico es \textbf{sistémico} ($\rho_2=60\%$), no idiosincrático: el CaR máximo llega a \textbf{\$377.1 \mdp}.
+      \item El IMOR en saldo saltó de 2.52\% a 20.02\%.
+      \item La EL se multiplicó por 5.2 veces.
+      \item El CaR máximo casi se cuadruplicó.
     \end{itemize}
-    \end{block}
-    \textbf{Recomendación urgente:} congelar temporalmente la originación más riesgosa,
-    activar estrategia intensiva de cobranza y reestructura, y abrir seguimiento mensual por
-    cosecha, LTV, antigüedad de mora y zona geográfica.
+
+    \smallhead{Implicación}
+    Es la cartera con \textbf{deterioro materializado más severo} y el choque relevante es
+    \textbf{sistémico} ($\rho_2 = 60\%$).
+
+    \smallhead{Acción sugerida}
+    Frenar originación riesgosa, intensificar cobranza y dar seguimiento mensual por cosecha, LTV y geografía.
   \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Comparativo al cierre 202312}
+\begin{frame}{Mapa de prioridades al cierre 202312}
 \small
-\begin{columns}[T,onlytextwidth]
-  \begin{column}{0.58\textwidth}
-    \centering
-    \scriptsize
-    \begin{tabular}{L{2.85cm}R{1.5cm}R{1.35cm}R{1.35cm}R{1.55cm}}
-      \toprule
-      \textbf{Portafolio} & \textbf{Saldo} & \textbf{IMOR} & \textbf{EL \%} & \textbf{CaR máx. \%} \\
-      \midrule
-      Gubernamental & 132,751 & 0.01\% & 1.38\% & 18.85\% \\
-      Ent. Fin. & 35,347 & 0.02\% & 0.64\% & 9.68\% \\
-      Empresas & 4,567 & 1.48\% & 0.53\% & 4.82\% \\
-      Vivienda & 2,556 & 20.02\% & 6.60\% & 14.75\% \\
-      \bottomrule
-    \end{tabular}
-  \end{column}
-  \begin{column}{0.42\textwidth}
-    \begin{block}{Jerarquización ejecutiva}
-    \begin{itemize}
-      \item \textbf{Mayor riesgo absoluto:} Gubernamental.
-      \item \textbf{Mayor riesgo observado:} Vivienda.
-      \item \textbf{Mayor estabilidad relativa:} Entidades Financieras.
-      \item \textbf{Mejora operativa, pero vigilar concentración:} Empresas.
-    \end{itemize}
-    \end{block}
-  \end{column}
-\end{columns}
+\centering
+\begin{tabular}{L{2.7cm}L{2.4cm}L{4.0cm}C{1.8cm}}
+\toprule
+\rowcolor{udlaplight}
+\textbf{Foco} & \textbf{Portafolio} & \textbf{Evidencia al cierre} & \textbf{Prioridad} \\
+\midrule
+Capital absoluto & Gubernamental & Capital económico de \textbf{\$23,183 \mdp} y CaR de 18.85\% & Alta \\
+\rowcolor{softgray}
+Concentración & Entidades Financieras & Mora casi nula, pero capital económico de \textbf{\$3,198 \mdp} & Alta \\
+Vigilancia selectiva & Empresas & IMOR y EL mejores, pero CaR relativo de \textbf{4.82\%} & Media \\
+\rowcolor{softgray}
+Deterioro observado & Vivienda & IMOR saldo de \textbf{20.02\%} y CaR de \textbf{14.75\%} & Crítica \\
+\bottomrule
+\end{tabular}
 
-\vspace{0.15cm}
-\begin{alertblock}{Conclusión comparativa}
-La cartera total analizada no enfrenta un único problema: \textbf{Gubernamental} y
-\textbf{Entidades Financieras} demandan capital por \textbf{correlación y concentración},
-mientras \textbf{Vivienda} demanda intervención por \textbf{deterioro crediticio materializado}.
-\textbf{Empresas} queda en una posición intermedia con mejora de calidad, pero mayor
-sensibilidad relativa.
-\end{alertblock}
+\vspace{0.25cm}
+\smallhead{Conclusión comparativa}
+La administración del riesgo no debe enfocarse en un solo síntoma: \textbf{Gubernamental} y
+\textbf{Entidades Financieras} consumen capital por concentración; \textbf{Vivienda} exige acción
+inmediata por deterioro ya materializado; \textbf{Empresas} mejoró, pero no debe relajarse el control.
 \end{frame}
 
-\begin{frame}{Recomendaciones para Dirección General}
+\begin{frame}{Recomendaciones inmediatas}
 \small
-\begin{block}{Acciones inmediatas (próximos 30 a 90 días)}
-\begin{itemize}
-  \item \textbf{Vivienda:} ejecutar plan de contención con seguimiento mensual al IMOR, segmentación por cosecha y reestructuras focalizadas; cualquier crecimiento nuevo debe pasar filtros reforzados.
-  \item \textbf{Gubernamental:} formalizar un buffer de capital alineado con un CaR cercano a \textbf{19\% del saldo} y realizar stress tests de finanzas públicas y transferencias.
-  \item \textbf{Entidades Financieras:} recalibrar límites por contraparte para que el crecimiento de saldo no siga trasladándose a capital económico estable por arriba de \textbf{\$3,190 \mdp}.
-  \item \textbf{Empresas:} preservar la mejora en mora, pero revisar concentración por acreditado y sector antes de volver a expandir saldo.
-\end{itemize}
-\end{block}
+\begin{enumerate}
+  \item \textbf{Vivienda:} activar un plan de contención con cobranza intensiva, reestructuras focalizadas y seguimiento mensual a IMOR, LTV, cosecha y ubicación.
+  \item \textbf{Gubernamental:} formalizar un buffer de capital alineado con un CaR cercano a \textbf{19\% del saldo} y realizar pruebas de estrés fiscales.
+  \item \textbf{Entidades Financieras:} recalibrar límites por contraparte para que el crecimiento de saldo no se traduzca automáticamente en alto consumo de capital.
+  \item \textbf{Empresas:} preservar la mejora de calidad y revisar concentración antes de acelerar nueva originación.
+\end{enumerate}
 
-\begin{block}{Acciones estructurales}
+\vspace{0.2cm}
+\smallhead{Horizonte}
+Estas acciones deben implementarse en los próximos \textbf{30 a 90 días}, priorizando primero
+\textbf{Vivienda} y después \textbf{Gubernamental} y \textbf{Entidades Financieras}.
+\end{frame}
+
+\begin{frame}{Recomendaciones estructurales y cierre}
+\small
+\smallhead{Medidas estructurales}
 \begin{itemize}
   \item Integrar un tablero trimestral con \textbf{IMOR, EL, UL, CaR y capital económico} por segmento.
-  \item Definir apetito de riesgo dual: \textbf{riesgo observado} (mora y EL) y \textbf{riesgo de cola} (CaR y capital económico).
-  \item Vincular decisiones de crecimiento a consumo de capital, no solo a morosidad histórica.
+  \item Definir un apetito de riesgo dual: \textbf{riesgo observado} y \textbf{riesgo de cola}.
+  \item Vincular el crecimiento comercial a consumo de capital, no solo a morosidad histórica.
 \end{itemize}
-\end{block}
-\end{frame}
 
-\begin{frame}{Cierre}
-\small
-\begin{block}{Mensaje final}
-Entre \textbf{diciembre de 2022} y \textbf{diciembre de 2023}, la lectura directiva es clara:
+\smallhead{Conclusión final}
 \begin{itemize}
   \item \textbf{Empresas} y \textbf{Entidades Financieras} mejoran en riesgo esperado.
-  \item \textbf{Gubernamental} sigue siendo la principal fuente de consumo de capital económico por su tamaño y correlación.
-  \item \textbf{Vivienda} requiere la respuesta más rápida por deterioro material y por el salto del CaR al \textbf{14.75\%} del saldo.
+  \item \textbf{Gubernamental} sigue siendo la principal fuente de consumo de capital económico.
+  \item \textbf{Vivienda} requiere la reacción más rápida por el salto de IMOR y CaR.
 \end{itemize}
-\end{block}
 
-\vspace{0.15cm}
+\vspace{0.2cm}
 \centering
-\textbf{Decisión recomendada:} priorizar contención en \textbf{Vivienda}, sostener disciplina en \textbf{Empresas}, y administrar \textbf{Gubernamental} y \textbf{Entidades Financieras} con enfoque explícito de concentración y capital.
+\textbf{Decisión recomendada:} contener \textbf{Vivienda}, sostener disciplina en \textbf{Empresas}
+y gestionar \textbf{Gubernamental} y \textbf{Entidades Financieras} con enfoque explícito de concentración y capital.
 \end{frame}
 
 \end{document}

@@ -1,0 +1,450 @@
+\documentclass[11pt,landscape,letterpaper]{article}
+
+\usepackage[margin=1.05cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shapes.misc, calc}
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
+\pagestyle{empty}
+
+% ------------------------
+% COLORES
+% ------------------------
+\definecolor{azul}{RGB}{31,78,121}
+\definecolor{azulclaro}{RGB}{221,235,247}
+\definecolor{verde}{RGB}{226,239,218}
+\definecolor{amarillo}{RGB}{255,242,204}
+\definecolor{naranja}{RGB}{252,228,214}
+\definecolor{rojo}{RGB}{244,204,204}
+\definecolor{gris}{RGB}{242,242,242}
+\definecolor{morado}{RGB}{234,209,220}
+
+% ------------------------
+% ESTILOS TIKZ
+% ------------------------
+\tikzset{
+    startstop/.style={
+        rounded rectangle,
+        draw=azul,
+        fill=azulclaro,
+        very thick,
+        text width=5.6cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\bfseries\small
+    },
+    process/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!70,
+        fill=gris,
+        thick,
+        text width=6.0cm,
+        minimum height=1.05cm,
+        align=center,
+        font=\small
+    },
+    subproc/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!65,
+        fill=white,
+        thick,
+        text width=7.0cm,
+        minimum height=1.2cm,
+        align=center,
+        font=\tiny
+    },
+    decision/.style={
+        diamond,
+        aspect=2.1,
+        draw=black!70,
+        fill=amarillo,
+        thick,
+        text width=4.2cm,
+        align=center,
+        inner sep=1pt,
+        font=\small\bfseries
+    },
+    output/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!70,
+        fill=verde,
+        thick,
+        text width=6.0cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\small
+    },
+    dep/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!70,
+        fill=morado,
+        thick,
+        text width=7.0cm,
+        minimum height=1.15cm,
+        align=center,
+        font=\tiny
+    },
+    risk/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!75,
+        fill=naranja,
+        thick,
+        text width=6.0cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\small
+    },
+    note/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=azul,
+        fill=azul!7,
+        thick,
+        text width=17.3cm,
+        align=center,
+        font=\scriptsize
+    },
+    arrow/.style={
+        -{Latex[length=2.5mm]},
+        thick,
+        draw=black!75
+    },
+    dashedarrow/.style={
+        -{Latex[length=2.5mm]},
+        thick,
+        dashed,
+        draw=black!65
+    }
+}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Diagrama de procedimientos operativos: Portafolio de bonos con CreditMetrics}\\[1mm]
+{\small Portafolio de tres bonos globales con calificaciones A-, BBB- y B-; vencimiento de 5 años; valor nominal USD \$100}
+\end{center}
+
+\vspace*{\fill}
+
+\noindent\makebox[\textwidth][c]{%
+\begin{adjustbox}{center,max totalsize={\textwidth}{0.91\textheight}}
+\begin{tikzpicture}[node distance=0.62cm and 1.00cm]
+
+% =========================================================
+% BLOQUE SUPERIOR: DATOS E INSUMOS
+% =========================================================
+
+\node[startstop] (inicio) {
+Inicio\\
+Se tiene un portafolio compuesto de tres bonos globales
+};
+
+\node[process, below=of inicio] (datos) {
+Identificar características de los bonos\\
+A-, BBB- y B-; vencimiento 5 años; valor nominal USD \$100; cupón anual 7.5\%, 9\% y 11\%
+};
+
+\node[subproc, below=of datos] (insumos) {
+\textbf{Obtener insumos del modelo CreditMetrics}\\[-1mm]
+1. Obtener la matriz de transición a 1 año.\\
+2. Obtener la curva de los bonos libre de riesgo.\\
+3. Obtener la curva de los bonos por calidad crediticia:
+\[
+\begin{aligned}
+\text{tasa por calidad}
+&=\text{tasa libre de riesgo}\\
+&\quad+\text{sobretasa}
+\end{aligned}
+\]
+4. Obtener la tasa de recuperación en caso de incumplimiento:
+\[
+\begin{aligned}
+RR_{A^-}&=45\%\\
+RR_{BBB^-}&=35\%\\
+RR_{B^-}&=25\%
+\end{aligned}
+\]
+};
+
+\node[decision, below=of insumos, yshift=-0.1cm] (tipo) {
+Supuesto sobre probabilidades de incumplimiento
+};
+
+% =========================================================
+% RAMA IZQUIERDA: INDEPENDENCIA
+% =========================================================
+
+\node[process, below left=1.05cm and 5.1cm of tipo] (ind0) {
+Caso I\\
+Migraciones independientes
+};
+
+\node[subproc, below=of ind0] (ind1) {
+\textbf{Valuar los bonos en cada estado de la naturaleza}\\[-1mm]
+Para cada bono \(i\in\{A^-,BBB^-,B^-\}\) y cada estado \(s\):
+\[
+V_{i,s}
+=
+\sum_{\tau=1}^{4}
+\frac{C_i}{(1+y_s)^\tau}
++
+\frac{100+C_i}{(1+y_s)^4}
+\]
+donde al horizonte de 1 año quedan 4 años al vencimiento.\\
+Si \(s=D\):
+\[
+V_{i,D}=RR_i\times 100.
+\]
+};
+
+\node[subproc, below=of ind1] (ind2) {
+\textbf{Valuar el portafolio en cada estado de la naturaleza}\\[-1mm]
+Con tres bonos y una matriz con \(m\) estados:
+\[
+\omega=(s_1,s_2,s_3),\qquad
+V_P(\omega)=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}.
+\]
+Número de escenarios:
+\[
+m^3.
+\]
+Con 18 notches:
+\[
+18^3=5{,}832\ \text{distintos escenarios}.
+\]
+};
+
+\node[subproc, below=of ind2] (ind3) {
+\textbf{Obtener las probabilidades conjuntas de migración}\\[-1mm]
+Si las migraciones fueran independientes, la distribución conjunta se obtiene multiplicando las probabilidades de transición:
+\[
+\begin{aligned}
+p(\omega)
+&=p_{A^-\to s_1}\,p_{BBB^-\to s_2}\\
+&\quad\times p_{B^-\to s_3}
+\end{aligned}
+\]
+};
+
+\node[subproc, below=of ind3] (ind4) {
+\textbf{Obtener el valor esperado y las desviaciones}\\[-1mm]
+\[
+\mu_P=\sum_{\omega}V_P(\omega)p(\omega).
+\]
+\[
+\sigma_P=
+\sqrt{\sum_{\omega}\left(V_P(\omega)-\mu_P\right)^2p(\omega)}.
+\]
+Pérdida en cada escenario:
+\[
+L(\omega)=V_{P,0}-V_P(\omega).
+\]
+};
+
+\node[risk, below=of ind4] (ind5) {
+Obtener el VaR al 99.9\%\\[-1mm]
+Ordenar pérdidas \(L(\omega)\) y acumular probabilidades \(p(\omega)\).\\
+\[
+\begin{aligned}
+VaR_{99.9\%}
+&=\inf\{\ell:\Pr(L\leq \ell)\geq 0.999\}
+\end{aligned}
+\]
+};
+
+\node[output, below=of ind5] (ind6) {
+Salida caso independiente\\
+Distribución de pérdidas, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\).\\
+Interpretar como pérdida máxima al 99.9\% por cambios en la calidad crediticia.
+};
+
+% =========================================================
+% RAMA DERECHA: DEPENDENCIA
+% =========================================================
+
+\node[process, below right=1.05cm and 5.1cm of tipo] (dep0) {
+Caso II\\
+Migraciones dependientes
+};
+
+\node[dep, below=of dep0] (dep1) {
+\textbf{Modelar la correlación entre eventos de crédito}\\[-1mm]
+La correlación de incumplimiento describe la tendencia de dos empresas a incumplir aproximadamente al mismo tiempo.\\
+Obtener una matriz de correlaciones:
+\[
+R=
+\begin{pmatrix}
+1 & \rho_{12} & \rho_{13}\\
+\rho_{21} & 1 & \rho_{23}\\
+\rho_{31} & \rho_{32} & 1
+\end{pmatrix}.
+\]
+La correlación de cópula puede aproximarse como la correlación entre los rendimientos de las acciones.
+};
+
+\node[dep, below=of dep1] (dep2) {
+\textbf{Usar el modelo de cópula gaussiana}\\[-1mm]
+Transformar cada tiempo al incumplimiento \(t_i\) en:
+\[
+x_i=N^{-1}\!\left(Q_i(t_i)\right),
+\]
+donde \(Q_i\) es la distribución acumulada de \(t_i\) y \(N^{-1}\) es la inversa de la distribución normal acumulada.
+};
+
+\node[dep, below=of dep2] (dep3) {
+\textbf{Muestrear normales multivariadas}\\[-1mm]
+Generar:
+\[
+X=(x_1,x_2,x_3)^\top\sim N(0,R).
+\]
+Por construcción, los \(x_i\) se distribuyen normal con media cero y desviación estándar unitaria, pero quedan correlacionados por \(R\).
+};
+
+\node[dep, below=of dep3] (dep4) {
+\textbf{Convertir \(x_i\) a estado de crédito}\\[-1mm]
+Usar los umbrales acumulados de la matriz de transición. Para cada bono \(i\):
+\[
+s_i=
+\text{estado tal que }
+\sum_{k< s_i}p_{i,k}
+<
+N(x_i)
+\leq
+\sum_{k\leq s_i}p_{i,k}.
+\]
+Así se obtiene un escenario dependiente:
+\[
+\omega=(s_1,s_2,s_3).
+\]
+};
+
+\node[dep, below=of dep4] (dep5) {
+\textbf{Repetir la valuación del portafolio}\\[-1mm]
+Para cada escenario simulado:
+\[
+\begin{aligned}
+V_P(\omega)&=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}\\
+L(\omega)&=V_{P,0}-V_P(\omega)
+\end{aligned}
+\]
+Construir la distribución empírica de pérdidas con dependencia.
+};
+
+\node[risk, below=of dep5] (dep6) {
+Obtener el VaR al 99.9\%\\[-1mm]
+Ordenar pérdidas simuladas:
+\[
+L_{(1)}\leq L_{(2)}\leq \cdots \leq L_{(M)}.
+\]
+\[
+VaR_{99.9\%}=L_{(\lceil0.999M\rceil)}.
+\]
+};
+
+\node[output, below=of dep6] (dep7) {
+Salida caso dependiente\\
+Distribución de pérdidas con correlación, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\).\\
+Interpretar considerando que el riesgo de crédito no se puede diversificar por completo.
+};
+
+% =========================================================
+% BLOQUE INFERIOR: n BONOS
+% =========================================================
+
+\coordinate (generalanchor) at ($(ind6.south)!0.5!(dep7.south)$);
+
+\node[process, below=1.35cm of generalanchor] (general0) {
+Procedimiento para un portafolio de \(n\) bonos
+};
+
+\node[subproc, below=of general0] (general1) {
+\textbf{Con independencia}\\[-1mm]
+1. Valuar cada bono en cada estado de crédito.\\
+2. Formar todos los escenarios:
+\[
+\omega=(s_1,\ldots,s_n),\qquad \#\Omega=m^n.
+\]
+3. Obtener probabilidades conjuntas:
+\[
+p(\omega)=\prod_{i=1}^{n}p_{i,s_i}.
+\]
+4. Obtener \(V_P(\omega)\), \(\mu_P\), \(\sigma_P\) y el percentil 99.9\% de la distribución de pérdidas.
+};
+
+\node[subproc, right=1.0cm of general1] (general2) {
+\textbf{Sin independencia}\\[-1mm]
+1. Estimar cómo migran conjuntamente los obligados.\\
+2. Usar una matriz de correlaciones \(R=(\rho_{ij})\).\\
+3. Simular:
+\[
+X=(x_1,\ldots,x_n)^\top\sim N(0,R).
+\]
+4. Transformar percentil a percentil:
+\[
+x_i=N^{-1}(Q_i(t_i)).
+\]
+5. Convertir cada \(x_i\) a estado de crédito, valuar el portafolio y obtener el \(VaR_{99.9\%}\).
+};
+
+\node[note, below=of general1, xshift=3.15cm] (nota) {
+Recordatorio operativo: CreditMetrics mide el riesgo de crédito por cambios de valor causados por migraciones en la calidad crediticia. 
+Incorpora eventos de incumplimiento, mejoras y deterioros en la calidad crediticia; permite medir el beneficio de la diversificación o la potencial concentración de riesgo en la cartera.
+};
+
+\node[startstop, below=of nota] (fin) {
+Fin\\
+Reporte: \(VaR_{99.9\%}\) con independencia, \(VaR_{99.9\%}\) con dependencia e interpretación
+};
+
+\begin{pgfonlayer}{bg}
+% =========================================================
+% FLECHAS
+% =========================================================
+\draw[arrow] (inicio) -- (datos);
+\draw[arrow] (datos) -- (insumos);
+\draw[arrow] (insumos) -- (tipo);
+
+\draw[arrow] (tipo) -| (ind0);
+\draw[arrow] (ind0) -- (ind1);
+\draw[arrow] (ind1) -- (ind2);
+\draw[arrow] (ind2) -- (ind3);
+\draw[arrow] (ind3) -- (ind4);
+\draw[arrow] (ind4) -- (ind5);
+\draw[arrow] (ind5) -- (ind6);
+
+\draw[arrow] (tipo) -| (dep0);
+\draw[arrow] (dep0) -- (dep1);
+\draw[arrow] (dep1) -- (dep2);
+\draw[arrow] (dep2) -- (dep3);
+\draw[arrow] (dep3) -- (dep4);
+\draw[arrow] (dep4) -- (dep5);
+\draw[arrow] (dep5) -- (dep6);
+\draw[arrow] (dep6) -- (dep7);
+
+\draw[arrow] (ind6) |- (general0);
+\draw[arrow] (dep7) |- (general0);
+\draw[arrow] (general0) -- (general1);
+\draw[arrow] (general0) -| (general2);
+\draw[arrow] (general1) -- (nota);
+\draw[arrow] (general2) |- (nota);
+\draw[arrow] (nota) -- (fin);
+\end{pgfonlayer}
+
+\end{tikzpicture}
+\end{adjustbox}
+}
+
+\vspace*{\fill}
+
+\end{document}

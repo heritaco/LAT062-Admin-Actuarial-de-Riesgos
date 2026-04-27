@@ -1,0 +1,402 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{ragged2e}
+\usepackage{siunitx}
+
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=8mm,text margin right=8mm}
+\setlength{\columnsep}{0.8cm}
+
+\definecolor{udlapblue}{RGB}{20,58,108}
+\definecolor{udlapgold}{RGB}{185,140,35}
+\definecolor{udlaplight}{RGB}{239,244,250}
+\definecolor{softgray}{RGB}{246,246,246}
+\definecolor{goodgreen}{RGB}{0,115,80}
+\definecolor{alertred}{RGB}{165,40,40}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{frametitle}{fg=white,bg=udlapblue}
+\setbeamercolor{title}{fg=udlapblue}
+\setbeamercolor{subtitle}{fg=black}
+\setbeamercolor{progress bar}{fg=udlapgold,bg=udlaplight}
+\setbeamercolor{title separator}{fg=udlapgold}
+\setbeamercolor{block title}{fg=udlapblue,bg=udlaplight}
+\setbeamercolor{block body}{fg=black,bg=white}
+\setbeamercolor{itemize item}{fg=udlapblue}
+\setbeamercolor{kpi box}{fg=udlapblue,bg=udlaplight}
+
+\setbeamerfont{title}{series=\bfseries,size=\Large}
+\setbeamerfont{frametitle}{series=\bfseries,size=\large}
+\setbeamerfont{block title}{series=\bfseries}
+
+\sisetup{
+  group-separator={,},
+  group-minimum-digits=4,
+  output-decimal-marker={.}
+}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+
+\newcommand{\smallhead}[1]{\vspace{0.08cm}{\color{udlapblue}\textbf{#1}}\par\vspace{0.02cm}}
+\newcommand{\kpi}[2]{%
+  \begin{beamercolorbox}[wd=\linewidth,sep=0.45ex,rounded=true,center]{kpi box}
+    {\tiny\textbf{#1}}\\[1pt]
+    {\small\textbf{#2}}
+  \end{beamercolorbox}
+}
+\newcommand{\fourkpigrid}[8]{%
+  \centering
+  \makebox[\linewidth][c]{%
+    \begin{minipage}[t]{0.235\linewidth}\centering\kpi{#1}{#2}\end{minipage}\hspace{0.015\linewidth}%
+    \begin{minipage}[t]{0.235\linewidth}\centering\kpi{#3}{#4}\end{minipage}\hspace{0.015\linewidth}%
+    \begin{minipage}[t]{0.235\linewidth}\centering\kpi{#5}{#6}\end{minipage}\hspace{0.015\linewidth}%
+    \begin{minipage}[t]{0.235\linewidth}\centering\kpi{#7}{#8}\end{minipage}%
+  }
+}
+\newcommand{\threekpigrid}[6]{%
+  \centering
+  \makebox[\linewidth][c]{%
+    \begin{minipage}[t]{0.31\linewidth}\centering\kpi{#1}{#2}\end{minipage}\hspace{0.02\linewidth}%
+    \begin{minipage}[t]{0.31\linewidth}\centering\kpi{#3}{#4}\end{minipage}\hspace{0.02\linewidth}%
+    \begin{minipage}[t]{0.31\linewidth}\centering\kpi{#5}{#6}\end{minipage}%
+  }
+}
+
+\renewcommand{\arraystretch}{1.14}
+
+\title{Ejercicio 3: Riesgo de Crédito Corporativo}
+\subtitle{Presentación para Dirección General\\Z-Altman, modelo de Merton y cartera de cuatro acreditados}
+\author{Pedro José García Guevara \and Owen Pardes Conde \and Jesús Corona Enríquez \and Heriberto Espino Montelongo}
+\institute{Administración Actuarial de Riesgos Financieros}
+\date{26 de abril de 2026}
+\titlegraphic{\hfill\includegraphics[height=1.6cm]{../RiesgoActurial_T2/EscudoUDLAP.jpg}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Resumen ejecutivo}
+\scriptsize
+\fourkpigrid
+  {Reservas requeridas}{USD 208,228.94}
+  {CaR sin correlación}{USD 18,271,223.09}
+  {CaR con correlación}{USD 32,706,941.92}
+  {Impacto de correlación}{+79.0\%}
+
+\vspace{0.36cm}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.48\textwidth}
+    \smallhead{Mensajes clave}
+    \begin{itemize}\setlength{\itemsep}{0.25em}
+      \item La cartera de \textbf{Asics, Toyota, Adidas y Volkswagen} exige \textbf{más capital} cuando se reconoce la correlación.
+      \item \textbf{Toyota concentra 73.53\% de la pérdida esperada}; es el principal nombre a vigilar por exposición.
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \smallhead{Conclusión ejecutiva}
+    \begin{itemize}\setlength{\itemsep}{0.25em}
+      \item La \textbf{decisión de crédito no debe descansar en un solo modelo}; debe combinar solvencia contable, mercado y concentración.
+      \item La mayor vulnerabilidad agregada proviene de la \textbf{concentración en Toyota} y del salto de capital bajo correlación.
+    \end{itemize}
+
+    \smallhead{Decisión sugerida}
+    Aprobar con selectividad y usar \textbf{Altman + Merton + límites de concentración} como criterio conjunto.
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Alcance, universo y criterio}
+\small
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.44\textwidth}
+    \smallhead{Empresas analizadas}
+    \begin{itemize}
+      \item \textbf{Asia}: Asics y Toyota.
+      \item \textbf{Europa}: Adidas y Volkswagen.
+      \item La cartera se define como los \textbf{pasivos de largo plazo} de las cuatro compañías.
+    \end{itemize}
+
+    \smallhead{Conversión a USD}
+    \begin{itemize}
+      \item \textbf{EUR/USD = 1.1705}
+      \item \textbf{USD/JPY = 159.52}
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.52\textwidth}
+    \smallhead{Metodología aplicada}
+    \begin{itemize}
+      \item \textbf{Z-Altman}: estima calidad crediticia con base en razones financieras.
+      \item \textbf{Merton}: estima PD implícita de mercado, valor de deuda, pérdida esperada, recuperación y LGD.
+      \item \textbf{Cartera}: calcula pérdida esperada, pérdida no esperada, reservas y CaR con dos escenarios:
+      \begin{itemize}
+      \item correlación cero;
+      \item correlación usando rendimientos accionarios como proxy.
+      \end{itemize}
+    \end{itemize}
+
+    \smallhead{Parámetros de riesgo}
+    \begin{itemize}
+      \item \(\theta = 5\%\)
+      \item \(\alpha = 2\)
+    \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Resultado 1: Z-Altman y filtro de originación}
+\footnotesize
+\centering
+\begin{tabular}{L{2.3cm}C{2.0cm}C{2.0cm}L{5.1cm}}
+\toprule
+\rowcolor{udlaplight}
+\textbf{Empresa} & \textbf{Score} & \textbf{¿Prestar?} & \textbf{Lectura ejecutiva} \\
+\midrule
+Asics & 3.12588035 & Sí & Se ubica en zona favorable; pasa el filtro de solvencia contable. \\
+\rowcolor{softgray}
+Toyota & 1.75002199 & No & Queda por debajo del umbral de aceptación; la estructura operativa no es suficientemente robusta bajo Altman. \\
+Adidas & 3.34345783 & Sí & Es la mejor calificación relativa del grupo; muestra holgura financiera. \\
+\rowcolor{softgray}
+Volkswagen & 1.01309034 & No & Score claramente débil; Altman sugiere no incorporar el crédito sin mitigantes fuertes. \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.25cm}
+\smallhead{Implicación}
+Si la Dirección General aplicara un filtro conservador de originación basado solo en razones financieras,
+\textbf{solo Asics y Adidas serían elegibles} y Toyota junto con Volkswagen requerirían excepción o mitigantes.
+\end{frame}
+
+\begin{frame}{Resultado 2: Modelo de Merton por empresa}
+\footnotesize
+\centering
+\begin{tabular}{L{1.8cm}R{1.45cm}R{1.6cm}R{1.45cm}R{1.45cm}R{1.35cm}}
+\toprule
+\rowcolor{udlaplight}
+\textbf{Empresa} & \textbf{PD} & \textbf{RR} & \textbf{LGD} & \textbf{EL (\$)} & \textbf{EL (\%)} \\
+\midrule
+Asics & 1.166\% & 99.33\% & 0.67\% & 5,352,448.49 & 0.01\% \\
+\rowcolor{softgray}
+Toyota & 0.030\% & 99.70\% & 0.30\% & 24,422,788.77 & 0.00\% \\
+Adidas & 0.030\% & 100.00\% & 0.00\% & 0.01 & 0.00\% \\
+\rowcolor{softgray}
+Volkswagen & 0.030\% & 99.96\% & 0.04\% & 25,252.05 & 0.00\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.2cm}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.49\textwidth}
+    \smallhead{Qué dice Merton}
+    \begin{itemize}
+      \item Las cuatro empresas presentan \textbf{PD de mercado baja}.
+      \item Solo \textbf{Asics} muestra una PD materialmente mayor a la cota mínima de 0.03\%.
+      \item Las \textbf{LGD son muy bajas}, especialmente en Adidas y Volkswagen.
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    \smallhead{Lectura directiva}
+    \begin{itemize}
+      \item El mercado accionario sugiere que el \textbf{riesgo de default inmediato es reducido}.
+      \item Sin embargo, Merton puede ser \textbf{demasiado complaciente} frente a deterioro contable o concentración.
+      \item Por eso conviene combinarlo con Altman y con límites de exposición.
+    \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Altman vs Merton: la señal no es uniforme}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.50\textwidth}
+    \smallhead{Comparación directa}
+    \begin{tabular}{L{1.55cm}C{1.05cm}C{1.25cm}L{2.55cm}}
+      \toprule
+      \rowcolor{udlaplight}
+      Empresa & Altman & Merton & Lectura \\
+      \midrule
+      Asics & Sí & PD 1.166\% & Riesgo bajo, pero no trivial. \\
+      \rowcolor{softgray}
+      Toyota & No & PD 0.030\% & Conflicto fuerte entre balance y mercado. \\
+      Adidas & Sí & PD 0.030\% & Coincidencia favorable. \\
+      \rowcolor{softgray}
+      Volkswagen & No & PD 0.030\% & Conflicto fuerte entre balance y mercado. \\
+      \bottomrule
+    \end{tabular}
+  \end{column}
+  \begin{column}{0.44\textwidth}
+    \smallhead{Interpretación estratégica}
+    \begin{itemize}\setlength{\itemsep}{0.2em}
+      \item \textbf{Toyota y Volkswagen} no deberían aprobarse solo porque Merton luce benigno.
+      \item \textbf{Adidas} es el nombre más sólido porque ambos enfoques son consistentes.
+      \item \textbf{Asics} es financiable, pero con monitoreo, porque su PD de mercado es la más alta del grupo.
+    \end{itemize}
+  \end{column}
+\end{columns}
+
+\vspace{0.12cm}
+\smallhead{Decisión sugerida}
+\begin{minipage}{0.96\linewidth}
+\scriptsize
+Establecer una política de excepción: cuando Altman y Merton discrepen,
+elevar a comité y revisar covenants, plazo y límites.
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Resultado 3: pérdida esperada por acreditado}
+\footnotesize
+\centering
+\begin{tabular}{L{2.0cm}R{1.8cm}R{1.95cm}R{1.75cm}R{1.65cm}}
+\toprule
+\rowcolor{udlaplight}
+\textbf{Empresa} & \textbf{EL (\$)} & \textbf{UL proxy} & \textbf{\( \varrho(X)=(1+\theta)\mu \)} & \textbf{Participación EL} \\
+\midrule
+Asics & 33,553.46 & 312,332.23 & 35,231.14 & 16.11\% \\
+\rowcolor{softgray}
+Toyota & 153,101.73 & 8,935,404.11 & 160,756.82 & 73.53\% \\
+Adidas & 0.01 & 0.32 & 0.01 & 0.00\% \\
+\rowcolor{softgray}
+Volkswagen & 21,573.73 & 1,276,299.89 & 22,652.42 & 10.36\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.25cm}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.48\textwidth}
+    \smallhead{Hallazgo principal}
+    \textbf{Toyota explica casi tres cuartas partes de la pérdida esperada total} del portafolio,
+    no por tener la PD más alta, sino por el \textbf{tamaño de su exposición} vía pasivos de largo plazo.
+  \end{column}
+  \begin{column}{0.48\textwidth}
+    \smallhead{Implicación directiva}
+    El riesgo del portafolio está dominado por \textbf{concentración nominal},
+    por lo que la decisión comercial más importante no es solo \emph{a quién prestar},
+    sino \textbf{cuánto prestar}.
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Resultado 4: métricas agregadas de cartera}
+\small
+\threekpigrid
+  {Pérdida esperada}{USD 208,228.94}
+  {Reservas}{USD 208,228.94}
+  {\(q(X)=(1+\theta)\mu_X\)}{USD 218,640.38}
+
+\vspace{0.36cm}
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.47\textwidth}
+    \smallhead{Sin correlación}
+    \begin{itemize}
+      \item \(UL_P =\) \textbf{USD 9,031,497.08}
+      \item \(CaR =\) \textbf{USD 18,271,223.09}
+      \item Capital económico implícito: \textbf{USD 18,062,994.15}
+    \end{itemize}
+  \end{column}
+  \begin{column}{0.47\textwidth}
+    \smallhead{Con correlación accionaria}
+    \begin{itemize}
+      \item \(UL_P =\) \textbf{USD 16,249,356.49}
+      \item \(CaR =\) \textbf{USD 32,706,941.92}
+      \item Capital económico implícito: \textbf{USD 32,498,712.98}
+    \end{itemize}
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Impacto de la correlación: el verdadero multiplicador del riesgo}
+\footnotesize
+\begin{columns}[T,onlytextwidth]
+  \begin{column}{0.49\textwidth}
+    \smallhead{Matriz de correlación usada}
+    \scriptsize
+    \begin{tabular}{L{1.35cm}C{0.95cm}C{0.95cm}C{0.95cm}C{0.95cm}}
+      \toprule
+      \rowcolor{udlaplight}
+       & Asics & Toyota & Adidas & Volkswagen \\
+      \midrule
+      Asics & 1.0000 & 0.5001 & 0.2592 & 0.1910 \\
+      \rowcolor{softgray}
+      Toyota & 0.5001 & 1.0000 & 0.2248 & 0.2949 \\
+      Adidas & 0.2592 & 0.2248 & 1.0000 & 0.4058 \\
+      \rowcolor{softgray}
+      Volkswagen & 0.1910 & 0.2949 & 0.4058 & 1.0000 \\
+      \bottomrule
+    \end{tabular}
+
+    \smallhead{Dato crítico}
+    El \(UL_P\) sube de \textbf{USD 9.03 millones} a \textbf{USD 16.25 millones},
+    un aumento de \textbf{79.9\%}.
+  \end{column}
+  \begin{column}{0.43\textwidth}
+    \smallhead{Lectura para Dirección General}
+    \begin{itemize}\setlength{\itemsep}{0.2em}
+      \item La correlación no cambia las reservas, pero \textbf{sí dispara el capital económico}.
+      \item El error más costoso sería administrar la cartera como si los acreditados fueran independientes.
+      \item El escenario correlacionado exige \textbf{USD 14.44 millones adicionales}
+      de capital económico frente al caso sin correlación.
+    \end{itemize}
+
+    \smallhead{Mensaje de negocio}
+    La exposición conjunta a emisores globales puede parecer diversificada por geografía,
+    pero \textbf{no lo es necesariamente en estrés de mercado}.
+  \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Conclusiones para Dirección General}
+\small
+\begin{enumerate}
+  \item \textbf{Adidas} es el acreditado más limpio del ejercicio: buen Altman, PD mínima por Merton y LGD prácticamente nula.
+  \item \textbf{Asics} es financiable, pero no libre de riesgo: su PD de Merton (\textbf{1.166\%}) es la más alta del grupo, aunque su score Altman sí aprueba.
+  \item \textbf{Toyota} es el caso más delicado: Altman la rechaza, Merton la ve casi sin default y, además, \textbf{concentra 73.53\% de la pérdida esperada de la cartera}.
+  \item \textbf{Volkswagen} presenta la misma tensión conceptual que Toyota: mala señal contable bajo Altman, pero señal benigna de mercado bajo Merton.
+  \item A nivel cartera, el factor decisivo no es la mora aislada sino la \textbf{combinación de concentración + correlación}; por eso el CaR con correlación llega a \textbf{USD 32.71 millones}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Recomendaciones inmediatas}
+\footnotesize
+\begin{enumerate}
+  \item \textbf{No aprobar automáticamente} a Toyota ni Volkswagen con base en Merton; exigir comité, covenants y límites.
+  \item \textbf{Mantener a Adidas} como referente de mejor calidad relativa dentro del grupo de análisis.
+  \item \textbf{Autorizar Asics con seguimiento reforzado}, porque combina aprobación por Altman con la PD de mercado más alta.
+  \item \textbf{Gestionar la cartera con capital económico correlacionado}, no con el escenario independiente.
+\end{enumerate}
+
+\vspace{0.18cm}
+\smallhead{Sentido directivo}
+\begin{itemize}
+  \item La prioridad es evitar una lectura excesivamente optimista de Toyota y Volkswagen basada solo en mercado.
+  \item La segunda prioridad es reconocer que la solvencia del portafolio depende del capital económico correlacionado.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Medidas estructurales y cierre}
+\footnotesize
+\smallhead{Medidas estructurales}
+\begin{itemize}
+  \item Instituir una política dual de admisión: \textbf{filtro financiero (Altman)} más \textbf{validación de mercado (Merton)}.
+  \item Establecer límites por nombre para impedir que Toyota explique más de 70\% de la pérdida esperada.
+  \item Usar como referencia de solvencia un capital económico cercano a \textbf{USD 32.50 millones}, no solo la reserva de \textbf{USD 208 mil}.
+  \item Recalcular trimestralmente correlaciones accionarias para actualizar el CaR.
+\end{itemize}
+
+\vspace{0.15cm}
+\smallhead{Cierre}
+\centering
+\textbf{Decisión recomendada:} crecer solo con disciplina de selección y control explícito de concentración, porque el riesgo agregado aumenta fuertemente cuando las empresas se mueven juntas.
+\end{frame}
+
+\end{document}

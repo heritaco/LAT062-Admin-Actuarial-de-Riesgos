@@ -1,0 +1,185 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1.2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,shapes.misc,calc}
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
+\pagestyle{empty}
+
+\definecolor{azul}{RGB}{31,78,121}
+\definecolor{azulclaro}{RGB}{221,235,247}
+\definecolor{verde}{RGB}{226,239,218}
+\definecolor{amarillo}{RGB}{255,242,204}
+\definecolor{naranja}{RGB}{252,228,214}
+\definecolor{gris}{RGB}{242,242,242}
+
+\tikzset{
+    terminal/.style={
+        rounded rectangle,
+        draw=azul,
+        fill=azulclaro,
+        very thick,
+        text width=4.8cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\bfseries\small
+    },
+    proc/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!65,
+        fill=gris,
+        thick,
+        text width=4.6cm,
+        minimum height=1.0cm,
+        align=center,
+        font=\small
+    },
+    param/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!70,
+        fill=verde,
+        thick,
+        text width=4.2cm,
+        minimum height=0.95cm,
+        align=center,
+        font=\small
+    },
+    dec/.style={
+        diamond,
+        aspect=2.15,
+        draw=black!70,
+        fill=amarillo,
+        thick,
+        text width=4.0cm,
+        align=center,
+        inner sep=1pt,
+        font=\small\bfseries
+    },
+    form/.style={
+        rectangle,
+        rounded corners=2pt,
+        draw=black!60,
+        fill=white,
+        thick,
+        text width=6.4cm,
+        minimum height=0.85cm,
+        align=center,
+        font=\scriptsize
+    },
+    arrow/.style={
+        -{Latex[length=2.5mm]},
+        thick,
+        draw=black!75
+    },
+    dashedarrow/.style={
+        -{Latex[length=2.5mm]},
+        thick,
+        dashed,
+        draw=black!65
+    }
+}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Diagrama de procedimientos operativos del proceso}\\[2mm]
+{\small Ejercicio 2: AnÃ¡lisis de riesgo de crÃ©dito y flujo de cÃ¡lculo por carteras}
+\end{center}
+
+\vspace*{\fill}
+
+\noindent\makebox[\textwidth][c]{%
+\begin{adjustbox}{center,max totalsize={\textwidth}{0.90\textheight}}
+\begin{tikzpicture}[node distance=0.5cm and 1.35cm]
+
+\node[terminal] (start) {Inicio\\AnÃ¡lisis crediticio};
+
+\node[dec, below=0.62cm of start] (sel)
+  {Seleccionar 3 carteras\\``Carteras202312.xlsx''};
+
+\node[proc, right=2.2cm of sel] (dates)
+  {Elegir 2 fechas\\por cartera};
+
+\node[dec, below=0.72cm of sel] (par)
+  {Obtener parÃ¡metros\\por cartera y fecha};
+
+\node[param, below left=0.82cm and 1.65cm of par]  (pd)
+  {Probabilidad de\\incumplimiento (\(PD\))};
+\node[param, below=0.82cm of par] (ead)
+  {ExposiciÃ³n al\\incumplimiento (\(EAD\))};
+\node[param, below right=0.82cm and 1.65cm of par] (lgd)
+  {Severidad de\\pÃ©rdida (\(LGD\))};
+
+\node[dec, below=0.88cm of ead] (eli) {Calcular pÃ©rdida\\esperada individual};
+\node[form, right=2.0cm of eli] (elf)
+  {\(EL_i=\mathrm{Exp}_i\times LGD_i\times PD_i\)};
+
+\node[dec, below=0.55cm of eli] (uli) {Calcular pÃ©rdida no\\esperada individual};
+\node[form, right=2.0cm of uli] (ulf)
+  {\(UL_i=\mathrm{Exp}_i\times LGD_i\times \sqrt{PD_i(1-PD_i)}\)};
+
+\node[dec, below=0.55cm of uli] (elp) {Calcular pÃ©rdida\\esperada del portafolio};
+\node[form, right=2.0cm of elp] (elpf)
+  {\(\displaystyle EL_P=\sum_{i=1}^{N}\mathrm{Exp}_i\cdot LGD_i\cdot PD_i\)};
+
+\node[dec, below=0.62cm of elp] (ulp) {Calcular pÃ©rdida no\\esperada del portafolio};
+\node[form, right=2.0cm of ulp] (ulpf)
+  {\(\displaystyle UL_P=\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}w_iw_j\,\rho_{ij}\,UL_i\,UL_j}\)};
+
+\node[dec, below=0.62cm of ulp] (car) {Calcular capital\\en riesgo (\(CaR\))};
+\node[form, right=2.0cm of car] (carf)
+  {\(CaR=EL_P+\alpha\cdot UL_P\)};
+
+\node[dec, below=0.55cm of car] (rep)
+  {Repetir con\\\(\rho=20\%\) y \(\rho=40\%\)};
+
+\node[dec, below=0.55cm of rep] (cmp)
+  {Comparar fechas,\\correlaciones y riesgo};
+
+\node[terminal, below=0.55cm of cmp] (end) {Fin\\AnÃ¡lisis completado};
+
+\begin{pgfonlayer}{bg}
+\draw[arrow] (start) -- (sel);
+\draw[arrow] (sel) -- node[left, font=\scriptsize\bfseries]{sÃ­} (par);
+\draw[arrow] (sel.east) -- node[above, font=\scriptsize\bfseries]{no} (dates.west);
+\draw[dashedarrow] (dates.south) -- ++(0,-0.22) -| (sel.north east);
+
+\draw[arrow] (par.south west) -- (pd.north);
+\draw[arrow] (par) -- (ead);
+\draw[arrow] (par.south east) -- (lgd.north);
+
+\draw[arrow] (pd.south) -- ++(0,-0.18) -| (eli.west);
+\draw[arrow] (ead.south) -- (eli.north);
+\draw[arrow] (lgd.south) -- ++(0,-0.18) -| (eli.east);
+
+\draw[arrow] (eli) -- (uli);
+\draw[arrow] (uli) -- (elp);
+\draw[arrow] (elp) -- (ulp);
+\draw[arrow] (ulp) -- (car);
+\draw[arrow] (car) -- (rep);
+\draw[arrow] (rep) -- (cmp);
+\draw[arrow] (cmp) -- (end);
+
+\draw[dashedarrow] (eli.east) -- (elf.west);
+\draw[dashedarrow] (uli.east) -- (ulf.west);
+\draw[dashedarrow] (elp.east) -- (elpf.west);
+\draw[dashedarrow] (ulp.east) -- (ulpf.west);
+\draw[dashedarrow] (car.east) -- (carf.west);
+\end{pgfonlayer}
+
+\end{tikzpicture}
+\end{adjustbox}
+}
+
+\vspace*{\fill}
+
+\end{document}
