@@ -1,6 +1,6 @@
 \documentclass[11pt,landscape,letterpaper]{article}
 
-\usepackage[margin=1.0cm]{geometry}
+\usepackage[margin=0.9cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -16,39 +16,44 @@
 \definecolor{verde}{RGB}{226,239,218}
 \definecolor{amarillo}{RGB}{255,242,204}
 \definecolor{gris}{RGB}{242,242,242}
-\definecolor{naranja}{RGB}{252,228,214}
 
 \tikzset{
     head/.style={
         rectangle,
-        rounded corners=9pt,
+        rounded corners=8pt,
         draw=azul,
         fill=azulclaro,
         very thick,
-        text width=5.4cm,
-        minimum height=1.15cm,
+        text width=7.0cm,
+        minimum height=1.2cm,
         align=center,
-        font=\bfseries\small
+        font=\bfseries\footnotesize
     },
-    textstep/.style={
+    procbox/.style={
         rectangle,
         rounded corners=4pt,
         draw=black!70,
         fill=gris,
         thick,
-        text width=4.9cm,
+        text width=5.8cm,
         minimum height=1.1cm,
         align=center,
-        font=\small
+        font=\footnotesize
     },
-    mathstep/.style={
+    steplist/.style={
+        procbox,
+        text width=8.3cm,
+        align=left
+    },
+    formula/.style={
         rectangle,
         rounded corners=4pt,
         draw=azul!70!black,
-        fill=azulclaro!45,
+        fill=azulclaro!50,
         thick,
-        text width=5.9cm,
+        text width=6.9cm,
         minimum height=1.1cm,
+        inner sep=4pt,
         align=center,
         font=\scriptsize
     },
@@ -58,32 +63,21 @@
         draw=black!70,
         fill=verde,
         thick,
-        text width=5.7cm,
-        minimum height=1.05cm,
+        text width=6.3cm,
+        minimum height=1.1cm,
         align=center,
-        font=\small
-    },
-    risk/.style={
-        rectangle,
-        rounded corners=4pt,
-        draw=black!70,
-        fill=naranja,
-        thick,
-        text width=5.6cm,
-        minimum height=1.05cm,
-        align=center,
-        font=\small
+        font=\footnotesize
     },
     decision/.style={
         diamond,
-        aspect=2.2,
+        aspect=2.25,
         draw=black!70,
         fill=amarillo,
         thick,
-        text width=4.1cm,
-        inner sep=1.2pt,
+        text width=4.8cm,
+        inner sep=2pt,
         align=center,
-        font=\small\bfseries
+        font=\bfseries\footnotesize
     },
     note/.style={
         rectangle,
@@ -91,49 +85,51 @@
         draw=azul,
         fill=azul!8,
         thick,
-        text width=10.8cm,
-        align=center,
+        text width=21.0cm,
+        minimum height=1.1cm,
+        align=left,
         font=\scriptsize
     },
     arrow/.style={
         -{Latex[length=2.5mm]},
         thick,
-        draw=black!75
+        draw=black!75,
+        rounded corners=4pt
     },
     sidearrow/.style={
         -{Latex[length=2.2mm]},
         thick,
-        draw=azul!80!black
+        draw=azul!80!black,
+        rounded corners=4pt
     }
 }
 
 \begin{document}
 
-\vspace*{\fill}
 \noindent\makebox[\textwidth][c]{%
-\begin{adjustbox}{max totalsize={\textwidth}{0.95\textheight},center}
-\begin{tikzpicture}[node distance=0.72cm and 0.82cm]
+\begin{adjustbox}{max totalsize={\textwidth}{0.98\textheight},center}
+\begin{tikzpicture}[x=0.78cm,y=0.17cm]
 
 % =========================================================
 % BLOQUE SUPERIOR
 % =========================================================
 
-\node[head] (inicio) {
+\node[head] (inicio) at (0,0) {
 Inicio\\
-Obtener la información financiera de cuatro empresas públicas
+Obtener la informaci\'on financiera de cuatro empresas p\'ublicas
 };
 
-\node[textstep, below=of inicio] (empresas) {
+\node[procbox] (empresas) at (0,-8) {
 Empresas elegidas\\
-dos del mercado Asiático y dos de mercados europeos
+dos del mercado Asi\'atico y dos de mercados europeos
 };
 
-\node[textstep, below=of empresas] (datos) {
-Integrar insumos financieros\\
+\node[steplist] (datos) at (0,-18) {
+\textbf{Integrar insumos financieros}\\
 capital de trabajo, utilidades retenidas, EBIT, valor de mercado del patrimonio neto, ventas, activo total, pasivo total, pasivos de largo plazo
 };
 
-\node[decision, below=of datos, yshift=-0.08cm] (ramas) {
+\node[decision] (ramas) at (0,-31) {
 Determinar insumos de riesgo
 };
 
@@ -141,195 +137,189 @@ Determinar insumos de riesgo
 % RAMA ALTMAN
 % =========================================================
 
-\node[textstep, below left=1.00cm and 4.90cm of ramas] (altman0) {
+\node[procbox] (altman0) at (-20,-46) {
 Z de Altman\\
 calidad crediticia y probabilidad de incumplimiento
 };
 
-\node[textstep, below=of altman0] (altman1t) {
+\node[procbox] (altman1t) at (-20,-59) {
 Obtener razones financieras
 };
-\node[mathstep, right=of altman1t] (altman1m) {
-\[
+\node[formula] (altman1m) at (-8,-59) {
+\(
 \begin{aligned}
-X_1&=\frac{\text{capital de trabajo}}{\text{activo total}}\\
-X_2&=\frac{\text{utilidades retenidas}}{\text{activo total}}\\
-X_3&=\frac{\text{EBIT}}{\text{activo total}}\\
-X_4&=\frac{\text{valor de mercado del patrimonio}}{\text{pasivo total}}\\
-X_5&=\frac{\text{ventas}}{\text{activo total}}
+X_1 &= \frac{\text{capital de trabajo}}{\text{activo total}}\\
+X_2 &= \frac{\text{utilidades retenidas}}{\text{activo total}}\\
+X_3 &= \frac{\text{EBIT}}{\text{activo total}}\\
+X_4 &= \frac{\text{valor de mercado del patrimonio}}{\text{pasivo total}}\\
+X_5 &= \frac{\text{ventas}}{\text{activo total}}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of altman1t] (altman2t) {
-Calcular puntuación discriminante
+\node[procbox] (altman2t) at (-20,-73) {
+Calcular puntuaci\'on discriminante
 };
-\node[mathstep, right=of altman2t] (altman2m) {
-\[
+\node[formula] (altman2m) at (-8,-73) {
+\(
 \begin{aligned}
-Z&=1.2X_1+1.4X_2+3.3X_3+0.60X_4+1.00X_5\\
-Z'&=0.717X_1+0.847X_2+3.107X_3+0.420X_4'+0.998X_5\\
-Z''&=3.25+6.56X_1+3.26X_2+6.72X_3+1.05X_4'
+Z &= 1.2X_1+1.4X_2+3.3X_3+0.60X_4+1.00X_5\\
+Z' &= 0.717X_1+0.847X_2+3.107X_3+0.420X_4'+0.998X_5\\
+Z'' &= 3.25+6.56X_1+3.26X_2+6.72X_3+1.05X_4'
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of altman2t] (altman3t) {
+\node[procbox] (altman3t) at (-20,-87) {
 Clasificar zonas discriminantes
 };
-\node[mathstep, right=of altman3t] (altman3m) {
-\[
+\node[formula] (altman3m) at (-8,-87) {
+\(
 \begin{aligned}
-Z&>2.99 &&\Rightarrow \text{Zona segura}\\
-1.81&<Z<2.99 &&\Rightarrow \text{Zona gris}\\
-Z&<1.81 &&\Rightarrow \text{Zona de incumplimiento}
+Z &> 2.99 &&\Rightarrow \text{Zona segura}\\
+1.81 &< Z < 2.99 &&\Rightarrow \text{Zona gris}\\
+Z &< 1.81 &&\Rightarrow \text{Zona de incumplimiento}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of altman3t] (altman4t) {
+\node[procbox] (altman4t) at (-20,-101) {
 Mercados emergentes\\
-usar \(Z''\), método BRE y transferir la calificación crediticia a una \(PD\)
+usar \(Z''\), m\'etodo BRE y transferir la calificaci\'on crediticia a una \(PD\)
 };
-\node[mathstep, right=of altman4t] (altman4m) {
-\begin{minipage}{5.3cm}\centering
+\node[formula] (altman4m) at (-8,-101) {
+\begin{minipage}{6.1cm}\centering
 \scriptsize
 Salida intermedia:\\
 \(Z,\ Z',\ Z''\)\\
-rating sintético\\
+rating sint\'etico\\
 \(PD_{\text{Altman}}\)
 \end{minipage}
 };
 
-\node[output, below=of altman4t] (altman5) {
+\node[output] (altman5) at (-20,-115) {
 Salida Altman\\
-\(Z\), rating sintético, calidad crediticia, \(PD_{\text{Altman}}\)
+\(Z\), rating sint\'etico, calidad crediticia, \(PD_{\text{Altman}}\)
 };
 
 % =========================================================
 % RAMA MERTON
 % =========================================================
 
-\node[textstep, below right=1.00cm and 5.10cm of ramas] (merton0) {
+\node[procbox] (merton0) at (8,-46) {
 Modelo estructural de Merton\\
 probabilidad de incumplimiento
 };
 
-\node[textstep, below=of merton0] (merton1t) {
+\node[procbox] (merton1t) at (8,-59) {
 Obtener insumos
 };
-\node[mathstep, right=of merton1t] (merton1m) {
-\begin{minipage}{4.8cm}\centering
+\node[formula] (merton1m) at (21,-59) {
+\begin{minipage}{6.1cm}\raggedright
 \scriptsize
 1. Valor de los pasivos de largo plazo.\\
 2. Valor de mercado del capital de la empresa.\\
 3. Tasa libre de riesgo.\\
-4. Últimos 500 precios de la acción de la empresa.
+4. \'Ultimos 500 precios de la acci\'on de la empresa.
 \end{minipage}
 };
 
-\node[textstep, below=of merton1t] (merton2t) {
+\node[procbox] (merton2t) at (8,-73) {
 Obtener la volatilidad anual de los rendimientos
 };
-\node[mathstep, right=of merton2t] (merton2m) {
-\[
-\sigma_E=\text{volatilidad anual de los rendimientos}
-\]
-\[
+\node[formula] (merton2m) at (21,-73) {
+\(
 \begin{aligned}
-d_1&=\frac{\ln(V_0/D)+\left(r+\frac{\sigma_V^2}{2}\right)T}{\sigma_V\sqrt{T}}\\
-d_2&=d_1-\sigma_V\sqrt{T}
+\sigma_E &= \text{volatilidad anual de los rendimientos}\\
+d_1 &= \frac{\ln(V_0/D)+\left(r+\frac{\sigma_V^2}{2}\right)T}{\sigma_V\sqrt{T}}\\
+d_2 &= d_1-\sigma_V\sqrt{T}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of merton2t] (merton3t) {
+\node[procbox] (merton3t) at (8,-87) {
 Usar Solver para encontrar \(V_0\) y \(\sigma_V\)
 };
-\node[mathstep, right=of merton3t] (merton3m) {
-\[
-E_0=V_0N(d_1)-De^{-rT}N(d_2)
-\]
-\[
-\sigma_EE_0=N(d_1)\sigma_VV_0
-\]
-\[
-F(x,y)^2+G(x,y)^2
-\]
+\node[formula] (merton3m) at (21,-87) {
+\(
+\begin{aligned}
+E_0 &= V_0N(d_1)-De^{-rT}N(d_2)\\
+\sigma_EE_0 &= N(d_1)\sigma_VV_0\\
+&\text{minimizar }F(x,y)^2+G(x,y)^2
+\end{aligned}
+\)
 };
 
-\node[textstep, below=of merton3t] (merton4t) {
+\node[procbox] (merton4t) at (8,-101) {
 Caracterizar la deuda\\
 obtener \(PD\)
 };
-\node[mathstep, right=of merton4t] (merton4m) {
-\[
+\node[formula] (merton4m) at (21,-101) {
+\(
 \begin{aligned}
-PD&=N(-d_2)\\
-PD_{\text{final}}&=\max\{N(-d_2),0.03\%\}
+PD &= N(-d_2)\\
+PD_{\text{final}} &= \max\{N(-d_2),0.03\%\}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of merton4t] (merton5t) {
+\node[procbox] (merton5t) at (8,-115) {
 Caracterizar la deuda\\
 deuda de mercado y deuda sin riesgo
 };
-\node[mathstep, right=of merton5t] (merton5m) {
-\[
+\node[formula] (merton5m) at (21,-115) {
+\(
 \begin{aligned}
-D_{0,M}&=V_0-E_0\\
-D_{0,MNR}&=D_Te^{-rT}
+D_{0,M} &= V_0-E_0\\
+D_{0,MNR} &= D_Te^{-rT}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of merton5t] (merton6t) {
+\node[procbox] (merton6t) at (8,-129) {
 Caracterizar la deuda\\
-pérdida esperada
+p\'erdida esperada
 };
-\node[mathstep, right=of merton6t] (merton6m) {
-\[
+\node[formula] (merton6m) at (21,-129) {
+\(
 \begin{aligned}
-EL_{\$}&=D_{0,MNR}-D_{0,M}\\
-EL_{\%}&=\frac{D_{0,MNR}-D_{0,M}}{D_{0,MNR}}
+EL_{\$} &= D_{0,MNR}-D_{0,M}\\
+EL_{\%} &= \frac{D_{0,MNR}-D_{0,M}}{D_{0,MNR}}
 \end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of merton6t] (merton7t) {
+\node[procbox] (merton7t) at (8,-143) {
 Caracterizar la deuda\\
 \(RR\) y \(LGD\)
 };
-\node[mathstep, right=of merton7t] (merton7m) {
-\[
+\node[formula] (merton7m) at (21,-143) {
+\(
 \begin{aligned}
-RR&=1-\frac{EL}{PD}\\
-LGD&=1-RR
+RR &= 1-\frac{EL}{PD}\\
+LGD &= 1-RR
 \end{aligned}
-\]
+\)
 };
 
-\node[output, below=of merton7t] (merton8) {
+\node[output] (merton8) at (8,-157) {
 Salida Merton\\
-\(PD_{\text{Merton}}\), valor de mercado de la deuda, valor presente de la deuda, pérdida esperada, \(RR\), \(LGD\)
+\(PD_{\text{Merton}}\), valor de mercado de la deuda, valor presente de la deuda, p\'erdida esperada, \(RR\), \(LGD\)
 };
 
 % =========================================================
-% BLOQUE INFERIOR DE CARTERA
+% INTEGRACION DE CARTERA
 % =========================================================
 
-\coordinate (midout) at ($(altman5.south)!0.5!(merton8.south)$);
-
-\node[note, below=0.85cm of midout] (nota) {
-La cartera de créditos consiste en los pasivos de largo plazo de las cuatro empresas. La moneda reportada son USD.
+\node[note] (nota) at (0,-171) {
+\textbf{Cartera de cr\'editos:} los pasivos de largo plazo de las cuatro empresas. La moneda reportada son USD.
 };
 
-\node[textstep, below=of nota] (selectt) {
+\node[procbox] (selectt) at (-6,-184) {
 Seleccionar insumos para la cartera
 };
-\node[mathstep, right=of selectt] (selectm) {
-\begin{minipage}{5.3cm}\centering
+\node[formula] (selectm) at (8,-184) {
+\begin{minipage}{6.1cm}\centering
 \scriptsize
 usar \(PD\) y \(LGD\)\\
 mayores a cero\\
@@ -337,144 +327,169 @@ para todas las empresas
 \end{minipage}
 };
 
-\node[textstep, below=of selectt] (creditot) {
-Medida de riesgo por crédito
+% =========================================================
+% MEDIDAS DE RIESGO
+% =========================================================
+
+\node[procbox] (creditot) at (-18,-200) {
+Medida de riesgo por cr\'edito
 };
-\node[mathstep, right=of creditot] (creditom) {
-\[
+\node[formula] (creditom) at (-18,-214) {
+\(
 \begin{aligned}
-EL_i&=Exp_i\times LGD_i\times PD_i\\
-UL_i&=Exp_i\times LGD_i\times \sqrt{PD_i(1-PD_i)}
+EL_i &= Exp_i\times LGD_i\times PD_i\\
+UL_i &= Exp_i\times LGD_i\times \sqrt{PD_i(1-PD_i)}\\
+\varrho(X_i) &= (1+\theta)\mu_{X_i}\\
+\varrho(X_i) &= \mu_{X_i}+\alpha\sigma_{X_i}
 \end{aligned}
-\]
-\[
-\begin{aligned}
-\varrho(X_i)&=(1+\theta)\mu_{X_i}\\
-\varrho(X_i)&=\mu_{X_i}+\alpha\sigma_{X_i}
-\end{aligned}
-\]
+\)
 };
 
-\node[textstep, below=of creditot] (carterat) {
+\node[procbox] (carterat) at (0,-200) {
 Medida de riesgo para la cartera
 };
-\node[mathstep, right=of carterat] (carteram) {
-\[
-EL_P=\sum_{i=1}^{N}EL_i
-\]
-\[
-UL_P=\sqrt{\sum_{i=1}^{N}UL_i^2+2\sum_{i<j}^{N}\rho_{ij}UL_iUL_j}
-\]
+\node[formula] (carteram) at (0,-214) {
+\(
+\begin{aligned}
+EL_P &= \sum_{i=1}^{N}EL_i\\
+UL_P &= \sqrt{\sum_{i=1}^{N}UL_i^2+2\sum_{i<j}^{N}\rho_{ij}UL_iUL_j}
+\end{aligned}
+\)
 };
 
-\node[decision, below=of carterat, yshift=-0.08cm] (corr) {
-Escenario de correlación
+% =========================================================
+% ESCENARIOS DE CORRELACION
+% =========================================================
+
+\node[decision] (corr) at (18,-200) {
+Escenario de correlaci\'on
 };
 
-\node[textstep, below left=0.95cm and 2.80cm of corr] (rho0t) {
-Correlación cero
+\node[procbox] (rho0t) at (11,-217) {
+Correlaci\'on cero
 };
-\node[mathstep, right=of rho0t] (rho0m) {
-\[
-\rho_{ij}=0,\qquad
-UL_{P,0}=\sqrt{\sum_{i=1}^{N}UL_i^2}
-\]
-};
-
-\node[textstep, below right=0.95cm and 2.80cm of corr] (rho1t) {
-Correlación con precio de las acciones
-};
-\node[mathstep, right=of rho1t] (rho1m) {
-\[
-\rho_{ij}=\mathrm{corr}(r_i,r_j)
-\]
-\[
-\text{usar rendimientos accionarios como proxy}
-\]
+\node[formula] (rho0m) at (11,-231) {
+\(
+\begin{aligned}
+\rho_{ij} &= 0\\
+UL_{P,0} &= \sqrt{\sum_{i=1}^{N}UL_i^2}
+\end{aligned}
+\)
 };
 
-\coordinate (midrho) at ($(rho0t.south)!0.5!(rho1t.south)$);
-
-\node[textstep, below=1.15cm of midrho] (reservast) {
-Reservas y capital económico
+\node[procbox] (rho1t) at (25,-217) {
+Correlaci\'on con precio de las acciones
 };
-\node[mathstep, right=of reservast] (reservasm) {
-\[
-\text{Reservas}=EL_P
-\]
-\[
-CaR=EL_P+\alpha UL_P
-\]
-\[
-\text{Capital económico}=CaR-EL_P
-\]
+\node[formula] (rho1m) at (25,-231) {
+\begin{minipage}{6.1cm}\centering
+\scriptsize
+\(\rho_{ij}=\mathrm{corr}(r_i,r_j)\)\\
+usar rendimientos accionarios como proxy
+\end{minipage}
 };
 
-\node[head, below=of reservast] (fin) {
+% =========================================================
+% SALIDA FINAL
+% =========================================================
+
+\node[procbox] (reservast) at (18,-247) {
+Reservas y capital econ\'omico
+};
+\node[formula] (reservasm) at (18,-261) {
+\(
+\begin{aligned}
+\text{Reservas} &= EL_P\\
+CaR &= EL_P+\alpha UL_P\\
+\text{Capital econ\'omico} &= CaR-EL_P
+\end{aligned}
+\)
+};
+
+\node[head] (fin) at (0,-278) {
 Fin\\
 Reporte de resultados y diagrama de procedimientos operativos
 };
 
 % =========================================================
-% FLECHAS
+% COORDENADAS AUXILIARES
 % =========================================================
 
-\draw[arrow] (inicio) -- (empresas);
-\draw[arrow] (empresas) -- (datos);
-\draw[arrow] (datos) -- (ramas);
+\coordinate (branchL) at (-20,-38);
+\coordinate (branchR) at (8,-38);
+\coordinate (altLane) at (-29,-171);
+\coordinate (merLane) at (29,-171);
+\coordinate (noteLeftIn) at (-16,-171);
+\coordinate (noteRightIn) at (16,-171);
+\coordinate (creditoJoin) at (-9,-200);
+\coordinate (carteraJoin) at (9,-200);
+\coordinate (corrSplitL) at (15,-208);
+\coordinate (corrSplitR) at (21,-208);
+\coordinate (resLeftJoin) at (13,-247);
+\coordinate (resRightJoin) at (23,-247);
 
-\draw[arrow] (ramas) -| (altman0);
-\draw[arrow] (altman0) -- (altman1t);
-\draw[arrow] (altman1t) -- (altman2t);
-\draw[arrow] (altman2t) -- (altman3t);
-\draw[arrow] (altman3t) -- (altman4t);
-\draw[arrow] (altman4t) -- (altman5);
+% =========================================================
+% FLECHAS PRINCIPALES
+% =========================================================
 
-\draw[arrow] (ramas) -| (merton0);
-\draw[arrow] (merton0) -- (merton1t);
-\draw[arrow] (merton1t) -- (merton2t);
-\draw[arrow] (merton2t) -- (merton3t);
-\draw[arrow] (merton3t) -- (merton4t);
-\draw[arrow] (merton4t) -- (merton5t);
-\draw[arrow] (merton5t) -- (merton6t);
-\draw[arrow] (merton6t) -- (merton7t);
-\draw[arrow] (merton7t) -- (merton8);
+\draw[arrow] (inicio.south) -- (empresas.north);
+\draw[arrow] (empresas.south) -- (datos.north);
+\draw[arrow] (datos.south) -- (ramas.north);
 
-\draw[sidearrow] (altman1t) -- (altman1m);
-\draw[sidearrow] (altman2t) -- (altman2m);
-\draw[sidearrow] (altman3t) -- (altman3m);
-\draw[sidearrow] (altman4t) -- (altman4m);
+\draw[arrow] (ramas.south) |- (branchL) -- (altman0.north);
+\draw[arrow] (ramas.south) |- (branchR) -- (merton0.north);
 
-\draw[sidearrow] (merton1t) -- (merton1m);
-\draw[sidearrow] (merton2t) -- (merton2m);
-\draw[sidearrow] (merton3t) -- (merton3m);
-\draw[sidearrow] (merton4t) -- (merton4m);
-\draw[sidearrow] (merton5t) -- (merton5m);
-\draw[sidearrow] (merton6t) -- (merton6m);
-\draw[sidearrow] (merton7t) -- (merton7m);
+\draw[arrow] (altman0.south) -- (altman1t.north);
+\draw[arrow] (altman1t.south) -- (altman2t.north);
+\draw[arrow] (altman2t.south) -- (altman3t.north);
+\draw[arrow] (altman3t.south) -- (altman4t.north);
+\draw[arrow] (altman4t.south) -- (altman5.north);
 
-\draw[arrow] (altman5) |- (nota.west);
-\draw[arrow] (merton8) |- (nota.east);
-\draw[arrow] (nota) -- (selectt);
-\draw[arrow] (selectt) -- (creditot);
-\draw[arrow] (creditot) -- (carterat);
-\draw[arrow] (carterat) -- (corr);
-\draw[arrow] (corr) -| (rho0t);
-\draw[arrow] (corr) -| (rho1t);
-\draw[arrow] (rho0t.south) |- (reservast.west);
-\draw[arrow] (rho1t.south) |- (reservast.east);
-\draw[arrow] (reservast) -- (fin);
+\draw[arrow] (merton0.south) -- (merton1t.north);
+\draw[arrow] (merton1t.south) -- (merton2t.north);
+\draw[arrow] (merton2t.south) -- (merton3t.north);
+\draw[arrow] (merton3t.south) -- (merton4t.north);
+\draw[arrow] (merton4t.south) -- (merton5t.north);
+\draw[arrow] (merton5t.south) -- (merton6t.north);
+\draw[arrow] (merton6t.south) -- (merton7t.north);
+\draw[arrow] (merton7t.south) -- (merton8.north);
 
-\draw[sidearrow] (selectt) -- (selectm);
-\draw[sidearrow] (creditot) -- (creditom);
-\draw[sidearrow] (carterat) -- (carteram);
-\draw[sidearrow] (rho0t) -- (rho0m);
-\draw[sidearrow] (rho1t) -- (rho1m);
-\draw[sidearrow] (reservast) -- (reservasm);
+\draw[sidearrow] (altman1t.east) -- (altman1m.west);
+\draw[sidearrow] (altman2t.east) -- (altman2m.west);
+\draw[sidearrow] (altman3t.east) -- (altman3m.west);
+\draw[sidearrow] (altman4t.east) -- (altman4m.west);
+
+\draw[sidearrow] (merton1t.east) -- (merton1m.west);
+\draw[sidearrow] (merton2t.east) -- (merton2m.west);
+\draw[sidearrow] (merton3t.east) -- (merton3m.west);
+\draw[sidearrow] (merton4t.east) -- (merton4m.west);
+\draw[sidearrow] (merton5t.east) -- (merton5m.west);
+\draw[sidearrow] (merton6t.east) -- (merton6m.west);
+\draw[sidearrow] (merton7t.east) -- (merton7m.west);
+
+\draw[arrow] (altman5.south) |- (altLane) -- (noteLeftIn) -- (nota.west);
+\draw[arrow] (merton8.south) |- (merLane) -- (noteRightIn) -- (nota.east);
+\draw[arrow] (nota.south) -- (selectt.north);
+\draw[sidearrow] (selectt.east) -- (selectm.west);
+
+\draw[arrow] (selectt.south) |- (creditoJoin) -- (creditot.north);
+\draw[arrow] (creditot.east) -- (carterat.west);
+\draw[arrow] (carterat.east) -- (corr.west);
+
+\draw[sidearrow] (creditot.south) -- (creditom.north);
+\draw[sidearrow] (carterat.south) -- (carteram.north);
+
+\draw[arrow] (corr.south) |- (corrSplitL) -- (rho0t.north);
+\draw[arrow] (corr.south) |- (corrSplitR) -- (rho1t.north);
+\draw[sidearrow] (rho0t.south) -- (rho0m.north);
+\draw[sidearrow] (rho1t.south) -- (rho1m.north);
+
+\draw[arrow] (rho0m.south) |- (resLeftJoin) -- (reservast.west);
+\draw[arrow] (rho1m.south) |- (resRightJoin) -- (reservast.east);
+\draw[arrow] (reservast.south) -- (reservasm.north);
+\draw[arrow] (reservasm.south) |- (0,-271) -- (fin.north);
 
 \end{tikzpicture}
 \end{adjustbox}%
 }
-\vspace*{\fill}
 
 \end{document}

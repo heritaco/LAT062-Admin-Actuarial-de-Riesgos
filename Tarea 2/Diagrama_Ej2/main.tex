@@ -91,8 +91,9 @@
 \begin{document}
 
 \begin{center}
-{\Large\bfseries Diagrama de procedimientos operativos del proceso}\\[2mm]
-{\small Ejercicio 2: AnÃ¡lisis de riesgo de crÃ©dito y flujo de cÃ¡lculo por carteras}
+{\LARGE\bfseries Ejercicio 2}\\[1mm]
+{\Large\bfseries An\'alisis de riesgo de cr\'edito por carteras}\\[2mm]
+{\small Diagrama de procedimientos operativos del proceso}
 \end{center}
 
 \vspace*{\fill}
@@ -101,7 +102,7 @@
 \begin{adjustbox}{center,max totalsize={\textwidth}{0.90\textheight}}
 \begin{tikzpicture}[node distance=0.5cm and 1.35cm]
 
-\node[terminal] (start) {Inicio\\AnÃ¡lisis crediticio};
+\node[terminal] (start) {Inicio\\An\'alisis crediticio};
 
 \node[dec, below=0.62cm of start] (sel)
   {Seleccionar 3 carteras\\``Carteras202312.xlsx''};
@@ -110,28 +111,28 @@
   {Elegir 2 fechas\\por cartera};
 
 \node[dec, below=0.72cm of sel] (par)
-  {Obtener parÃ¡metros\\por cartera y fecha};
+  {Obtener par\'ametros\\por cartera y fecha};
 
 \node[param, below left=0.82cm and 1.65cm of par]  (pd)
   {Probabilidad de\\incumplimiento (\(PD\))};
 \node[param, below=0.82cm of par] (ead)
-  {ExposiciÃ³n al\\incumplimiento (\(EAD\))};
+  {Exposici\'on al\\incumplimiento (\(EAD\))};
 \node[param, below right=0.82cm and 1.65cm of par] (lgd)
-  {Severidad de\\pÃ©rdida (\(LGD\))};
+  {Severidad de\\p\'erdida (\(LGD\))};
 
-\node[dec, below=0.88cm of ead] (eli) {Calcular pÃ©rdida\\esperada individual};
+\node[dec, below=0.88cm of ead] (eli) {Calcular p\'erdida\\esperada individual};
 \node[form, right=2.0cm of eli] (elf)
   {\(EL_i=\mathrm{Exp}_i\times LGD_i\times PD_i\)};
 
-\node[dec, below=0.55cm of eli] (uli) {Calcular pÃ©rdida no\\esperada individual};
+\node[dec, below=0.55cm of eli] (uli) {Calcular p\'erdida no\\esperada individual};
 \node[form, right=2.0cm of uli] (ulf)
   {\(UL_i=\mathrm{Exp}_i\times LGD_i\times \sqrt{PD_i(1-PD_i)}\)};
 
-\node[dec, below=0.55cm of uli] (elp) {Calcular pÃ©rdida\\esperada del portafolio};
+\node[dec, below=0.55cm of uli] (elp) {Calcular p\'erdida\\esperada del portafolio};
 \node[form, right=2.0cm of elp] (elpf)
   {\(\displaystyle EL_P=\sum_{i=1}^{N}\mathrm{Exp}_i\cdot LGD_i\cdot PD_i\)};
 
-\node[dec, below=0.62cm of elp] (ulp) {Calcular pÃ©rdida no\\esperada del portafolio};
+\node[dec, below=0.62cm of elp] (ulp) {Calcular p\'erdida no\\esperada del portafolio};
 \node[form, right=2.0cm of ulp] (ulpf)
   {\(\displaystyle UL_P=\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}w_iw_j\,\rho_{ij}\,UL_i\,UL_j}\)};
 
@@ -145,11 +146,11 @@
 \node[dec, below=0.55cm of rep] (cmp)
   {Comparar fechas,\\correlaciones y riesgo};
 
-\node[terminal, below=0.55cm of cmp] (end) {Fin\\AnÃ¡lisis completado};
+\node[terminal, below=0.55cm of cmp] (end) {Fin\\An\'alisis completado};
 
 \begin{pgfonlayer}{bg}
 \draw[arrow] (start) -- (sel);
-\draw[arrow] (sel) -- node[left, font=\scriptsize\bfseries]{sÃ­} (par);
+\draw[arrow] (sel) -- node[left, font=\scriptsize\bfseries]{s\'i} (par);
 \draw[arrow] (sel.east) -- node[above, font=\scriptsize\bfseries]{no} (dates.west);
 \draw[dashedarrow] (dates.south) -- ++(0,-0.22) -| (sel.north east);
 

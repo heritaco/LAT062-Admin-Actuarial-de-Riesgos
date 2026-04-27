@@ -4,128 +4,118 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath,amssymb}
 \usepackage{adjustbox}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, positioning, shapes.geometric, shapes.misc, calc}
-\pgfdeclarelayer{bg}
-\pgfsetlayers{bg,main}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
 
 \pagestyle{empty}
 
 % ------------------------
 % COLORES
 % ------------------------
-\definecolor{azul}{RGB}{31,78,121}
+\definecolor{azulmarco}{RGB}{44,92,146}
 \definecolor{azulclaro}{RGB}{221,235,247}
+\definecolor{azulformula}{RGB}{247,250,255}
 \definecolor{verde}{RGB}{226,239,218}
 \definecolor{amarillo}{RGB}{255,242,204}
-\definecolor{naranja}{RGB}{252,228,214}
-\definecolor{rojo}{RGB}{244,204,204}
 \definecolor{gris}{RGB}{242,242,242}
-\definecolor{morado}{RGB}{234,209,220}
 
 % ------------------------
 % ESTILOS TIKZ
 % ------------------------
 \tikzset{
-    startstop/.style={
-        rounded rectangle,
-        draw=azul,
-        fill=azulclaro,
-        very thick,
-        text width=5.6cm,
-        minimum height=1.0cm,
-        align=center,
-        font=\bfseries\small
-    },
-    process/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=black!70,
-        fill=gris,
-        thick,
-        text width=6.0cm,
-        minimum height=1.05cm,
-        align=center,
-        font=\small
-    },
-    subproc/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=black!65,
-        fill=white,
-        thick,
-        text width=7.0cm,
-        minimum height=1.2cm,
-        align=center,
-        font=\tiny
-    },
-    decision/.style={
-        diamond,
-        aspect=2.1,
-        draw=black!70,
-        fill=amarillo,
-        thick,
-        text width=4.2cm,
-        align=center,
-        inner sep=1pt,
-        font=\small\bfseries
-    },
-    output/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=black!70,
-        fill=verde,
-        thick,
-        text width=6.0cm,
-        minimum height=1.0cm,
-        align=center,
-        font=\small
-    },
-    dep/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=black!70,
-        fill=morado,
-        thick,
-        text width=7.0cm,
-        minimum height=1.15cm,
-        align=center,
-        font=\tiny
-    },
-    risk/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=black!75,
-        fill=naranja,
-        thick,
-        text width=6.0cm,
-        minimum height=1.0cm,
-        align=center,
-        font=\small
-    },
-    note/.style={
-        rectangle,
-        rounded corners=2pt,
-        draw=azul,
-        fill=azul!7,
-        thick,
-        text width=17.3cm,
-        align=center,
-        font=\scriptsize
-    },
-    arrow/.style={
-        -{Latex[length=2.5mm]},
-        thick,
-        draw=black!75
-    },
-    dashedarrow/.style={
-        -{Latex[length=2.5mm]},
-        thick,
-        dashed,
-        draw=black!65
-    }
+  startstop/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=azulmarco,
+    fill=azulclaro,
+    very thick,
+    text width=5.2cm,
+    minimum height=9mm,
+    align=center,
+    font=\bfseries\small
+  },
+  section/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=black!70,
+    fill=gris,
+    thick,
+    text width=5.6cm,
+    minimum height=8.5mm,
+    align=center,
+    font=\bfseries\small
+  },
+  process/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=black!70,
+    fill=gris,
+    thick,
+    text width=4.9cm,
+    minimum height=9mm,
+    align=left,
+    inner xsep=3mm,
+    inner ysep=2mm,
+    font=\footnotesize
+  },
+  formula/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=azulmarco!70,
+    fill=azulformula,
+    thick,
+    text width=4.1cm,
+    minimum height=9mm,
+    align=left,
+    inner xsep=3mm,
+    inner ysep=1.8mm,
+    font=\scriptsize
+  },
+  decision/.style={
+    diamond,
+    aspect=2.15,
+    draw=black!70,
+    fill=amarillo,
+    thick,
+    text width=4.9cm,
+    align=center,
+    inner sep=1.4pt,
+    font=\bfseries\small
+  },
+  output/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=black!70,
+    fill=verde,
+    thick,
+    text width=9.4cm,
+    minimum height=10mm,
+    align=left,
+    inner xsep=3mm,
+    inner ysep=2mm,
+    font=\footnotesize
+  },
+  note/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=azulmarco,
+    fill=azulclaro,
+    thick,
+    text width=15.6cm,
+    minimum height=10mm,
+    align=left,
+    inner xsep=3mm,
+    inner ysep=2mm,
+    font=\footnotesize
+  },
+  arrow/.style={
+    -{Latex[length=2.4mm]},
+    thick,
+    draw=black!75,
+    rounded corners=2pt
+  }
 }
 
 \begin{document}
@@ -135,49 +125,61 @@
 {\small Portafolio de tres bonos globales con calificaciones A-, BBB- y B-; vencimiento de 5 años; valor nominal USD \$100}
 \end{center}
 
-\vspace*{\fill}
+\vspace{2mm}
 
-\noindent\makebox[\textwidth][c]{%
-\begin{adjustbox}{center,max totalsize={\textwidth}{0.91\textheight}}
-\begin{tikzpicture}[node distance=0.62cm and 1.00cm]
+\begin{center}
+\begin{adjustbox}{center,max totalsize={\textwidth}{0.82\textheight}}
+\begin{tikzpicture}[node distance=4.5mm and 4mm]
 
 % =========================================================
-% BLOQUE SUPERIOR: DATOS E INSUMOS
+% BLOQUE SUPERIOR
 % =========================================================
 
-\node[startstop] (inicio) {
-Inicio\\
-Se tiene un portafolio compuesto de tres bonos globales
+\node[startstop] (inicio) {Inicio};
+
+\node[process, below=6mm of inicio] (carac) {
+\textbf{Características de los bonos}\\
+A-, BBB- y B-; vencimiento de 5 años; valor nominal USD \$100; cupón anual 7.5\%, 9\% y 11\%.
 };
 
-\node[process, below=of inicio] (datos) {
-Identificar características de los bonos\\
-A-, BBB- y B-; vencimiento 5 años; valor nominal USD \$100; cupón anual 7.5\%, 9\% y 11\%
+\node[section, below=6mm of carac] (inshead) {insumos CreditMetrics};
+
+\node[process, below=5mm of inshead] (ins1) {
+Matriz de transición a 1 año.
 };
 
-\node[subproc, below=of datos] (insumos) {
-\textbf{Obtener insumos del modelo CreditMetrics}\\[-1mm]
-1. Obtener la matriz de transición a 1 año.\\
-2. Obtener la curva de los bonos libre de riesgo.\\
-3. Obtener la curva de los bonos por calidad crediticia:
+\node[process, below=4mm of ins1] (ins2) {
+Curva de los bonos libre de riesgo.
+};
+
+\node[process, below=4mm of ins2, xshift=-24.5mm] (ins3t) {
+Curva de los bonos por calidad crediticia.
+};
+
+\node[formula, right=4mm of ins3t] (ins3m) {
 \[
 \begin{aligned}
-\text{tasa por calidad}
-&=\text{tasa libre de riesgo}\\
-&\quad+\text{sobretasa}
-\end{aligned}
-\]
-4. Obtener la tasa de recuperación en caso de incumplimiento:
-\[
-\begin{aligned}
-RR_{A^-}&=45\%\\
-RR_{BBB^-}&=35\%\\
-RR_{B^-}&=25\%
+y_s &= y_f \\
+    &\quad + \text{sobretasa}_s
 \end{aligned}
 \]
 };
 
-\node[decision, below=of insumos, yshift=-0.1cm] (tipo) {
+\node[process, below=5mm of ins3m, xshift=-49mm] (ins4t) {
+Tasa de recuperación en caso de incumplimiento.
+};
+
+\node[formula, right=4mm of ins4t] (ins4m) {
+\[
+\begin{aligned}
+RR_{A^-} &= 45\% \\
+RR_{BBB^-} &= 35\% \\
+RR_{B^-} &= 25\%
+\end{aligned}
+\]
+};
+
+\node[decision, below=7mm of ins4m, xshift=-24.5mm] (supuesto) {
 Supuesto sobre probabilidades de incumplimiento
 };
 
@@ -185,266 +187,323 @@ Supuesto sobre probabilidades de incumplimiento
 % RAMA IZQUIERDA: INDEPENDENCIA
 % =========================================================
 
-\node[process, below left=1.05cm and 5.1cm of tipo] (ind0) {
-Caso I\\
-Migraciones independientes
+\node[section, below left=13mm and 57mm of supuesto] (indhead) {
+migraciones independientes
 };
 
-\node[subproc, below=of ind0] (ind1) {
-\textbf{Valuar los bonos en cada estado de la naturaleza}\\[-1mm]
-Para cada bono \(i\in\{A^-,BBB^-,B^-\}\) y cada estado \(s\):
+\node[process, below=5mm of indhead, xshift=-24.5mm] (ind1t) {
+Valuar cada bono en cada estado de crédito.
+};
+
+\node[formula, right=7mm of ind1t] (ind1m) {
 \[
+\begin{aligned}
 V_{i,s}
-=
-\sum_{\tau=1}^{4}
-\frac{C_i}{(1+y_s)^\tau}
-+
-\frac{100+C_i}{(1+y_s)^4}
+  &= \sum_{\tau=1}^{4}
+     \frac{C_i}{(1+y_s)^\tau} \\
+  &\quad + \frac{100+C_i}{(1+y_s)^4}
+\end{aligned}
 \]
-donde al horizonte de 1 año quedan 4 años al vencimiento.\\
-Si \(s=D\):
 \[
-V_{i,D}=RR_i\times 100.
+V_{i,D}=RR_i\times 100
 \]
 };
 
-\node[subproc, below=of ind1] (ind2) {
-\textbf{Valuar el portafolio en cada estado de la naturaleza}\\[-1mm]
-Con tres bonos y una matriz con \(m\) estados:
+\node[process, below=5mm of ind1m, xshift=-52mm] (ind2t) {
+Formar escenarios de migración y valuar el portafolio.
+};
+
+\node[formula, left=7mm of ind2t] (ind2m) {
 \[
-\omega=(s_1,s_2,s_3),\qquad
-V_P(\omega)=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}.
+\omega=(s_1,s_2,s_3)
 \]
-Número de escenarios:
 \[
-m^3.
+V_P(\omega)=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}
 \]
-Con 18 notches:
 \[
-18^3=5{,}832\ \text{distintos escenarios}.
+m^3\ \text{escenarios}
 \]
 };
 
-\node[subproc, below=of ind2] (ind3) {
-\textbf{Obtener las probabilidades conjuntas de migración}\\[-1mm]
-Si las migraciones fueran independientes, la distribución conjunta se obtiene multiplicando las probabilidades de transición:
+\node[process, below=5mm of ind2m, xshift=52mm] (ind3t) {
+Si las migraciones fueran independientes.
+};
+
+\node[formula, right=7mm of ind3t] (ind3m) {
 \[
 \begin{aligned}
 p(\omega)
-&=p_{A^-\to s_1}\,p_{BBB^-\to s_2}\\
-&\quad\times p_{B^-\to s_3}
+  &= p_{A^-\to s_1}\,p_{BBB^-\to s_2} \\
+  &\quad \times p_{B^-\to s_3}
 \end{aligned}
 \]
 };
 
-\node[subproc, below=of ind3] (ind4) {
-\textbf{Obtener el valor esperado y las desviaciones}\\[-1mm]
+\node[process, below=7mm of ind3m, xshift=-52mm] (ind4t) {
+Calcular media, desviación y pérdida por escenario.
+};
+
+\node[formula, left=7mm of ind4t] (ind4m) {
 \[
-\mu_P=\sum_{\omega}V_P(\omega)p(\omega).
+\mu_P=\sum_{\omega}V_P(\omega)\,p(\omega)
 \]
 \[
-\sigma_P=
-\sqrt{\sum_{\omega}\left(V_P(\omega)-\mu_P\right)^2p(\omega)}.
+\begin{aligned}
+\sigma_P
+  &= \Biggl[
+     \sum_{\omega}
+     \left(V_P(\omega)-\mu_P\right)^2 \\
+  &\qquad \cdot p(\omega)
+     \Biggr]^{1/2}
+\end{aligned}
 \]
-Pérdida en cada escenario:
 \[
-L(\omega)=V_{P,0}-V_P(\omega).
+L(\omega)=V_{P,0}-V_P(\omega)
 \]
 };
 
-\node[risk, below=of ind4] (ind5) {
-Obtener el VaR al 99.9\%\\[-1mm]
-Ordenar pérdidas \(L(\omega)\) y acumular probabilidades \(p(\omega)\).\\
+\node[process, below=5mm of ind4m, xshift=52mm] (ind5t) {
+\textbf{VaR}\\
+Ordenar pérdidas y acumular probabilidades.
+};
+
+\node[formula, right=7mm of ind5t] (ind5m) {
 \[
 \begin{aligned}
 VaR_{99.9\%}
-&=\inf\{\ell:\Pr(L\leq \ell)\geq 0.999\}
+  &= \inf\{\ell:\Pr(L\leq \ell) \\
+  &\qquad \geq 0.999\}
 \end{aligned}
 \]
 };
 
-\node[output, below=of ind5] (ind6) {
-Salida caso independiente\\
-Distribución de pérdidas, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\).\\
-Interpretar como pérdida máxima al 99.9\% por cambios en la calidad crediticia.
+\node[output, below=6mm of ind5m, xshift=-26mm] (indout) {
+\textbf{salida}\\
+Distribución de pérdidas, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\) bajo independencia.
 };
 
 % =========================================================
 % RAMA DERECHA: DEPENDENCIA
 % =========================================================
 
-\node[process, below right=1.05cm and 5.1cm of tipo] (dep0) {
-Caso II\\
-Migraciones dependientes
+\node[section, below right=13mm and 57mm of supuesto] (dephead) {
+migraciones dependientes
 };
 
-\node[dep, below=of dep0] (dep1) {
-\textbf{Modelar la correlación entre eventos de crédito}\\[-1mm]
-La correlación de incumplimiento describe la tendencia de dos empresas a incumplir aproximadamente al mismo tiempo.\\
-Obtener una matriz de correlaciones:
+\node[process, below=5mm of dephead, xshift=-24.5mm] (dep1t) {
+Modelar la correlación entre eventos de crédito.
+};
+
+\node[formula, left=7mm of dep1t] (dep1m) {
 \[
 R=
 \begin{pmatrix}
 1 & \rho_{12} & \rho_{13}\\
 \rho_{21} & 1 & \rho_{23}\\
 \rho_{31} & \rho_{32} & 1
-\end{pmatrix}.
+\end{pmatrix}
 \]
-La correlación de cópula puede aproximarse como la correlación entre los rendimientos de las acciones.
 };
 
-\node[dep, below=of dep1] (dep2) {
-\textbf{Usar el modelo de cópula gaussiana}\\[-1mm]
-Transformar cada tiempo al incumplimiento \(t_i\) en:
-\[
-x_i=N^{-1}\!\left(Q_i(t_i)\right),
-\]
-donde \(Q_i\) es la distribución acumulada de \(t_i\) y \(N^{-1}\) es la inversa de la distribución normal acumulada.
+\node[process, below=5mm of dep1m, xshift=52mm] (dep2t) {
+Transformar percentil a percentil.
 };
 
-\node[dep, below=of dep2] (dep3) {
-\textbf{Muestrear normales multivariadas}\\[-1mm]
-Generar:
+\node[formula, right=7mm of dep2t] (dep2m) {
 \[
-X=(x_1,x_2,x_3)^\top\sim N(0,R).
+x_i=N^{-1}\!\left(Q_i(t_i)\right)
 \]
-Por construcción, los \(x_i\) se distribuyen normal con media cero y desviación estándar unitaria, pero quedan correlacionados por \(R\).
 };
 
-\node[dep, below=of dep3] (dep4) {
-\textbf{Convertir \(x_i\) a estado de crédito}\\[-1mm]
-Usar los umbrales acumulados de la matriz de transición. Para cada bono \(i\):
+\node[process, below=5mm of dep2m, xshift=-52mm] (dep3t) {
+Generar variables normales correlacionadas.
+};
+
+\node[formula, left=7mm of dep3t] (dep3m) {
 \[
-s_i=
-\text{estado tal que }
-\sum_{k< s_i}p_{i,k}
+X=(x_1,x_2,x_3)^\top\sim N(0,R)
+\]
+};
+
+\node[process, below=5mm of dep3m, xshift=52mm] (dep4t) {
+Usar umbrales acumulados de la matriz de transición.
+};
+
+\node[formula, right=7mm of dep4t] (dep4m) {
+\[
+\sum_{k<s_i} p_{i,k}
 <
 N(x_i)
 \leq
-\sum_{k\leq s_i}p_{i,k}.
+\sum_{k\leq s_i} p_{i,k}
 \]
-Así se obtiene un escenario dependiente:
 \[
-\omega=(s_1,s_2,s_3).
+\omega=(s_1,s_2,s_3)
 \]
 };
 
-\node[dep, below=of dep4] (dep5) {
-\textbf{Repetir la valuación del portafolio}\\[-1mm]
-Para cada escenario simulado:
-\[
-\begin{aligned}
-V_P(\omega)&=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}\\
-L(\omega)&=V_{P,0}-V_P(\omega)
-\end{aligned}
-\]
-Construir la distribución empírica de pérdidas con dependencia.
+\node[process, below=7mm of dep4m, xshift=-52mm] (dep5t) {
+Valuar el portafolio y construir pérdidas simuladas.
 };
 
-\node[risk, below=of dep5] (dep6) {
-Obtener el VaR al 99.9\%\\[-1mm]
-Ordenar pérdidas simuladas:
+\node[formula, left=7mm of dep5t] (dep5m) {
 \[
-L_{(1)}\leq L_{(2)}\leq \cdots \leq L_{(M)}.
+V_P(\omega)=V_{1,s_1}+V_{2,s_2}+V_{3,s_3}
 \]
 \[
-VaR_{99.9\%}=L_{(\lceil0.999M\rceil)}.
+L(\omega)=V_{P,0}-V_P(\omega)
 \]
 };
 
-\node[output, below=of dep6] (dep7) {
-Salida caso dependiente\\
-Distribución de pérdidas con correlación, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\).\\
-Interpretar considerando que el riesgo de crédito no se puede diversificar por completo.
+\node[process, below=5mm of dep5m, xshift=52mm] (dep6t) {
+\textbf{VaR}\\
+Ordenar pérdidas simuladas y tomar el percentil 99.9\%.
+};
+
+\node[formula, right=7mm of dep6t] (dep6m) {
+\[
+L_{(1)}\leq \cdots \leq L_{(M)}
+\]
+\[
+VaR_{99.9\%}=L_{(\lceil 0.999M\rceil)}
+\]
+};
+
+\node[output, below=6mm of dep6m, xshift=-26mm] (depout) {
+\textbf{salida}\\
+Distribución de pérdidas con correlación, pérdida esperada, desviación estándar y \(VaR_{99.9\%}\) bajo dependencia.
 };
 
 % =========================================================
 % BLOQUE INFERIOR: n BONOS
 % =========================================================
 
-\coordinate (generalanchor) at ($(ind6.south)!0.5!(dep7.south)$);
+\coordinate (salidamid) at ($(indout.south)!0.5!(depout.south)$);
 
-\node[process, below=1.35cm of generalanchor] (general0) {
-Procedimiento para un portafolio de \(n\) bonos
+\node[section] (nhead) at ($(salidamid)+(0,-15mm)$) {
+procedimiento para n bonos
 };
 
-\node[subproc, below=of general0] (general1) {
-\textbf{Con independencia}\\[-1mm]
-1. Valuar cada bono en cada estado de crédito.\\
-2. Formar todos los escenarios:
+\node[section, below left=8mm and 57mm of nhead] (ngenind) {
+Con independencia
+};
+
+\node[process, below=5mm of ngenind, xshift=-24.5mm] (gen1t) {
+Valuar cada bono, formar todos los escenarios y obtener la distribución de pérdidas del portafolio.
+};
+
+\node[formula, right=4mm of gen1t] (gen1m) {
 \[
-\omega=(s_1,\ldots,s_n),\qquad \#\Omega=m^n.
+\omega=(s_1,\ldots,s_n)
 \]
-3. Obtener probabilidades conjuntas:
 \[
-p(\omega)=\prod_{i=1}^{n}p_{i,s_i}.
+\#\Omega=m^n
 \]
-4. Obtener \(V_P(\omega)\), \(\mu_P\), \(\sigma_P\) y el percentil 99.9\% de la distribución de pérdidas.
-};
-
-\node[subproc, right=1.0cm of general1] (general2) {
-\textbf{Sin independencia}\\[-1mm]
-1. Estimar cómo migran conjuntamente los obligados.\\
-2. Usar una matriz de correlaciones \(R=(\rho_{ij})\).\\
-3. Simular:
 \[
-X=(x_1,\ldots,x_n)^\top\sim N(0,R).
+p(\omega)=\prod_{i=1}^{n}p_{i,s_i}
 \]
-4. Transformar percentil a percentil:
+};
+
+\node[section, below right=8mm and 57mm of nhead] (ngendep) {
+Con dependencia
+};
+
+\node[process, below=5mm of ngendep, xshift=-24.5mm] (gen2t) {
+Estimar migraciones conjuntas, simular escenarios dependientes y valuar el portafolio.
+};
+
+\node[formula, right=4mm of gen2t] (gen2m) {
 \[
-x_i=N^{-1}(Q_i(t_i)).
+X=(x_1,\ldots,x_n)^\top\sim N(0,R)
 \]
-5. Convertir cada \(x_i\) a estado de crédito, valuar el portafolio y obtener el \(VaR_{99.9\%}\).
+\[
+x_i=N^{-1}\!\left(Q_i(t_i)\right)
+\]
+\[
+VaR_{99.9\%}
+\]
 };
 
-\node[note, below=of general1, xshift=3.15cm] (nota) {
-Recordatorio operativo: CreditMetrics mide el riesgo de crédito por cambios de valor causados por migraciones en la calidad crediticia. 
-Incorpora eventos de incumplimiento, mejoras y deterioros en la calidad crediticia; permite medir el beneficio de la diversificación o la potencial concentración de riesgo en la cartera.
+\coordinate (genmid) at ($(gen1m.south)!0.5!(gen2m.south)$);
+
+\node[note] (nota) at ($(genmid)+(0,-15mm)$) {
+\textbf{Recordatorio}\\
+CreditMetrics mide el riesgo de crédito por cambios de valor causados por migraciones en la calidad crediticia. Incorpora eventos de incumplimiento, mejoras y deterioros; además, permite evaluar diversificación y concentración de riesgo en la cartera.
 };
 
-\node[startstop, below=of nota] (fin) {
-Fin\\
-Reporte: \(VaR_{99.9\%}\) con independencia, \(VaR_{99.9\%}\) con dependencia e interpretación
-};
 
-\begin{pgfonlayer}{bg}
+% =========================================================
+% COORDENADAS AUXILIARES PARA FLECHAS
+% =========================================================
+
+\coordinate (indentry) at ($(indhead.north)+(0,7mm)$);
+\coordinate (depentry) at ($(dephead.north)+(0,7mm)$);
+
+\coordinate (leftmargin) at ($(indout.west)+(-18mm,0)$);
+\coordinate (rightmargin) at ($(depout.east)+(18mm,0)$);
+
+\coordinate (noteleft) at ($(nota.north west)+(12mm,0)$);
+\coordinate (noteright) at ($(nota.north east)+(-12mm,0)$);
+
 % =========================================================
 % FLECHAS
 % =========================================================
-\draw[arrow] (inicio) -- (datos);
-\draw[arrow] (datos) -- (insumos);
-\draw[arrow] (insumos) -- (tipo);
 
-\draw[arrow] (tipo) -| (ind0);
-\draw[arrow] (ind0) -- (ind1);
-\draw[arrow] (ind1) -- (ind2);
-\draw[arrow] (ind2) -- (ind3);
-\draw[arrow] (ind3) -- (ind4);
-\draw[arrow] (ind4) -- (ind5);
-\draw[arrow] (ind5) -- (ind6);
+\draw[arrow] (inicio.south) |- (carac.north);
+\draw[arrow] (carac.south) |- (inshead.north);
+\draw[arrow] (inshead.south) |- (ins1.north);
+\draw[arrow] (ins1.south) |- (ins2.north);
+\draw[arrow] (ins2.south) |- (ins3t.north);
+\draw[arrow] (ins3t.east) -| (ins3m.west);
+\draw[arrow] (ins3t.south) |- (ins4t.north);
+\draw[arrow] (ins4t.east) -| (ins4m.west);
+\draw[arrow] (ins4t.south) |- (supuesto.north);
 
-\draw[arrow] (tipo) -| (dep0);
-\draw[arrow] (dep0) -- (dep1);
-\draw[arrow] (dep1) -- (dep2);
-\draw[arrow] (dep2) -- (dep3);
-\draw[arrow] (dep3) -- (dep4);
-\draw[arrow] (dep4) -- (dep5);
-\draw[arrow] (dep5) -- (dep6);
-\draw[arrow] (dep6) -- (dep7);
+\draw[arrow] (supuesto.south) |- (indentry) |- (indhead.north);
+\draw[arrow] (supuesto.south) |- (depentry) |- (dephead.north);
 
-\draw[arrow] (ind6) |- (general0);
-\draw[arrow] (dep7) |- (general0);
-\draw[arrow] (general0) -- (general1);
-\draw[arrow] (general0) -| (general2);
-\draw[arrow] (general1) -- (nota);
-\draw[arrow] (general2) |- (nota);
-\draw[arrow] (nota) -- (fin);
-\end{pgfonlayer}
+\draw[arrow] (indhead.south) |- (ind1t.north);
+\draw[arrow] ([yshift=0.8mm]ind1t.east) -| ([yshift=0.8mm]ind1m.west);
+\draw[arrow] (ind1t.south) |- (ind2t.north);
+\draw[arrow] ([yshift=-0.8mm]ind2t.west) -| ([yshift=-0.8mm]ind2m.east);
+\draw[arrow] (ind2t.south) |- (ind3t.north);
+\draw[arrow] ([yshift=0.8mm]ind3t.east) -| ([yshift=0.8mm]ind3m.west);
+\draw[arrow] (ind3t.south) |- (ind4t.north);
+\draw[arrow] ([yshift=-0.8mm]ind4t.west) -| ([yshift=-0.8mm]ind4m.east);
+\draw[arrow] (ind4t.south) |- (ind5t.north);
+\draw[arrow] ([yshift=0.8mm]ind5t.east) -| ([yshift=0.8mm]ind5m.west);
+\draw[arrow] (ind5t.south) |- (indout.north);
+
+\draw[arrow] (dephead.south) |- (dep1t.north);
+\draw[arrow] ([yshift=0.8mm]dep1t.west) -| ([yshift=0.8mm]dep1m.east);
+\draw[arrow] (dep1t.south) |- (dep2t.north);
+\draw[arrow] ([yshift=-0.8mm]dep2t.east) -| ([yshift=-0.8mm]dep2m.west);
+\draw[arrow] (dep2t.south) |- (dep3t.north);
+\draw[arrow] ([yshift=0.8mm]dep3t.west) -| ([yshift=0.8mm]dep3m.east);
+\draw[arrow] (dep3t.south) |- (dep4t.north);
+\draw[arrow] ([yshift=0.8mm]dep4t.east) -| ([yshift=0.8mm]dep4m.west);
+\draw[arrow] (dep4t.south) |- (dep5t.north);
+\draw[arrow] ([yshift=-0.8mm]dep5t.west) -| ([yshift=-0.8mm]dep5m.east);
+\draw[arrow] (dep5t.south) |- (dep6t.north);
+\draw[arrow] ([yshift=0.8mm]dep6t.east) -| ([yshift=0.8mm]dep6m.west);
+\draw[arrow] (dep6t.south) |- (depout.north);
+
+\draw[arrow] (indout.west) -| (leftmargin) |- (nhead.west);
+\draw[arrow] (depout.east) -| (rightmargin) |- (nhead.east);
+
+\draw[arrow] (nhead.south) |- ($(ngenind.north)+(0,4mm)$) |- (ngenind.north);
+\draw[arrow] (nhead.south) |- ($(ngendep.north)+(0,4mm)$) |- (ngendep.north);
+
+\draw[arrow] (ngenind.south) |- (gen1t.north);
+\draw[arrow] (gen1t.east) -| (gen1m.west);
+\draw[arrow] (ngendep.south) |- (gen2t.north);
+\draw[arrow] (gen2t.east) -| (gen2m.west);
+
+\draw[arrow] (gen1t.south) |- (noteleft);
+\draw[arrow] (gen2t.south) |- (noteright);
 
 \end{tikzpicture}
 \end{adjustbox}
-}
-
-\vspace*{\fill}
+\end{center}
 
 \end{document}
