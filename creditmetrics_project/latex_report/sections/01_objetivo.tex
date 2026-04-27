@@ -1,15 +1,12 @@
-Este proyecto resuelve un ejercicio de \textit{CreditMetrics} para un portafolio compuesto por tres bonos corporativos independientes con calificaciones iniciales A-, BBB- y B-. Cada bono tiene vencimiento original de 5 a\~nos y se analiza en un horizonte de riesgo de 1 a\~no.
+Este problema resuelve un ejercicio de \textit{CreditMetrics} para un portafolio compuesto por tres bonos corporativos independientes con calificaciones iniciales A-, BBB- y B-. Cada bono tiene vencimiento original de 5 a\~nos y se analiza en un horizonte de riesgo de 1 a\~no.
 
 La idea central del repositorio es evitar una tabla manual de los \(18^3 = 5{,}832\) escenarios posibles. En lugar de eso, el c\'odigo:
 
 \begin{itemize}
   \item calcula la distribuci\'on discreta de valor a 1 a\~no de cada bono;
-  \item comprime esa distribuci\'on a centavos;
-  \item construye la distribuci\'on del portafolio mediante convoluci\'on exacta;
+  \item comprime esa distribuci\'on;
+  \item construye la distribuci\'on del portafolio mediante convoluci\'on;
   \item valida el resultado contra una enumeraci\'on \textit{brute force} de todos los escenarios;
-  \item exporta resultados en CSV, JSON, Excel, im\'agenes PNG y PDF.
 \end{itemize}
 
-La corrida actual del proyecto usa la pol\'itica \NRPolicy\ para la columna \texttt{NR}. Bajo esa pol\'itica, la masa de \texttt{NR} se asigna al rating actual de cada bono.
-
-El objetivo pr\'actico del c\'odigo no es solo producir un VaR, sino dejar trazabilidad completa del proceso: datos base, valuaci\'on por estado, distribuciones marginales, comparaci\'on convoluci\'on vs \textit{brute force} y material visual listo para entregar.
+El objetivo pr\'actico del c\'odigo no es solo producir un VaR, sino dejar trazado completo el proceso: datos base, valuaci\'on por estado, distribuciones marginales, comparaci\'on convoluci\'on vs \textit{brute force} y material visual.

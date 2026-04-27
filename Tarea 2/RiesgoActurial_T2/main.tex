@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+% Idioma y codificación
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% Matemáticas
+\usepackage{amsmath, amssymb}
+
+% Formato general
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+% Tablas
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage[table]{xcolor}
+
+% Citas y bibliografía
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{biblio.bib}
+
+% Links
+\usepackage{url}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+
+% Colors
+\definecolor{headerblue}{RGB}{31,73,125}
+\definecolor{rowgray}{RGB}{242,242,242}
+\definecolor{lightblue}{RGB}{189,215,238}
+\definecolor{medblue}{RGB}{141,180,226}
+\definecolor{darkblue}{RGB}{31,73,125}
+
+% Siunitx config
+\sisetup{
+  group-separator={,},
+  group-minimum-digits=4,
+  output-decimal-marker={.}
+}
+
+% Table column types
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+
+    \vspace*{2cm}
+
+    {\LARGE \textbf{Segunda tarea larga}\par}
+    \vspace{1.5cm}
+
+    \includegraphics[width=0.35\textwidth]{EscudoUDLAP.jpg}\par
+    \vspace{1.5cm}
+
+    {\large
+    \textbf{Integrantes:}\par
+    \vspace{0.5cm}
+    Pedro José García Guevara - 176600\par
+    Owen Pardes Conde - 178585\par
+    Jesús Corona Enriquez - 17\par
+    Heriberto Espino Montelongo - 175199\par
+    }
+
+    \vfill
+
+    {\large \textbf{Fecha de entrega:} 26 de abril de 2026}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\input{Introduccion}
+
+\input{Ejercicio1}
+\input{Ejercicio2}
+\input{Ejercicio3}
+\input{Ejercicio4}
+\input{Ejercicio5}
+\input{Ejercicio6}
+\input{Ejercicio7}
+
+\printbibliography
+
+\end{document}

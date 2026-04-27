@@ -1,0 +1,300 @@
+\section{Ejercicio IV}
+
+El artículo 91 (Capítulo V, apartado A) de la Circular Única de Bancos establece el uso del modelo estadístico Logit para estimar la probabilidad de incumplimiento de los acreditados. Esta regresión logística permite clasificar el riesgo de los clientes según su historial e indicadores financieros, lo cual es fundamental para una adecuada gestión del riesgo crediticio y la calificación de la cartera.
+
+\subsection{Fórmula General de Reservas}
+
+El monto de reservas para el $i$-ésimo crédito se define como:
+
+\begin{equation}
+    R_i = PI_i \times SP_i \times EI_i
+\end{equation}
+
+\noindent donde:
+\begin{align*}
+    R_i  &= \text{Monto de reservas del } i\text{-ésimo crédito.} \\
+    PI_i &= \text{Probabilidad de Incumplimiento del } i\text{-ésimo crédito.} \\
+    SP_i &= \text{Severidad de la Pérdida del } i\text{-ésimo crédito.} \\
+    EI_i &= \text{Exposición al Incumplimiento del } i\text{-ésimo crédito.}
+\end{align*}
+
+\subsection{Porcentaje de Reservas}
+
+El porcentaje destinado a determinar las reservas a constituir para cada crédito se obtiene a partir de la Probabilidad de Incumplimiento y la Severidad de la Pérdida:
+
+\begin{equation}
+    \%R = PI_i \times SP_i
+\end{equation}
+
+Por lo tanto, el monto de reservas equivale a multiplicar este porcentaje por la Exposición al Incumplimiento:
+
+\begin{equation}
+    R_i = \%R \times EI_i
+\end{equation}
+
+El monto total de reservas de la cartera es la suma de todos los $R_i$.
+
+\subsection{Modelo Logit}
+
+El modelo Logit estima $P_i$, la Probabilidad de Incumplimiento. Definiendo $Z_i = -(\beta_0 + \beta_1 X_i + \cdots + \beta_m X_m)$, la probabilidad se expresa como:
+
+\begin{equation}
+    P_i = \frac{e^{Z_i}}{1 + e^{Z_i}}
+\end{equation}
+
+Esta función logística toma valores estrictamente entre 0 y 1. La función logit asociada asume una relación lineal entre el logaritmo de la razón de probabilidades y las variables independientes:
+
+\begin{equation}
+    \operatorname{Logit}(P_i) = \ln\!\left(\frac{P_i}{1 - P_i}\right)
+\end{equation}
+
+\subsection{Variables del Modelo}
+
+Las variables independientes para la cartera revolvente son:
+
+\begin{description}[leftmargin=2cm, labelwidth=1.8cm]
+    \item[$\mathit{ACT}$] Número de impagos en periodos consecutivos inmediatos anteriores a la fecha de cálculo.
+    \item[$\mathit{HIST}$] Número de impagos observados en los últimos seis meses.
+    \item[$\mathit{ANT}$] Número de meses transcurridos desde la apertura de la cuenta hasta el cálculo de reservas.
+    \item[$\%\mathit{PAGO}$] Proporción del Pago Realizado respecto al Saldo a Pagar:
+        \begin{equation}
+            \%\mathit{PAGO} = \frac{\text{Pago realizado}}{\text{Saldo a Pagar}}
+        \end{equation}
+    \item[$\%\mathit{USO}$] Proporción del Saldo a Pagar respecto al Límite de Crédito autorizado:
+        \begin{equation}
+            \%\mathit{USO} = \frac{\text{Saldo a pagar}}{\text{Límite de crédito}}
+        \end{equation}
+\end{description}
+
+\subsection{Cálculo de la Probabilidad de Incumplimiento}
+
+Si los impagos recientes son menores a 4, se aplica el modelo Logit. Cada variable afecta el resultado según la magnitud y signo de su coeficiente:
+
+\begin{itemize}
+    \item Si $\mathit{ACT} < 4$:
+        \begin{equation}
+            \mathit{PI}_i = \frac{1}{1 + e^{-(-2.9704 + 0.6730\,\mathit{ACT} + 0.4696\,\mathit{HIST} - 0.0075\,\mathit{ANT} - 1.0217\,\text{\%}\mathit{PAGO} + 1.1513\,\text{\%}\mathit{USO})}}
+        \end{equation}
+    \item Si $\mathit{ACT} \geq 4$, se asume incumplimiento total:
+        \begin{equation}
+            \mathit{PI}_i = 100\%
+        \end{equation}
+\end{itemize}
+
+Para los créditos clasificados como ``B'', ``A'', ``N'', ``P'' u ``O'' (según el Art. 91 Bis), la Probabilidad de Incumplimiento se calcula mediante las siguientes fracciones.
+
+\renewcommand{\arraystretch}{1.3} % Mejora el espaciado entre filas para todas las tablas
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsubsection{Fracción I --- Cartera de Consumo No Revolvente, Categoría ``B'}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\paragraph*{Condiciones}
+
+\begin{enumerate}[label=\alph*)]
+    \item Si $ATR_i^B > 3$ o el crédito está en etapa 3:
+        \begin{equation}
+            PI_i^B = 100\%
+        \end{equation}
+    \item Si $ATR_i^B \leq 3$:
+        \begin{equation}
+            PI_i^B = \frac{1}{1 + e^{-Z_i^B}} \quad \text{donde} \quad Z_i^B = \beta_0^B + \sum_{j=1}^{7} \beta_j^B \times Var_{ij}^B
+        \end{equation}
+\end{enumerate}
+
+\paragraph*{Coeficientes}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{lrc}
+    \toprule
+    \textbf{Variable} & \textbf{Coeficiente} & \textbf{Valor} \\
+    \midrule
+    Intercepto & $\beta_0^B$ & $-2.5456$ \\
+    $ATR_i^B$ & $\beta_1^B$ & $\phantom{-}2.2337$ \\
+    $\%SDOIMP_i^B$ & $\beta_2^B$ & $\phantom{-}1.0526$ \\
+    $ALTO_i^B$ & $\beta_3^B$ & $\phantom{-}0.4361$ \\
+    $MEDIO_i^B$ & $\beta_4^B$ & $\phantom{-}0.0780$ \\
+    $BAJO_i^B$ & $\beta_5^B$ & $-0.5141$ \\
+    $ANT_i^B$ & $\beta_6^B$ & $-0.0152$ \\
+    $MESES_i^B$ & $\beta_7^B$ & $-0.0672$ \\
+    \bottomrule
+\end{tabular}
+\caption{Parámetros para Cartera de Consumo No Revolvente (B)}
+\end{table}
+
+\paragraph*{Definición de Variables}
+
+\begin{description}[leftmargin=2.5cm, labelwidth=2.3cm]
+    \item[$Var_{i1}^B$] $= ATR_i^B$: Atrasos del $i$-ésimo crédito a la fecha de calificación.
+    \item[$Var_{i2}^B$] $= \%SDOIMP_i^B$: Porcentaje del Saldo del Crédito respecto al Importe Original.
+    \item[$Var_{i3}^B$] $= ALTO_i^B$: 1 si el monto a pagar es \$634 y $VECES_i^B \leq 2$; 0 en otro caso.
+    \item[$Var_{i4}^B$] $= MEDIO_i^B$: 1 si el monto a pagar es $> \$634$ y $VECES_i^B \leq 2$; 0 en otro caso.
+    \item[$Var_{i5}^B$] $= BAJO_i^B$: 1 si el monto a pagar es $\leq \$634$; 0 en otro caso.
+    \item[$Var_{i6}^B$] $= ANT_i^B$: Antigüedad del acreditado en la institución.
+    \item[$Var_{i7}^B$] $= MESES_i^B$: Meses desde el último atraso mayor a un día (últimos 13 meses).
+\end{description}
+
+\paragraph*{Derivada e Interpretación}
+
+El efecto marginal de cada variable $j$ sobre la probabilidad de incumplimiento se analiza mediante la derivada parcial:
+
+\begin{equation}
+    \frac{\partial PI_i^B}{\partial VAR_{ij}^B} = \frac{\beta_j^B \, e^{-z_i^B}}{\left(1 + e^{-z_i^B}\right)^2}
+\end{equation}
+
+El \textbf{signo} del coeficiente $\beta_j^B$ determina la dirección del impacto:
+\begin{itemize}
+    \item Si $\beta_j^B > 0$, un incremento en la variable \textit{aumenta} la probabilidad de incumplimiento.
+    \item Si $\beta_j^B < 0$, un incremento en la variable \textit{disminuye} la probabilidad de incumplimiento.
+\end{itemize}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsubsection{Fracción II --- Cartera de Consumo No Revolvente, Categoría ``A''}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\paragraph*{Condiciones}
+
+\begin{enumerate}[label=\alph*)]
+    \item Si $ATR_i^A > 3$ o el crédito está en etapa 3:
+        \begin{equation}
+            PI_i^A = 100\%
+        \end{equation}
+    \item Si $ATR_i^A \leq 3$:
+        \begin{equation}
+            PI_i^A = \frac{1}{1 + e^{-Z_i^A}} \quad \text{donde} \quad Z_i^A = \beta_0^A + \sum_{j=1}^{6} \beta_j^A \times Var_{ij}^A
+        \end{equation}
+\end{enumerate}
+
+\paragraph*{Coeficientes}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{lrc}
+    \toprule
+    \textbf{Variable} & \textbf{Coeficiente} & \textbf{Valor} \\
+    \midrule
+    Intercepto & $\beta_0^A$ & $-2.0471$ \\
+    $ATR_i^A$ & $\beta_1^A$ & $\phantom{-}1.0837$ \\
+    $\%PAGO^A$ & $\beta_2^A$ & $-0.7863$ \\
+    $ALTO_i^A$ & $\beta_3^A$ & $\phantom{-}0.5473$ \\
+    $MEDIO_i^A$ & $\beta_4^A$ & $\phantom{-}0.0587$ \\
+    $BAJO_i^A$ & $\beta_5^A$ & $-0.6060$ \\
+    $MESES_i^A$ & $\beta_6^A$ & $-0.1559$ \\
+    \bottomrule
+\end{tabular}
+\caption{Parámetros para Cartera de Consumo No Revolvente (A)}
+\end{table}
+
+\paragraph*{Definición de Variables}
+
+\begin{description}[leftmargin=2.5cm, labelwidth=2.3cm]
+    \item[$Var_{i1}^A$] $= ATR_i^A$: Atrasos del $i$-ésimo crédito a la fecha de calificación.
+    \item[$Var_{i2}^A$] $= \%PAGO^A$: Promedio simple de Pago Realizado entre Monto Exigible (Art. 91 Bis).
+    \item[$Var_{i3}^A$] $= ALTO_i^A$: 1 si Endeudamiento $> 0.65$ y Antigüedad $\leq 54$ meses; 0 en otro caso.
+    \item[$Var_{i4}^A$] $= MEDIO_i^A$: 1 si (Endeudamiento $\leq 0.65$ y Antigüedad $\leq 54$) o (Endeudamiento $> 0.65$ y Antigüedad $> 54$); 0 en otro caso.
+    \item[$Var_{i5}^A$] $= BAJO_i^A$: 1 si Endeudamiento $\leq 0.65$ y Antigüedad $> 54$ meses; 0 en otro caso.
+    \item[$Var_{i6}^A$] $= MESES_i^A$: Meses desde el último atraso mayor a un día (últimos 13 meses, sector bancario).
+\end{description}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsubsection{Fracción III --- Cartera de Consumo No Revolvente, Categoría ``N'' (Nómina)}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\paragraph*{Condiciones}
+
+\begin{enumerate}[label=\alph*)]
+    \item Si $ATR_i^N > 3$ o el crédito está en etapa 3:
+        \begin{equation}
+            PI_i^N = 100\%
+        \end{equation}
+    \item Si $ATR_i^N \leq 3$:
+        \begin{equation}
+            PI_i^N = \frac{1}{1 + e^{-Z_i^N}} \quad \text{donde} \quad Z_i^N = \beta_0^N + \sum_{j=1}^{5} \beta_j^N \times Var_{ij}^N
+        \end{equation}
+\end{enumerate}
+
+\paragraph*{Coeficientes}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{lrc}
+    \toprule
+    \textbf{Variable} & \textbf{Coeficiente} & \textbf{Valor} \\
+    \midrule
+    Intercepto & $\beta_0^N$ & $-2.4285$ \\
+    $MAXATR_i^N$ & $\beta_1^N$ & $\phantom{-}1.4298$ \\
+    $ALTO_i^N$ & $\beta_2^N$ & $\phantom{-}0.4428$ \\
+    $MEDIO_i^N$ & $\beta_3^N$ & $\phantom{-}0.0616$ \\
+    $BAJO_i^N$ & $\beta_4^N$ & $-0.5044$ \\
+    $MESES_i^N$ & $\beta_5^N$ & $-0.0470$ \\
+    \bottomrule
+\end{tabular}
+\caption{Parámetros para Cartera de Consumo No Revolvente (Nómina)}
+\end{table}
+
+\paragraph*{Definición de Variables}
+
+\begin{description}[leftmargin=2.5cm, labelwidth=2.3cm]
+    \item[$Var_{i1}^N$] $= MAXATR_i^N$: Máximo número de atrasos en los últimos 4 meses.
+    \item[$Var_{i2}^N$] $= ALTO_i^N$: 1 si Endeudamiento $> 0.40$ y Antigüedad $\leq 29$ meses; 0 en otro caso.
+    \item[$Var_{i3}^N$] $= MEDIO_i^N$: 1 si (Endeudamiento $\leq 0.40$ y Antigüedad $\leq 29$) o (Endeudamiento $> 0.40$ y Antigüedad $> 29$); 0 en otro caso.
+    \item[$Var_{i4}^N$] $= BAJO_i^N$: 1 si Endeudamiento $\leq 0.40$ y Antigüedad $> 29$ meses; 0 en otro caso.
+    \item[$Var_{i5}^N$] $= MESES_i^N$: Meses desde el último atraso mayor a un día (últimos 13 meses, sector bancario).
+\end{description}
+
+% ──────────────────────────────────────────────────────────────────────────────
+\subsubsection{Fracción IV --- Cartera de Consumo No Revolvente, Categoría ``P'' (Nómina Delegada)}
+% ──────────────────────────────────────────────────────────────────────────────
+
+\paragraph*{Condiciones}
+
+\begin{enumerate}[label=\alph*)]
+    \item Si $ATR_i^P > 3$ o el crédito está en etapa 3:
+        \begin{equation}
+            PI_i^P = 100\%
+        \end{equation}
+    \item Si $ATR_i^P \leq 3$:
+        \begin{equation}
+            PI_i^P = \frac{1}{1 + e^{-Z_i^P}} \quad \text{donde} \quad Z_i^P = \beta_0^P + \sum_{j=1}^{8} \beta_j^P \times Var_{ij}^P
+        \end{equation}
+\end{enumerate}
+
+\paragraph*{Coeficientes}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{lrc}
+    \toprule
+    \textbf{Variable} & \textbf{Coeficiente} & \textbf{Valor} \\
+    \midrule
+    Intercepto & $\beta_0^P$ & $-1.2924$ \\
+    $ATR_i^P$ & $\beta_1^P$ & $\phantom{-}0.8074$ \\
+    $DEL_i^P$ & $\beta_2^P$ & $-1.1984$ \\
+    $MAXATR_i^P$ & $\beta_3^P$ & $\phantom{-}0.3155$ \\
+    $\%PAGO_i^P$ & $\beta_4^P$ & $-0.8247$ \\
+    $ALTO_i^P$ & $\beta_5^P$ & $\phantom{-}0.4404$ \\
+    $MEDIO_i^P$ & $\beta_6^P$ & $\phantom{-}0.0405$ \\
+    $BAJO_i^P$ & $\beta_7^P$ & $-0.4809$ \\
+    $MESES_i^P$ & $\beta_8^P$ & $-0.0540$ \\
+    \bottomrule
+\end{tabular}
+\caption{Parámetros para Cartera de Consumo No Revolvente (Nómina Delegada)}
+\end{table}
+
+\paragraph*{Definición de Variables}
+
+\begin{description}[leftmargin=2.5cm, labelwidth=2.3cm]
+    \item[$Var_{i1}^P$] $= ATR_i^P$: Atrasos del $i$-ésimo crédito a la fecha de calificación.
+    \item[$Var_{i2}^P$] $= DEL_i^P$: 1 si hay cobranza delegada (cargo directo al salario vía empleador por contrato); 0 en otro caso.
+    \item[$Var_{i3}^P$] $= MAXATR_i^P$: Máximo número de atrasos en los últimos 4 meses.
+    \item[$Var_{i4}^P$] $= \%PAGO_i^P$: Promedio simple de Pago Realizado entre Monto Exigible (Art. 91 Bis).
+    \item[$Var_{i5}^P$] $= ALTO_i^P$: 1 si $\%MTOSDO_i^P > 0.085$ y Antigüedad $\leq 28$ meses; 0 en otro caso.
+    \item[$Var_{i6}^P$] $= MEDIO_i^P$: 1 si ($\%MTOSDO^P > 0.085$ y Antigüedad $> 28$) o ($\%MTOSDO^P \leq 0.085$ y Antigüedad $\leq 28$); 0 en otro caso.
+    \item[$Var_{i7}^P$] $= BAJO_i^P$: 1 si $\%MTOSDO_i^P \leq 0.085$ y Antigüedad $> 28$ meses; 0 en otro caso.
+    \item[$Var_{i8}^P$] $= MESES_i^P$: Meses desde el último atraso mayor a un día (últimos 13 meses).
+\end{description}

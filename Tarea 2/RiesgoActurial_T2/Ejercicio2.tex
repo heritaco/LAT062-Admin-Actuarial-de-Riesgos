@@ -1,0 +1,1221 @@
+
+%=============================================================
+% EJERCICIO II - ANÁLISIS DE CREDIT AT RISK
+%=============================================================
+\section{II. Análisis de Credit at Risk - Caracterización de Carteras de Crédito}
+
+%=============================================================
+% INTRODUCCIÓN METODOLÓGICA
+%=============================================================
+\subsection{Marco Metodológico}
+
+El presente documento presenta el análisis del \textbf{Credit at Risk (CaR)} para distintos portafolios de crédito, a través de la caracterización de la cartera mediante la estimación de pérdidas esperadas (EL) y pérdidas no esperadas (UL), así como el cálculo del CaR bajo distintos escenarios de correlación y nivel de confianza.
+
+\subsubsection{Métricas utilizadas}
+
+\textbf{Pérdida Esperada} ($EL_P$): Representa el valor esperado de las pérdidas del portafolio, calculada como el producto de la probabilidad de incumplimiento, la exposición al momento del incumplimiento y la severidad de la pérdida.
+
+\textbf{Pérdida No Esperada} ($UL_P$): Representa la volatilidad de las pérdidas alrededor de la pérdida esperada. Se calculan dos versiones:
+\begin{itemize}
+  \item $UL_{P_1}$: basada en la correlación $\rho_1$ (correlación entre activos del mismo segmento).
+  \item $UL_{P_2}$: basada en la correlación $\rho_2$ (correlación entre activos de distintos segmentos).
+\end{itemize}
+
+\textbf{Credit at Risk} ($\varrho_P(X)$): Es la pérdida máxima esperada a un nivel de confianza dado, expresada de tres formas:
+\begin{align*}
+  \varrho_P(X) &= (1+\theta)\,\mu_{X_P} \\
+  \varrho_P(X) &= \mu_{X_P} + \alpha\,\sigma_{X_P} \quad \text{(con } UL_{P_1}\text{)} \\
+  \varrho_P(X) &= \mu_{X_P} + \alpha\,\sigma_{X_P} \quad \text{(con } UL_{P_2}\text{)}
+\end{align*}
+
+donde $\theta$ es el porcentaje de carga sobre la media, $\alpha$ es el multiplicador de la desviación estándar (nivel de confianza), y $\mu_{X_P}$, $\sigma_{X_P}$ son la media y desviación estándar de las pérdidas del portafolio.
+
+\newpage
+
+%=============================================================
+% 1. EMPRESAS
+%=============================================================
+\subsection{Portafolio: Empresas}
+
+\textbf{Parámetros:} $\rho_1 = 20\%$, $\rho_2 = 5\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Empresas}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,928 & 69 & 1,997 & 3.46\% \\
+\rowcolor{rowgray}
+202303 & 1,971 & 29 & 2,000 & 1.45\% \\
+202306 & 1,594 & 46 & 1,640 & 2.80\% \\
+\rowcolor{rowgray}
+202309 & 1,960 & 40 & 2,000 & 2.00\% \\
+202312 & 1,529 & 23 & 1,552 & 1.48\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Empresas (MXN)}
+\begin{tabular}{C{2cm}R{3.5cm}R{2.8cm}R{3.5cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 8,467,715,031 & 203,262,013 & 8,670,977,045 & 2.34\% \\
+\rowcolor{rowgray}
+202303 & 6,735,159,603 & 70,366,953 & 6,805,526,556 & 1.03\% \\
+202306 & 4,171,109,182 & 79,380,626 & 4,250,489,807 & 1.87\% \\
+\rowcolor{rowgray}
+202309 & 5,545,867,891 & 48,122,023 & 5,593,989,914 & 0.86\% \\
+202312 & 4,499,426,643 & 67,789,870 & 4,567,216,513 & 1.48\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos Promedio -- Empresas (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} \\
+\midrule
+202212 & 4,391,968 & 2,945,826 & 4,342,002 \\
+\rowcolor{rowgray}
+202303 & 3,417,128 & 2,426,447 & 3,402,763 \\
+202306 & 2,616,756 & 1,725,666 & 2,591,762 \\
+\rowcolor{rowgray}
+202309 & 2,829,524 & 1,203,051 & 2,796,995 \\
+202312 & 2,942,725 & 2,947,386 & 2,942,794 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Empresas (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.4cm}R{2.4cm}R{2.4cm}R{2.7cm}R{3.0cm}R{3.0cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 73,424,849 & 89,432,312 & 56,568,697 & 77,096,091 & 341,721,784 & 243,130,940 \\
+\rowcolor{rowgray}
+\% Cartera & 0.8468\% & 1.0314\% & 0.6524\% & 0.8891\% & 3.9410\% & 2.8040\% \\
+202303 & 37,964,990 & 75,259,387 & 45,804,239 & 39,863,240 & 263,743,152 & 175,377,709 \\
+\rowcolor{rowgray}
+\% Cartera & 0.5579\% & 1.1059\% & 0.6730\% & 0.5857\% & 3.8754\% & 2.5770\% \\
+202306 & 31,155,434 & 52,657,454 & 36,228,979 & 32,713,206 & 189,127,796 & 139,842,373 \\
+\rowcolor{rowgray}
+\% Cartera & 0.7330\% & 1.2389\% & 0.8523\% & 0.7696\% & 4.4496\% & 3.2900\% \\
+202309 & 22,111,677 & 60,893,480 & 33,887,351 & 23,217,261 & 204,792,116 & 123,773,730 \\
+\rowcolor{rowgray}
+\% Cartera & 0.3953\% & 1.0886\% & 0.6058\% & 0.4150\% & 3.6609\% & 2.2126\% \\
+202312 & 24,358,277 & 65,204,760 & 38,477,184 & 25,576,191 & 219,972,558 & 139,789,828 \\
+\rowcolor{rowgray}
+\% Cartera & 0.5333\% & 1.4277\% & 0.8425\% & 0.5600\% & 4.8163\% & 3.0607\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Empresas} muestra una tendencia positiva en la calidad crediticia a lo largo del periodo analizado. El IMOR inicia en 3.46\% en diciembre de 2022 y desciende hasta 1.48\% en diciembre de 2023, aunque con fluctuaciones intermedias. El saldo total de la cartera también se reduce de \$8,671 millones a \$4,567 millones, lo que refleja una contracción significativa del portafolio.
+
+La pérdida esperada ($EL_P$) disminuye consistentemente de \$73.4 millones (0.85\% de la cartera) en 202212 a \$24.4 millones (0.53\%) en 202312, evidenciando una mejora en el perfil de riesgo de los acreditados. Sin embargo, la pérdida no esperada ($UL_{P_1}$) como porcentaje de la cartera aumenta en los últimos periodos, alcanzando 1.43\% en 202312, lo que sugiere mayor concentración de riesgo en los créditos remanentes.
+
+El Credit at Risk bajo el escenario más conservador ($\mu_{X_P} + \alpha\sigma_{X_{P_1}}$) se mantiene en niveles de entre 3.7\% y 4.8\% del saldo total de la cartera, siendo diciembre de 2023 el periodo con mayor exposición relativa (4.82\%). Esta cartera se caracteriza por una alta correlación interna ($\rho_1 = 20\%$), lo que amplifica significativamente las pérdidas no esperadas respecto al escenario de baja correlación ($\rho_2 = 5\%$).
+
+\newpage
+
+%=============================================================
+% 2. ENTIDADES FINANCIERAS
+%=============================================================
+\subsection{Portafolio: Entidades Financieras}
+
+\textbf{Parámetros:} $\rho_1 = 40\%$, $\rho_2 = 10\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Entidades Financieras}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 593 & 1 & 594 & 0.17\% \\
+\rowcolor{rowgray}
+202303 & 309 & 1 & 310 & 0.32\% \\
+202306 & 546 & 1 & 547 & 0.18\% \\
+\rowcolor{rowgray}
+202309 & 524 & 0 & 524 & 0.00\% \\
+202312 & 439 & 1 & 440 & 0.23\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Entidades Financieras (MXN)}
+\begin{tabular}{C{2cm}R{3.8cm}R{2.5cm}R{3.8cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 29,571,134,716 & 9,181,791 & 29,580,316,507 & 0.03\% \\
+\rowcolor{rowgray}
+202303 & 25,045,755,342 & 9,181,791 & 25,054,937,133 & 0.04\% \\
+202306 & 35,751,052,528 & 9,181,791 & 35,760,234,319 & 0.03\% \\
+\rowcolor{rowgray}
+202309 & 34,807,822,984 & --- & 34,807,822,984 & 0.00\% \\
+202312 & 35,340,496,875 & 6,306,633 & 35,346,803,508 & 0.02\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos Promedio -- Entidades Financieras (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} \\
+\midrule
+202212 & 49,867,006 & 9,181,791 & 49,798,513 \\
+\rowcolor{rowgray}
+202303 & 81,054,224 & 9,181,791 & 80,822,378 \\
+202306 & 65,478,118 & 9,181,791 & 65,375,200 \\
+\rowcolor{rowgray}
+202309 & 66,427,143 & --- & 66,427,143 \\
+202312 & 80,502,271 & 6,306,633 & 80,333,644 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Entidades Financieras (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.6cm}R{3.2cm}R{3.0cm}R{2.8cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 351,879,928 & 1,062,242,867 & 577,771,841 & 369,473,924 & 3,538,608,529 & 2,085,195,450 \\
+\rowcolor{rowgray}
+\% Cartera & 1.1896\% & 3.5910\% & 1.9532\% & 1.2491\% & 11.9627\% & 7.0493\% \\
+202303 & 307,116,497 & 816,362,201 & 468,865,524 & 322,472,322 & 2,756,203,101 & 1,713,713,069 \\
+\rowcolor{rowgray}
+\% Cartera & 1.2258\% & 3.2583\% & 1.8713\% & 1.2871\% & 11.0006\% & 6.8398\% \\
+202306 & 245,437,014 & 1,074,194,253 & 574,554,892 & 257,708,865 & 3,468,019,774 & 1,969,101,691 \\
+\rowcolor{rowgray}
+\% Cartera & 0.6863\% & 3.0039\% & 1.6067\% & 0.7207\% & 9.6980\% & 5.5064\% \\
+202309 & 214,216,173 & 1,027,822,078 & 553,263,283 & 224,926,982 & 3,297,682,407 & 1,874,006,023 \\
+\rowcolor{rowgray}
+\% Cartera & 0.6154\% & 2.9528\% & 1.5895\% & 0.6462\% & 9.4740\% & 5.3839\% \\
+202312 & 225,530,943 & 1,065,928,911 & 570,630,004 & 236,807,490 & 3,423,317,675 & 1,937,420,956 \\
+\rowcolor{rowgray}
+\% Cartera & 0.6381\% & 3.0156\% & 1.6144\% & 0.6700\% & 9.6849\% & 5.4812\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Entidades Financieras} destaca por su elevado saldo promedio por crédito, que supera los \$49 millones en algunos periodos, así como por su prácticamente nulo IMOR (entre 0.00\% y 0.23\%), lo que refleja la solidez crediticia de las contrapartes. El saldo total de la cartera creció de \$29,580 millones en 202212 a \$35,347 millones en 202312.
+
+La pérdida esperada disminuye de \$351.9 millones a \$225.5 millones en el periodo, representando del 1.19\% al 0.64\% del saldo total, lo cual es consistente con la mejora en la calidad de los activos. No obstante, la pérdida no esperada ($UL_{P_1}$) se mantiene en niveles elevados (alrededor de \$1 billón), explicado por el alto coeficiente de correlación interna ($\rho_1 = 40\%$).
+
+El CaR bajo el escenario de mayor correlación representa entre el 9.5\% y el 11.9\% del saldo de la cartera, lo que evidencia que, a pesar de la baja probabilidad de incumplimiento, la alta concentración y correlación sectorial generan un riesgo de cola significativo. Se recomienda monitorear la concentración por acreditado y diversificar el riesgo entre distintos tipos de entidades financieras.
+
+\newpage
+
+%=============================================================
+% 3. GUBERNAMENTAL
+%=============================================================
+\subsection{Portafolio: Gubernamental}
+
+\textbf{Parámetros:} $\rho_1 = 70\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Gubernamental}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 674 & 0 & 674 & 0.00\% \\
+\rowcolor{rowgray}
+202303 & 671 & 0 & 671 & 0.00\% \\
+202306 & 649 & 0 & 649 & 0.00\% \\
+\rowcolor{rowgray}
+202309 & 660 & 1 & 661 & 0.15\% \\
+202312 & 630 & 1 & 631 & 0.16\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Gubernamental (MXN)}
+\begin{tabular}{C{2cm}R{4cm}R{2.5cm}R{4cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 166,985,578,164 & --- & 166,985,578,164 & 0.00\% \\
+\rowcolor{rowgray}
+202303 & 172,455,477,593 & --- & 172,455,477,593 & 0.00\% \\
+202306 & 156,312,704,397 & --- & 156,312,704,397 & 0.00\% \\
+\rowcolor{rowgray}
+202309 & 162,264,649,110 & 7,240,988 & 162,271,890,098 & 0.00\% \\
+202312 & 132,743,660,858 & 7,240,988 & 132,750,901,846 & 0.01\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos Promedio -- Gubernamental (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} \\
+\midrule
+202212 & 247,753,083 & --- & 247,753,083 \\
+\rowcolor{rowgray}
+202303 & 257,012,634 & --- & 257,012,634 \\
+202306 & 240,851,625 & --- & 240,851,625 \\
+\rowcolor{rowgray}
+202309 & 245,855,529 & 7,240,988 & 245,494,539 \\
+202312 & 210,704,224 & 7,240,988 & 210,381,778 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Gubernamental (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.8cm}R{3.2cm}R{3.0cm}R{2.9cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 2,386,441,819 & 9,726,248,270 & 6,520,721,754 & 2,505,763,910 & 31,565,186,629 & 21,948,607,081 \\
+\rowcolor{rowgray}
+\% Cartera & 1.4291\% & 5.8246\% & 3.9050\% & 1.5006\% & 18.9029\% & 13.1440\% \\
+202303 & 2,366,270,003 & 9,957,643,436 & 6,669,156,699 & 2,484,583,503 & 32,239,200,310 & 22,373,740,101 \\
+\rowcolor{rowgray}
+\% Cartera & 1.3721\% & 5.7740\% & 3.8672\% & 1.4407\% & 18.6942\% & 12.9736\% \\
+202306 & 2,333,138,766 & 9,298,148,784 & 6,244,345,986 & 2,449,795,704 & 30,227,585,119 & 21,066,176,725 \\
+\rowcolor{rowgray}
+\% Cartera & 1.4926\% & 5.9484\% & 3.9948\% & 1.5672\% & 19.3379\% & 13.4769\% \\
+202309 & 2,379,569,972 & 9,625,171,107 & 6,453,553,945 & 2,498,548,471 & 31,255,083,293 & 21,740,231,808 \\
+\rowcolor{rowgray}
+\% Cartera & 1.4664\% & 5.9315\% & 3.9770\% & 1.5397\% & 19.2609\% & 13.3974\% \\
+202312 & 1,838,017,454 & 7,727,757,620 & 5,214,821,529 & 1,929,918,327 & 25,021,290,316 & 17,482,482,042 \\
+\rowcolor{rowgray}
+\% Cartera & 1.3846\% & 5.8212\% & 3.9283\% & 1.4538\% & 18.8483\% & 13.1694\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera \textbf{Gubernamental} es la de mayor saldo del portafolio analizado, con niveles que oscilan entre \$132,750 y \$172,455 millones. Destaca por presentar IMOR de prácticamente 0.00\% durante casi todo el periodo, confirmando la baja probabilidad de incumplimiento de las entidades gubernamentales.
+
+Sin embargo, los parámetros de correlación son los más elevados de todas las carteras ($\rho_1 = 70\%$, $\rho_2 = 30\%$), lo que refleja la naturaleza sistémica de este tipo de créditos: un choque macroeconómico afectaría simultáneamente a múltiples acreditados gubernamentales. Esto se traduce en pérdidas no esperadas muy elevadas: $UL_{P_1}$ representa alrededor del 5.8\% del saldo total.
+
+El CaR bajo el escenario de mayor correlación alcanza entre el 18.8\% y el 19.3\% del saldo de la cartera, siendo el nivel más alto de todos los portafolios en términos absolutos (hasta \$32,239 millones). La pérdida esperada se mantiene estable en torno al 1.4\% de la cartera, reflejando la consistencia en la calidad crediticia del sector. Se recomienda mantener reservas de capital suficientes para cubrir el riesgo de cola sistémico inherente a este tipo de portafolio.
+
+\newpage
+
+%=============================================================
+% 4. VIVIENDA
+%=============================================================
+\subsection{Portafolio: Vivienda}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 60\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Vivienda}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,967 & 33 & 2,000 & 1.65\% \\
+\rowcolor{rowgray}
+202303 & 1,958 & 42 & 2,000 & 2.10\% \\
+202306 & 1,964 & 36 & 2,000 & 1.80\% \\
+\rowcolor{rowgray}
+202309 & 1,969 & 31 & 2,000 & 1.55\% \\
+202312 & 1,677 & 323 & 2,000 & 16.15\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Vivienda (MXN)}
+\begin{tabular}{C{2cm}R{3.5cm}R{2.8cm}R{3.5cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 2,335,569,078 & 60,438,639 & 2,396,007,717 & 2.52\% \\
+\rowcolor{rowgray}
+202303 & 2,308,755,332 & 69,280,169 & 2,378,035,501 & 2.91\% \\
+202306 & 2,324,669,508 & 57,707,422 & 2,382,376,930 & 2.42\% \\
+\rowcolor{rowgray}
+202309 & 2,467,684,506 & 55,740,118 & 2,523,424,624 & 2.21\% \\
+202312 & 2,044,431,988 & 511,728,678 & 2,556,160,666 & 20.02\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos Promedio -- Vivienda (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} \\
+\midrule
+202212 & 1,187,376 & 1,831,474 & 1,198,004 \\
+\rowcolor{rowgray}
+202303 & 1,179,140 & 1,649,528 & 1,189,018 \\
+202306 & 1,183,640 & 1,602,984 & 1,191,188 \\
+\rowcolor{rowgray}
+202309 & 1,253,268 & 1,798,068 & 1,261,712 \\
+202312 & 1,219,101 & 1,584,299 & 1,278,080 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Vivienda (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.5cm}R{2.4cm}R{2.5cm}R{2.7cm}R{2.8cm}R{3.0cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 32,715,786 & 10,391,098 & 20,643,379 & 34,351,576 & 63,889,081 & 94,645,923 \\
+\rowcolor{rowgray}
+\% Cartera & 1.3654\% & 0.4337\% & 0.8616\% & 1.4337\% & 2.6665\% & 3.9502\% \\
+202303 & 34,572,629 & 10,972,447 & 37,171,496 & 36,301,260 & 67,489,970 & 146,087,118 \\
+\rowcolor{rowgray}
+\% Cartera & 1.4538\% & 0.4614\% & 1.5631\% & 1.5265\% & 2.8381\% & 6.1432\% \\
+202306 & 28,062,994 & 10,967,450 & 37,303,134 & 29,466,144 & 60,965,344 & 139,972,397 \\
+\rowcolor{rowgray}
+\% Cartera & 1.1779\% & 0.4604\% & 1.5658\% & 1.2368\% & 2.5590\% & 5.8753\% \\
+202309 & 31,864,840 & 12,534,335 & 42,262,367 & 33,458,082 & 69,467,845 & 158,651,940 \\
+\rowcolor{rowgray}
+\% Cartera & 1.2628\% & 0.4967\% & 1.6748\% & 1.3259\% & 2.7529\% & 6.2872\% \\
+202312 & 168,686,061 & 20,630,248 & 69,467,375 & 177,120,364 & 230,576,805 & 377,088,185 \\
+\rowcolor{rowgray}
+\% Cartera & 6.5992\% & 0.8071\% & 2.7176\% & 6.9292\% & 9.0204\% & 14.7521\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Vivienda} presenta el deterioro más marcado de todos los portafolios analizados. El IMOR se mantuvo relativamente estable entre 1.55\% y 2.91\% durante 202212--202309, pero en 202312 se disparó a \textbf{16.15\%} en número de créditos y a \textbf{20.02\%} en saldo, representando el mayor incremento observado en el período.
+
+Este deterioro se refleja directamente en la pérdida esperada, que pasó de niveles de \$28--34 millones (1.2\%--1.5\% de la cartera) a \$168.7 millones (6.6\%) en diciembre de 2023. El CaR bajo el escenario de $\rho_2 = 60\%$ (escenario sistémico) alcanzó \$377 millones, equivalente al 14.75\% del saldo de la cartera en 202312.
+
+Es importante notar que esta cartera tiene una estructura de correlación inusual ($\rho_1 < \rho_2$), donde la correlación entre distintos segmentos (60\%) supera a la intra-segmento (5\%), lo que refleja que el riesgo sistémico del mercado hipotecario domina sobre el riesgo idiosincrático. El deterioro de 202312 merece atención prioritaria, con medidas urgentes de seguimiento y recuperación de la cartera vencida.
+
+\newpage
+
+%=============================================================
+% 5. TARJETA DE CRÉDITO
+%=============================================================
+\subsection{Portafolio: Tarjeta de Crédito}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Tarjeta de Crédito}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,395 & 5 & 1,400 & 0.36\% \\
+\rowcolor{rowgray}
+202302 & 1,398 & 2 & 1,400 & 0.14\% \\
+202304 & 1,390 & 10 & 1,400 & 0.71\% \\
+\rowcolor{rowgray}
+202306 & 1,391 & 9 & 1,400 & 0.64\% \\
+202308 & 1,392 & 8 & 1,400 & 0.57\% \\
+\rowcolor{rowgray}
+202310 & 1,388 & 12 & 1,400 & 0.86\% \\
+202312 & 1,388 & 12 & 1,400 & 0.86\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Tarjeta de Crédito (MXN)}
+\begin{tabular}{C{2cm}R{3.3cm}R{2.8cm}R{3.3cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 22,683,762 & 39,735 & 22,723,497 & 0.17\% \\
+\rowcolor{rowgray}
+202302 & 582,329,161 & 14,551 & 582,343,713 & 0.00\% \\
+202304 & 583,525,690 & 16,970,621 & 600,496,311 & 2.83\% \\
+\rowcolor{rowgray}
+202306 & 549,022,663 & 26,935,310 & 575,957,974 & 4.68\% \\
+202308 & 571,250,106 & 26,947,509 & 598,197,615 & 4.50\% \\
+\rowcolor{rowgray}
+202310 & 22,280,088 & 63,882 & 22,343,970 & 0.29\% \\
+202312 & 23,853,382 & 313,823 & 24,167,205 & 1.30\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Tarjeta de Crédito (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.5cm}R{2.4cm}R{2.5cm}R{2.7cm}R{2.8cm}R{3.0cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 850,243 & 692,854 & 892,586 & 892,755 & 2,928,806 & 3,528,000 \\
+\rowcolor{rowgray}
+\% Cartera & 3.7417\% & 3.0491\% & 3.9280\% & 3.9288\% & 12.8889\% & 15.5258\% \\
+202302 & 169,170,399 & 107,374,006 & 137,642,802 & 177,628,919 & 491,292,418 & 582,098,804 \\
+\rowcolor{rowgray}
+\% Cartera & 29.0499\% & 18.4383\% & 23.6360\% & 30.5024\% & 84.3647\% & 99.9579\% \\
+202304 & 137,717,173 & 67,485,264 & 95,648,243 & 144,603,032 & 340,172,965 & 424,661,901 \\
+\rowcolor{rowgray}
+\% Cartera & 22.9339\% & 11.2382\% & 15.9282\% & 24.0806\% & 56.6486\% & 70.7185\% \\
+202306 & 169,704,696 & 108,680,099 & 134,077,794 & 178,189,931 & 495,744,994 & 571,938,079 \\
+\rowcolor{rowgray}
+\% Cartera & 29.4648\% & 18.8694\% & 23.2791\% & 30.9380\% & 86.0731\% & 99.3021\% \\
+202308 & 161,262,736 & 103,223,000 & 126,294,393 & 169,325,872 & 470,931,735 & 540,145,914 \\
+\rowcolor{rowgray}
+\% Cartera & 26.9581\% & 17.2557\% & 21.1125\% & 28.3060\% & 78.7251\% & 90.2956\% \\
+202310 & 914,344 & 702,397 & 1,684,810 & 960,062 & 3,021,535 & 5,968,773 \\
+\rowcolor{rowgray}
+\% Cartera & 4.0921\% & 3.1436\% & 7.5403\% & 4.2967\% & 13.5228\% & 26.7131\% \\
+202312 & 1,025,229 & 744,476 & 1,783,760 & 1,076,491 & 3,258,659 & 6,376,509 \\
+\rowcolor{rowgray}
+\% Cartera & 4.2422\% & 3.0805\% & 7.3809\% & 4.4543\% & 13.4838\% & 26.3850\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Tarjeta de Crédito} presenta una dinámica muy particular, con saldos que varían drásticamente entre periodos. Los periodos 202302--202308 muestran saldos superiores a \$575 millones con IMORs de hasta 4.68\%, mientras que 202212, 202310 y 202312 presentan saldos de apenas \$22--24 millones. Esta diferencia tan marcada sugiere una recomposición de la cartera o un proceso de rotación de créditos.
+
+En los periodos de mayor saldo, la pérdida esperada como proporción de la cartera es extremadamente elevada, llegando al 29.5\% en 202306, lo que indica que una parte importante de la cartera clasificada como vigente tiene alta probabilidad de incumplimiento. El CaR bajo el escenario de $\rho_2 = 30\%$ llegó a representar prácticamente el 100\% del saldo de la cartera en 202302 y 202306, lo cual es una señal de alerta máxima.
+
+En contraste, en los periodos de menor saldo, el perfil de riesgo mejora sustancialmente, con pérdidas esperadas del 3.7\%--4.2\% y CaR del 13\%--27\%. La cartera requiere una estrategia clara de gestión de riesgo que estabilice el saldo y reduzca la volatilidad en la calidad crediticia.
+
+\newpage
+
+%=============================================================
+% 6. NÓMINA
+%=============================================================
+\subsection{Portafolio: Nómina}
+
+\textbf{Parámetros:} $\rho_1 = 60\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Nómina}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 1,400 & 0 & 1,400 & 0.00\% \\
+202304 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 1,400 & 0 & 1,400 & 0.00\% \\
+202308 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 1,394 & 6 & 1,400 & 0.43\% \\
+202312 & 1,400 & 0 & 1,400 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Nómina (MXN)}
+\begin{tabular}{C{2cm}R{3.3cm}R{2.5cm}R{3.3cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 94,631,576 & --- & 94,631,576 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 107,273,126 & --- & 107,273,126 & 0.00\% \\
+202304 & 35,933,966 & --- & 35,933,966 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 102,754,669 & --- & 102,754,669 & 0.00\% \\
+202308 & 110,868,340 & --- & 110,868,340 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 67,077,802 & 124,139 & 67,201,941 & 0.18\% \\
+202312 & 113,914,606 & --- & 113,914,606 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Nómina (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.2cm}R{2.5cm}R{2.3cm}R{2.5cm}R{2.8cm}R{2.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 3,114,514 & 10,701,312 & 4,275,384 & 3,270,240 & 35,218,450 & 15,940,668 \\
+\rowcolor{rowgray}
+\% Cartera & 3.2912\% & 11.3084\% & 4.5179\% & 3.4558\% & 37.2164\% & 16.8450\% \\
+202302 & 3,530,573 & 12,130,478 & 8,585,069 & 3,707,102 & 39,922,006 & 29,285,779 \\
+\rowcolor{rowgray}
+\% Cartera & 3.2912\% & 11.3080\% & 8.0030\% & 3.4558\% & 37.2153\% & 27.3002\% \\
+202304 & 9,451,105 & 7,525,566 & 5,330,730 & 9,923,660 & 32,027,802 & 25,443,297 \\
+\rowcolor{rowgray}
+\% Cartera & 26.3013\% & 20.9428\% & 14.8348\% & 27.6164\% & 89.1296\% & 70.8057\% \\
+202306 & 3,381,862 & 11,619,711 & 8,223,905 & 3,550,955 & 38,240,994 & 28,053,577 \\
+\rowcolor{rowgray}
+\% Cartera & 3.2912\% & 11.3082\% & 8.0034\% & 3.4558\% & 37.2158\% & 27.3015\% \\
+202308 & 3,648,899 & 12,537,217 & 8,873,266 & 3,831,344 & 41,260,549 & 30,268,696 \\
+\rowcolor{rowgray}
+\% Cartera & 3.2912\% & 11.3082\% & 8.0034\% & 3.4558\% & 37.2158\% & 27.3015\% \\
+202310 & 2,677,693 & 7,840,662 & 5,552,676 & 2,811,577 & 26,199,678 & 19,335,721 \\
+\rowcolor{rowgray}
+\% Cartera & 3.9845\% & 11.6673\% & 8.2627\% & 4.1838\% & 38.9865\% & 28.7726\% \\
+202312 & 3,749,158 & 12,882,531 & 9,119,139 & 3,936,615 & 42,396,749 & 31,106,574 \\
+\rowcolor{rowgray}
+\% Cartera & 3.2912\% & 11.3089\% & 8.0052\% & 3.4558\% & 37.2180\% & 27.3069\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Nómina} exhibe un IMOR de 0.00\% en casi todos los periodos, con la única excepción de 202310 (0.43\%), lo que la posiciona como una de las carteras de mayor calidad crediticia. Este comportamiento es esperable dado que los créditos de nómina tienen como garantía implícita el flujo de salario del acreditado.
+
+La pérdida esperada se mantiene estable en aproximadamente 3.29\% del saldo en la mayoría de los periodos, con excepción de 202304, donde alcanza el 26.3\%, vinculado a una reducción drástica del saldo de la cartera a \$35.9 millones (frente a \$94--113 millones en otros periodos).
+
+El aspecto más relevante de esta cartera son sus altos parámetros de correlación ($\rho_1 = 60\%$), lo que eleva considerablemente el CaR sistémico. En el escenario de $UL_{P_1}$, el CaR representa entre el 37\% y el 89\% del saldo de la cartera. Esto refleja que, aunque individualmente los créditos son de bajo riesgo, una perturbación sistémica (como una crisis de empleo) podría generar pérdidas muy elevadas simultáneamente en toda la cartera.
+
+\newpage
+
+%=============================================================
+% 7. PERSONALES
+%=============================================================
+\subsection{Portafolio: Personales}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Personales}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 1,400 & 0 & 1,400 & 0.00\% \\
+202304 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 1,400 & 0 & 1,400 & 0.00\% \\
+202308 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 1,400 & 0 & 1,400 & 0.00\% \\
+202312 & 1,400 & 0 & 1,400 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Personales (MXN)}
+\begin{tabular}{C{2cm}R{3.3cm}R{2.5cm}R{3.3cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 66,908,499 & --- & 66,908,499 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 8,904,979 & --- & 8,904,979 & 0.00\% \\
+202304 & 55,426,045 & --- & 55,426,045 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 62,591,632 & --- & 62,591,632 & 0.00\% \\
+202308 & 95,913,801 & --- & 95,913,801 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 46,299,929 & --- & 46,299,929 & 0.00\% \\
+202312 & 53,643,380 & --- & 53,643,380 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Personales (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.2cm}R{2.3cm}R{2.3cm}R{2.5cm}R{2.8cm}R{2.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 1,900,201 & 2,104,931 & 2,919,081 & 1,995,211 & 8,214,995 & 10,657,444 \\
+\rowcolor{rowgray}
+\% Cartera & 2.8400\% & 3.1460\% & 4.3628\% & 2.9820\% & 12.2780\% & 15.9284\% \\
+202302 & 252,901 & 280,420 & 679,628 & 265,546 & 1,094,162 & 2,291,786 \\
+\rowcolor{rowgray}
+\% Cartera & 2.8400\% & 3.1490\% & 7.6320\% & 2.9820\% & 12.2871\% & 25.7360\% \\
+202304 & 1,365,899 & 1,604,690 & 3,870,682 & 1,434,194 & 6,179,970 & 12,977,944 \\
+\rowcolor{rowgray}
+\% Cartera & 2.4644\% & 2.8952\% & 6.9835\% & 2.5876\% & 11.1499\% & 23.4149\% \\
+202306 & 1,511,262 & 1,790,302 & 4,321,583 & 1,586,825 & 6,882,169 & 14,476,009 \\
+\rowcolor{rowgray}
+\% Cartera & 2.4145\% & 2.8603\% & 6.9044\% & 2.5352\% & 10.9953\% & 23.1277\% \\
+202308 & 2,723,952 & 3,028,201 & 7,322,531 & 2,860,150 & 11,808,554 & 24,691,545 \\
+\rowcolor{rowgray}
+\% Cartera & 2.8400\% & 3.1572\% & 7.6345\% & 2.9820\% & 12.3116\% & 25.7435\% \\
+202310 & 1,643,647 & 1,629,057 & 3,932,345 & 1,725,830 & 6,530,818 & 13,440,682 \\
+\rowcolor{rowgray}
+\% Cartera & 3.5500\% & 3.5185\% & 8.4932\% & 3.7275\% & 14.1055\% & 29.0296\% \\
+202312 & 1,904,340 & 1,889,161 & 4,556,566 & 1,999,557 & 7,571,822 & 15,574,037 \\
+\rowcolor{rowgray}
+\% Cartera & 3.5500\% & 3.5217\% & 8.4942\% & 3.7275\% & 14.1151\% & 29.0325\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Personales} presenta IMOR de 0.00\% en todos los periodos analizados, lo que la convierte en la cartera con mejor calidad crediticia observada, junto con Auto. Los saldos presentan fluctuaciones significativas (\$8.9M--\$95.9M), lo que puede indicar renovaciones o liquidaciones masivas de créditos en ciertos periodos.
+
+La pérdida esperada como porcentaje de la cartera se mantiene estable entre 2.4\% y 3.6\%, reflejando la consistencia en el modelo de scoring aplicado. El CaR bajo el escenario de $\rho_2 = 30\%$ oscila entre el 15.9\% y el 29.0\% del saldo de la cartera, siendo los periodos 202310 y 202312 los de mayor exposición relativa.
+
+A pesar de la ausencia de cartera vencida, la pérdida esperada positiva refleja la probabilidad implícita de incumplimiento estimada por el modelo. La baja correlación intra-segmento ($\rho_1 = 5\%$) permite una mayor diversificación del riesgo, siendo el $UL_{P_1}$ relativamente bajo. Se recomienda mantener el seguimiento del modelo predictivo para anticipar posibles deterioros en la calidad crediticia.
+
+\newpage
+
+%=============================================================
+% 8. AUTO
+%=============================================================
+\subsection{Portafolio: Auto}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Auto}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 1,400 & 0 & 1,400 & 0.00\% \\
+202304 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 1,400 & 0 & 1,400 & 0.00\% \\
+202308 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 1,400 & 0 & 1,400 & 0.00\% \\
+202312 & 1,400 & 0 & 1,400 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Auto (MXN)}
+\begin{tabular}{C{2cm}R{3.5cm}R{2.5cm}R{3.5cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 260,790,743 & --- & 260,790,743 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 219,040,570 & --- & 219,040,570 & 0.00\% \\
+202304 & 222,436,064 & --- & 222,436,064 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 218,863,418 & --- & 218,863,418 & 0.00\% \\
+202308 & 224,787,911 & --- & 224,787,911 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 233,929,644 & --- & 233,929,644 & 0.00\% \\
+202312 & 225,489,891 & --- & 225,489,891 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Auto (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.3cm}R{2.3cm}R{2.4cm}R{2.6cm}R{2.8cm}R{3.0cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 78,863,121 & 20,868,086 & 28,687,710 & 82,806,277 & 141,467,379 & 164,926,251 \\
+\rowcolor{rowgray}
+\% Cartera & 30.2400\% & 8.0019\% & 11.0003\% & 31.7520\% & 54.2456\% & 63.2408\% \\
+202302 & 58,352,408 & 17,147,755 & 41,741,800 & 61,270,028 & 109,795,673 & 183,577,809 \\
+\rowcolor{rowgray}
+\% Cartera & 26.6400\% & 7.8286\% & 19.0567\% & 27.9720\% & 50.1257\% & 83.8100\% \\
+202304 & 59,256,967 & 17,413,083 & 42,388,720 & 62,219,816 & 111,496,218 & 186,423,126 \\
+\rowcolor{rowgray}
+\% Cartera & 26.6400\% & 7.8284\% & 19.0566\% & 27.9720\% & 50.1251\% & 83.8098\% \\
+202306 & 66,184,298 & 17,515,413 & 42,637,028 & 69,493,513 & 118,730,537 & 194,095,382 \\
+\rowcolor{rowgray}
+\% Cartera & 30.2400\% & 8.0029\% & 19.4811\% & 31.7520\% & 54.2487\% & 88.6833\% \\
+202308 & 67,975,864 & 17,989,678 & 43,791,226 & 71,374,658 & 121,944,897 & 199,349,542 \\
+\rowcolor{rowgray}
+\% Cartera & 30.2400\% & 8.0030\% & 19.4811\% & 31.7520\% & 54.2489\% & 88.6834\% \\
+202310 & 70,740,324 & 18,720,869 & 45,572,012 & 74,277,340 & 126,902,932 & 207,456,361 \\
+\rowcolor{rowgray}
+\% Cartera & 30.2400\% & 8.0028\% & 19.4811\% & 31.7520\% & 54.2483\% & 88.6832\% \\
+202312 & 60,070,507 & 17,652,134 & 42,970,671 & 63,074,032 & 113,026,909 & 188,982,519 \\
+\rowcolor{rowgray}
+\% Cartera & 26.6400\% & 7.8283\% & 19.0566\% & 27.9720\% & 50.1250\% & 83.8098\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera de \textbf{Auto} presenta un IMOR de 0.00\% en todos los periodos, sin ningún crédito vencido durante el horizonte de análisis. Sin embargo, llama la atención que la pérdida esperada como porcentaje del saldo oscila entre el 26.6\% y el 30.2\%, niveles muy elevados que sugieren que el modelo de riesgo asigna probabilidades de incumplimiento significativas basadas en las características de los acreditados, independientemente de su historial reciente.
+
+El saldo total de la cartera se mantiene relativamente estable entre \$219 millones y \$261 millones, con fluctuaciones moderadas. El CaR bajo el escenario $\rho_2 = 30\%$ varía entre el 63\% y el 89\% del saldo, lo que implica que en un escenario adverso sistémico, la institución podría enfrentar pérdidas equivalentes a casi la totalidad de la cartera.
+
+Dado que actualmente no hay cartera vencida, se recomienda revisar los supuestos del modelo de pérdida esperada para determinar si la alta $EL_P$ refleja adecuadamente el riesgo real de esta cartera, o si existe un exceso de conservadurismo en los parámetros.
+
+\newpage
+
+%=============================================================
+% 9. ABCD
+%=============================================================
+\subsection{Portafolio: ABCD}
+
+\textbf{Parámetros:} $\rho_1 = 80\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- ABCD}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 1,400 & 0 & 1,400 & 0.00\% \\
+202304 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 1,400 & 0 & 1,400 & 0.00\% \\
+202308 & 1,400 & 0 & 1,400 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 1,400 & 0 & 1,400 & 0.00\% \\
+202312 & 1,400 & 0 & 1,400 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- ABCD (MXN)}
+\begin{tabular}{C{2cm}R{3cm}R{2.5cm}R{3cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 2,747,417 & --- & 2,747,417 & 0.00\% \\
+\rowcolor{rowgray}
+202302 & 3,424,798 & --- & 3,424,798 & 0.00\% \\
+202304 & 4,866,483 & --- & 4,866,483 & 0.00\% \\
+\rowcolor{rowgray}
+202306 & 3,713,183 & --- & 3,713,183 & 0.00\% \\
+202308 & 4,550,577 & --- & 4,550,577 & 0.00\% \\
+\rowcolor{rowgray}
+202310 & 2,591,633 & --- & 2,591,633 & 0.00\% \\
+202312 & 3,405,629 & --- & 3,405,629 & 0.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- ABCD (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{1.8cm}R{2.2cm}R{2.0cm}R{2.2cm}R{2.5cm}R{2.5cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 105,930 & 403,340 & 145,349 & 111,227 & 1,315,950 & 541,977 \\
+\rowcolor{rowgray}
+\% Cartera & 3.8556\% & 14.6807\% & 5.2904\% & 4.0484\% & 47.8977\% & 19.7268\% \\
+202302 & 37,947 & 272,465 & 167,129 & 39,844 & 855,341 & 539,334 \\
+\rowcolor{rowgray}
+\% Cartera & 1.1080\% & 7.9556\% & 4.8800\% & 1.1634\% & 24.9749\% & 15.7479\% \\
+202304 & 85,208 & 496,672 & 304,479 & 89,469 & 1,575,226 & 998,645 \\
+\rowcolor{rowgray}
+\% Cartera & 1.7509\% & 10.2060\% & 6.2566\% & 1.8385\% & 32.3689\% & 20.5209\% \\
+202306 & 23,442 & 216,535 & 132,805 & 24,614 & 673,048 & 421,856 \\
+\rowcolor{rowgray}
+\% Cartera & 0.6313\% & 5.8315\% & 3.5766\% & 0.6629\% & 18.1259\% & 11.3610\% \\
+202308 & 36,749 & 310,172 & 190,271 & 38,586 & 967,264 & 607,562 \\
+\rowcolor{rowgray}
+\% Cartera & 0.8076\% & 6.8161\% & 4.1813\% & 0.8479\% & 21.2559\% & 13.3513\% \\
+202310 & 19,529 & 166,886 & 102,349 & 20,506 & 520,189 & 326,576 \\
+\rowcolor{rowgray}
+\% Cartera & 0.7536\% & 6.4394\% & 3.9492\% & 0.7912\% & 20.0718\% & 12.6012\% \\
+202312 & 55,957 & 326,272 & 200,103 & 58,755 & 1,034,772 & 656,267 \\
+\rowcolor{rowgray}
+\% Cartera & 1.6431\% & 9.5804\% & 5.8757\% & 1.7252\% & 30.3842\% & 19.2701\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera \textbf{ABCD} es la de menor saldo absoluto de todo el análisis, con niveles que oscilan entre \$2.6 millones y \$4.9 millones, y IMOR de 0.00\% en todos los periodos. No obstante, presenta el mayor coeficiente de correlación interna de todas las carteras ($\rho_1 = 80\%$), lo que genera un CaR relativo muy elevado.
+
+La pérdida esperada varía entre 0.63\% y 3.86\% del saldo según el periodo, mostrando una tendencia decreciente hasta 202306 para luego repuntar en 202312. El CaR bajo el escenario de alta correlación ($\mu_{X_P} + \alpha\sigma_{X_{P_1}}$) puede representar entre el 18\% y el 48\% del saldo, siendo 202212 el periodo de mayor exposición relativa.
+
+La combinación de bajo saldo y alta correlación sistémica hace que esta cartera sea especialmente sensible a choques de mercado concentrados. Aunque el monto absoluto de pérdidas potenciales es pequeño, se recomienda revisar la estructura de concentración de esta cartera para evaluar si los niveles de correlación asignados reflejan adecuadamente la realidad del portafolio.
+
+\newpage
+
+%=============================================================
+% 10. GRUPALES
+%=============================================================
+\subsection{Portafolio: Grupales}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Grupales}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202302 & 1,267 & 133 & 1,400 & 9.50\% \\
+\rowcolor{rowgray}
+202304 & 751 & 649 & 1,400 & 46.36\% \\
+202306 & 1,328 & 72 & 1,400 & 5.14\% \\
+\rowcolor{rowgray}
+202308 & 1,343 & 57 & 1,400 & 4.07\% \\
+202310 & 1,388 & 12 & 1,400 & 0.86\% \\
+\rowcolor{rowgray}
+202312 & 1,395 & 5 & 1,400 & 0.36\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Grupales (MXN)}
+\begin{tabular}{C{2cm}R{3cm}R{2.8cm}R{3cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202302 & 10,866,675 & 757,995 & 11,624,670 & 6.52\% \\
+\rowcolor{rowgray}
+202304 & 18,340,031 & 9,710,007 & 28,050,038 & 34.62\% \\
+202306 & 11,533,813 & 439,632 & 11,973,445 & 3.67\% \\
+\rowcolor{rowgray}
+202308 & 49,531,036 & 1,988,425 & 51,519,461 & 3.86\% \\
+202310 & 16,863,387 & 95,065 & 16,958,451 & 0.56\% \\
+\rowcolor{rowgray}
+202312 & 15,450,081 & 40,073 & 15,490,154 & 0.26\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Grupales (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.2cm}R{2.2cm}R{2.2cm}R{2.5cm}R{2.5cm}R{2.5cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202302 & 1,224,732 & 357,545 & 861,407 & 1,285,968 & 2,297,366 & 3,808,953 \\
+\rowcolor{rowgray}
+\% Cartera & 10.5356\% & 3.0757\% & 7.4102\% & 11.0624\% & 19.7628\% & 32.7661\% \\
+202304 & 9,186,846 & 945,163 & 2,264,770 & 9,646,188 & 12,022,334 & 15,981,155 \\
+\rowcolor{rowgray}
+\% Cartera & 32.7516\% & 3.3696\% & 8.0740\% & 34.3892\% & 42.8603\% & 56.9737\% \\
+202306 & 1,001,359 & 384,233 & 927,048 & 1,051,427 & 2,154,060 & 3,782,505 \\
+\rowcolor{rowgray}
+\% Cartera & 8.3632\% & 3.2090\% & 7.7425\% & 8.7813\% & 17.9903\% & 31.5908\% \\
+202308 & 5,578,214 & 2,347,714 & 5,695,470 & 5,857,125 & 12,621,355 & 22,664,622 \\
+\rowcolor{rowgray}
+\% Cartera & 10.8274\% & 4.5569\% & 11.0550\% & 11.3688\% & 24.4982\% & 43.9924\% \\
+202310 & 444,573 & 404,672 & 979,862 & 466,802 & 1,658,590 & 3,384,160 \\
+\rowcolor{rowgray}
+\% Cartera & 2.6215\% & 2.3863\% & 5.7780\% & 2.7526\% & 9.7803\% & 19.9556\% \\
+202312 & 492,157 & 379,540 & 917,313 & 516,764 & 1,630,777 & 3,244,095 \\
+\rowcolor{rowgray}
+\% Cartera & 3.1772\% & 2.4502\% & 5.9219\% & 3.3361\% & 10.5278\% & 20.9429\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera \textbf{Grupales} muestra el mayor deterioro puntual de todo el análisis: en 202304, el IMOR llegó al \textbf{46.36\%} en número de créditos y al \textbf{34.62\%} en saldo (\$9.7 millones de cartera vencida sobre \$28 millones totales). Este nivel de vencimiento refleja un severo problema de calidad crediticia en ese periodo.
+
+La pérdida esperada en 202304 alcanzó el 32.75\% del saldo, el valor más alto registrado para esta cartera. Sin embargo, la recuperación fue notable: para 202310 el IMOR ya había descendido a 0.86\% y la $EL_P$ a 2.62\%. El CaR en el escenario sistémico ($\rho_2 = 30\%$) llegó a representar el 57\% del saldo en 202304, mientras que en 202312 se situó en apenas el 21\%.
+
+La notable mejoría en los indicadores de calidad sugiere que se implementaron medidas efectivas de gestión de la cartera vencida. Se recomienda mantener políticas estrictas de originación y seguimiento para evitar una repetición del deterioro observado en 202304, y vigilar el comportamiento de los acreditados grupales durante periodos de estrés económico.
+
+\newpage
+
+%=============================================================
+% 11. OTROS
+%=============================================================
+\subsection{Portafolio: Otros}
+
+\textbf{Parámetros:} $\rho_1 = 5\%$, $\rho_2 = 30\%$, $\theta = 5\%$, $\alpha = 3.00$
+
+\subsubsection{Composición de la Cartera}
+
+\begin{table}[H]
+\centering
+\caption{Créditos -- Otros}
+\begin{tabular}{C{2cm}R{2.5cm}R{2.5cm}R{2.5cm}R{2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 1,319 & 81 & 1,400 & 5.79\% \\
+\rowcolor{rowgray}
+202302 & 1,369 & 31 & 1,400 & 2.21\% \\
+202304 & 1,359 & 41 & 1,400 & 2.93\% \\
+\rowcolor{rowgray}
+202306 & 1,334 & 66 & 1,400 & 4.71\% \\
+202308 & 1,347 & 53 & 1,400 & 3.79\% \\
+\rowcolor{rowgray}
+202310 & 1,349 & 51 & 1,400 & 3.64\% \\
+202312 & 1,312 & 88 & 1,400 & 6.29\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos -- Otros (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{2.5cm}R{3.2cm}R{1.8cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} & \textcolor{white}{\textbf{IMOR}} \\
+\midrule
+202212 & 25,329,967 & 749,672 & 26,079,639 & 2.87\% \\
+\rowcolor{rowgray}
+202302 & 35,758,631 & 358,711 & 36,117,342 & 0.99\% \\
+202304 & 27,714,039 & 552,820 & 28,266,859 & 1.96\% \\
+\rowcolor{rowgray}
+202306 & 15,450,460 & 659,570 & 16,110,030 & 4.09\% \\
+202308 & 7,800,446 & 410,564 & 8,211,010 & 5.00\% \\
+\rowcolor{rowgray}
+202310 & 19,164,570 & 2,238,265 & 21,402,835 & 10.46\% \\
+202312 & 16,992,265 & 2,071,495 & 19,063,760 & 10.87\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Saldos Promedio -- Otros (MXN)}
+\begin{tabular}{C{2cm}R{3.2cm}R{3.2cm}R{3.2cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{Vigentes}} & \textcolor{white}{\textbf{Vencidos}} & \textcolor{white}{\textbf{Totales}} \\
+\midrule
+202212 & 19,204 & 9,255 & 18,628 \\
+\rowcolor{rowgray}
+202302 & 26,120 & 11,571 & 25,798 \\
+202304 & 20,393 & 13,483 & 20,191 \\
+\rowcolor{rowgray}
+202306 & 11,582 & 9,993 & 11,507 \\
+202308 & 5,791 & 7,746 & 5,865 \\
+\rowcolor{rowgray}
+202310 & 14,207 & 43,888 & 15,288 \\
+202312 & 12,951 & 23,540 & 13,617 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Caracterización de la Cartera de Créditos}
+
+\begin{table}[H]
+\centering
+\caption{Credit at Risk -- Otros (MXN)}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{C{1.6cm}R{2.2cm}R{2.2cm}R{2.2cm}R{2.4cm}R{2.5cm}R{2.5cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Periodo}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{$UL_{P_1}$}} & \textcolor{white}{\textbf{$UL_{P_2}$}} & \textcolor{white}{\textbf{$(1+\theta)\mu_{X_P}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_1}}$}} & \textcolor{white}{\textbf{$\mu_{X_P}+\alpha\sigma_{X_{P_2}}$}} \\
+\midrule
+202212 & 2,999,962 & 1,546,655 & 1,159,058 & 3,149,961 & 7,639,926 & 6,477,137 \\
+\rowcolor{rowgray}
+\% Cartera & 11.5031\% & 5.9305\% & 4.4443\% & 12.0782\% & 29.2946\% & 24.8360\% \\
+202302 & 3,650,069 & 3,475,483 & 5,054,081 & 3,832,572 & 14,076,518 & 18,812,312 \\
+\rowcolor{rowgray}
+\% Cartera & 10.1061\% & 9.6228\% & 13.9935\% & 10.6114\% & 38.9744\% & 52.0866\% \\
+202304 & 2,939,765 & 3,603,265 & 4,370,202 & 3,086,753 & 13,749,559 & 16,050,372 \\
+\rowcolor{rowgray}
+\% Cartera & 10.4000\% & 12.7473\% & 15.4605\% & 10.9200\% & 48.6420\% & 56.7816\% \\
+202306 & 1,493,825 & 595,609 & 1,301,989 & 1,568,517 & 3,280,654 & 5,399,793 \\
+\rowcolor{rowgray}
+\% Cartera & 9.2726\% & 3.6971\% & 8.0819\% & 9.7363\% & 20.3640\% & 33.5182\% \\
+202308 & 974,027 & 483,244 & 851,016 & 1,022,728 & 2,423,758 & 3,527,075 \\
+\rowcolor{rowgray}
+\% Cartera & 11.8624\% & 5.8853\% & 10.3643\% & 12.4556\% & 29.5184\% & 42.9554\% \\
+202310 & 4,942,077 & 948,306 & 2,185,430 & 5,189,181 & 7,786,996 & 11,498,365 \\
+\rowcolor{rowgray}
+\% Cartera & 23.0908\% & 4.4308\% & 10.2109\% & 24.2453\% & 36.3830\% & 53.7236\% \\
+202312 & 3,591,263 & 807,427 & 1,887,588 & 3,770,826 & 6,013,545 & 9,254,026 \\
+\rowcolor{rowgray}
+\% Cartera & 18.8382\% & 4.2354\% & 9.9014\% & 19.7801\% & 31.5444\% & 48.5425\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Interpretación}
+
+La cartera \textbf{Otros} presenta un deterioro progresivo en su calidad crediticia a lo largo del periodo analizado. El IMOR en número de créditos inicia en 5.79\% en 202212, muestra cierta mejoría en 202302--202304, pero vuelve a incrementarse hasta alcanzar \textbf{6.29\%} en 202312. Más preocupante aún es el IMOR en saldo, que pasa del 2.87\% inicial al \textbf{10.87\%} en diciembre de 2023, lo que indica que los créditos que se vencen son de mayor monto promedio (\$23,540 vs. \$9,255 en el primer periodo).
+
+La pérdida esperada como porcentaje del saldo es consistentemente elevada, entre el 9.3\% y el 23.1\%, reflejando una cartera de mayor riesgo dentro del universo analizado. El CaR bajo el escenario sistémico ($\rho_2 = 30\%$) varía ampliamente, entre el 24.8\% en 202212 y el 56.8\% en 202304, con niveles que se mantienen por encima del 40\% en los últimos periodos.
+
+La tendencia creciente del IMOR en saldo y de la pérdida esperada en los últimos periodos (202310--202312) constituye una señal de alerta que requiere atención prioritaria. Se recomienda implementar medidas de recuperación de cartera vencida y revisar los criterios de elegibilidad para nuevos créditos en este segmento.
+
+\newpage
+
+%=============================================================
+% RESUMEN COMPARATIVO
+%=============================================================
+\subsection{Resumen Comparativo de Portafolios}
+
+\subsubsection{Indicadores Clave al Cierre (202312)}
+
+\begin{table}[H]
+\centering
+\caption{Comparativo de IMOR y Pérdida Esperada al cierre 202312}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{L{3.5cm}R{3.2cm}R{2cm}R{2.5cm}R{2.5cm}R{2.5cm}}
+\toprule
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Portafolio}} & \textcolor{white}{\textbf{Saldo Total}} & \textcolor{white}{\textbf{IMOR}} & \textcolor{white}{\textbf{$EL_P$}} & \textcolor{white}{\textbf{\% $EL_P$}} & \textcolor{white}{\textbf{CaR máx.}} \\
+\midrule
+Gubernamental & 132,750,901,846 & 0.01\% & 1,838,017,454 & 1.38\% & 18.85\% \\
+\rowcolor{rowgray}
+Entidades Financieras & 35,346,803,508 & 0.02\% & 225,530,943 & 0.64\% & 9.68\% \\
+Empresas & 4,567,216,513 & 1.48\% & 24,358,277 & 0.53\% & 4.82\% \\
+\rowcolor{rowgray}
+Vivienda & 2,556,160,666 & 20.02\% & 168,686,061 & 6.60\% & 14.75\% \\
+Auto & 225,489,891 & 0.00\% & 60,070,507 & 26.64\% & 83.81\% \\
+\rowcolor{rowgray}
+Nómina & 113,914,606 & 0.00\% & 3,749,158 & 3.29\% & 37.22\% \\
+Tarjeta de Crédito & 24,167,205 & 1.30\% & 1,025,229 & 4.24\% & 26.39\% \\
+\rowcolor{rowgray}
+Otros & 19,063,760 & 10.87\% & 3,591,263 & 18.84\% & 48.54\% \\
+Personales & 53,643,380 & 0.00\% & 1,904,340 & 3.55\% & 29.03\% \\
+\rowcolor{rowgray}
+Grupales & 15,490,154 & 0.26\% & 492,157 & 3.18\% & 20.94\% \\
+ABCD & 3,405,629 & 0.00\% & 55,957 & 1.64\% & 30.38\% \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsubsection{Conclusiones Generales}
+
+El análisis del Credit at Risk a través de los distintos portafolios revela patrones diferenciados de riesgo que requieren estrategias específicas de gestión:
+
+\textbf{Carteras de bajo riesgo observado, alto riesgo sistémico:} Gubernamental y Entidades Financieras presentan IMORs casi nulos, pero sus elevadas correlaciones intra-segmento generan CaR sistémicos significativos. Son carteras donde el riesgo idiosincrático es mínimo pero el riesgo sistémico puede ser muy relevante en escenarios de estrés macroeconómico.
+
+\textbf{Carteras con riesgo modelo elevado:} Auto y Nómina presentan IMOR de 0.00\% pero pérdidas esperadas muy altas (26.6\% y 3.3\% respectivamente), lo que sugiere que el modelo de scoring asigna probabilidades de incumplimiento implícitas que no se han materializado aún. Se recomienda calibrar los parámetros del modelo con el comportamiento histórico real.
+
+\textbf{Carteras con deterioro crítico:} Vivienda (IMOR 20.02\% en 202312), Otros (IMOR 10.87\%) y la histórica de Grupales en 202304 (46.36\%) son las de mayor preocupación. Requieren atención inmediata en términos de recuperación de cartera y revisión de políticas de originación.
+
+\textbf{Carteras con buen perfil de riesgo:} Empresas muestra una mejora sostenida en calidad crediticia. Tarjeta de Crédito y Personales presentan niveles manejables en los periodos más recientes.
+
+En términos de capital económico, las carteras de mayor peso absoluto (Gubernamental y Entidades Financieras) requieren las mayores reservas en términos nominales, mientras que las carteras de consumo (Vivienda, Otros, Grupales) requieren atención por su perfil de riesgo relativo elevado.
+
+\subsection{Diagrama de procedimientos}
+
+\subsection{Presentación}
